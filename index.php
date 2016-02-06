@@ -2,7 +2,7 @@
 
 echo '<a href="index.php?page=about">About</a><br />';
 echo '<a href="index.php?page=contact">Contact</a><br />';
-echo '<a href="index.php?page=homepage">Home</a><br />';
+echo '<a href="index.php">Home</a><br />';
 
 echo '<br /><b>print_r($_GET)</b> --> ';
 print_r($_GET);
@@ -17,6 +17,10 @@ echo '<hr>';
 if (isset($_GET['page'])) 
 {
   $page = $_GET['page'];
+}
+else
+{
+  $page = homepage;
 }
 //echo $page;
 $obj = new $page;
@@ -71,7 +75,7 @@ class homepage
     tempus sem, at malesuada sapien placerat a.</p>';
     
     echo '<h3>Try the <i>post()</i> method below:</h3>';
-    echo '<form action="index.php?page=homepage" method="post">
+    echo '<form action="index.php" method="post">
           <p>Data: <input type="text" name="data" /></p>
           <p><input type="submit"></p>
           </form>';
