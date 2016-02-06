@@ -41,11 +41,20 @@ class about
     purus vel urna blandit, id dignissim libero dapibus. Donec in aliquet libero.<br /> Phasellus sapien erat, fringilla non augue id, imperdiet interdum dolor. Mauris<br />
     lorem ante, facilisis gravida lacinia laoreet, accumsan a tellus. Aliquam mollis<br />
     tempus sem, at malesuada sapien placerat a.</p>';
+  
+    echo '<h3>Try the <i>post()</i> method below:</h3>';
+    echo '<form action="index.php?page=about" method="post">
+          <p>Data: <input type="text" name="data" /></p>
+          <p><input type="submit"></p>
+          </form>';
   }
   
   public function post()
   {
-    echo '<h3><i>post()</i> method was triggered</h3>';
+    echo '<h2>About</h2>';
+    
+    echo '<h3><i>post()</i> method was triggered in <i>about</i> page</h3>';
+    print_r($_POST);
   }
 }
 
@@ -60,11 +69,20 @@ class homepage
     purus vel urna blandit, id dignissim libero dapibus. Donec in aliquet libero.<br /> Phasellus sapien erat, fringilla non augue id, imperdiet interdum dolor. Mauris<br />
     lorem ante, facilisis gravida lacinia laoreet, accumsan a tellus. Aliquam mollis<br />
     tempus sem, at malesuada sapien placerat a.</p>';
+    
+    echo '<h3>Try the <i>post()</i> method below:</h3>';
+    echo '<form action="index.php?page=homepage" method="post">
+          <p>Data: <input type="text" name="data" /></p>
+          <p><input type="submit"></p>
+          </form>';
   }
   
   public function post()
   {
-    echo '<h3><i>post()</i> method was triggered</h3>';
+    echo '<h2>Homepage</h2>';
+    
+    echo '<h3><i>post()</i> method was triggered in <i>homepage</i></h3>';
+    print_r($_POST);
   }
 }
 
@@ -84,6 +102,8 @@ class contact
   
   public function post()
   {
+    echo '<h2>Contact</h2>';
+    
     echo '<h3>Thank you for submitting the form!</h3>';
     echo '<h4>Hers\'s what you submitted:</h4>';
     print_r($_POST);
