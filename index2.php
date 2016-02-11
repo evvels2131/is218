@@ -89,6 +89,33 @@ class Page
 		<?php
 	}
 	
+	
+	public function createForm($inputFieldsArray)
+	{
+		?>
+		<form>
+			<?php
+			foreach ($inputFieldsArray as $key => $innerArray)
+			{
+				echo $key . '<br />'; 
+
+				if (is_array($innerArray))
+				{
+					?>
+					<input type="<?php echo $innerArray[0]; ?>" name="<?php echo $innerArray[1]; ?>"><br />
+					<?php
+				}
+				else
+				{
+					echo $innerArray;
+				}
+			}
+			?>
+		</form>
+		<input type="submit" value="Submit">
+		<?php
+	}
+	
 	public function createParagraph($text)
 	{
 		?>
@@ -96,6 +123,21 @@ class Page
 		<?php
 	}
 }
+
+$inputFields = array(
+	"First name" => array(
+		"text",
+		"firstName"
+	),
+	"Last name" => array(
+		"text",
+		"lastName"
+	),
+	"Middle name" => array(
+		"text",
+		"middleName"
+	)
+);
 
 // Testing
 $obj = new Page("Homepage");
@@ -106,11 +148,58 @@ $obj->createContent("Header");
 $obj->createParagraph("This is a sample paragraph.");
 $obj->createLink("http://www.w3schools.com", "W3Schools");
 $obj->createTable("Table", "Content");
+$obj->createForm($inputFields);
 
 
 $obj->setFooter("This is a sample footer.");
 $obj->createFooter();
-	
+
+
+
+echo '<pre>';
+print_r($inputFields);
+echo '</pre>';
+
+createForm2($inputFields);
+function createForm2($inpt)
+{
+	foreach ($inpt as $key => $innerArray)
+	{
+		echo $key . '<br />';
+		if (is_array($innerArray))
+		{ 
+			?>
+			<input type="<?php echo $innerArray[0]; ?>" name="<?php echo $innerArray[1]; ?>"><br>
+			<?php 
+		}
+		else
+		{
+			echo $innerArray;
+		}
+	}
+}
+
+/*
+echo '<br/>';
+foreach ($inputFields as $key => $innerArray)
+{
+	echo $key . ' First key<br />';
+	if (is_array($innerArray))
+	{
+		foreach ($innerArray as $key => $innerArray2)
+		{
+			echo $key . 'Second key<br />';
+			if (is_array($innerArray2))
+			{
+				foreach ($innerArray2 as $key => $value)
+				{
+					echo 'key: ' . $key . ' value: ' . $value;
+				}
+			}
+		}
+	}
+}
+	*/
 
 
 ?>
