@@ -75,7 +75,7 @@ class Page
 		<?php
 	}
 	
-	public function createTable($th, $td)
+	/*public function createTable($th, $td)
 	{
 		?>
 		<table>
@@ -87,7 +87,7 @@ class Page
 			</tr>
 		</table>
 		<?php
-	}
+	}*/
 	
 	// Create form from an array of input fields
 	public function createForm($inputFields, $action)
@@ -209,7 +209,7 @@ $obj->createHeader();
 $obj->createContent("Header");
 $obj->createParagraph("This is a sample paragraph.");
 $obj->createLink("http://www.w3schools.com", "W3Schools");
-$obj->createTable("Table", "Content");
+//$obj->createTable("Table", "Content");
 //$obj->createForm($inputFields, 'index2.php');
 $obj->createForm($inputFields2, 'index2.php');
 
@@ -263,43 +263,15 @@ class Person
 $john = new Person('Waiter', 'John', 'Smith', 'johnsmith@njit.edu');
 $mary = new Person('Realtor', 'Mary', 'Smith', 'marysmith@njit.edu');
 $tony = new Person('Teacher', 'Tony', 'Hawk', 'tonyhawk@njit.edu');
-$johnny = new Person('Unemployed', 'Johnny', 'Applesead', 'johnnyapplesead@njit.edu');
+$johnny = new Person('Unemployed', 'Johnny', 'Appleseed', 'johnnyappleseed@njit.edu');
 
-$personArray = array($john, $mary, $tony, $johnny);
+$people = array($john, $mary, $tony, $johnny);
+createTable($people);
 
-echo '<h1>test</h1>';
-//echo $personArray[$john];
-print_r($personArray[0]);
-//echo $personArray[0];
-
-foreach ($personArray as $key => $person)
+function createTable($people)
 {
-	echo $key . '<br />';
-	echo $person->test();
-	echo $person->getTitle() . '<br />';
-	echo $person->getFirstName() . '<br />';
-	echo $person->getLastName() . '<br />';
-	echo $person->getEmailAddress() . '<br /><br />';
-}
-
-echo '<pre>';
-$john->test();
-echo '</pre>';
-
-$whats = $john->test();
-//$whats = get_object_vars($john);
-foreach ($whats as $key => $value)
-{
-	echo 'key: ' . $key . ', value: ' . $value . '<br />';
-}
-
-//cT($whats);
-cT($personArray);
-
-function cT($arrayPeople)
-{
-	$firstObject = $arrayPeople[0];
-	$test = $firstObject->test();
+	$firstPerson = $people[0];
+	$test = $firstPerson->test();
 	?>
 	<table>
 		<tr>
@@ -313,7 +285,7 @@ function cT($arrayPeople)
 			?>
 		</tr>
 			<?php
-			foreach ($arrayPeople as $key => $value)
+			foreach ($people as $key => $value)
 			{
 				?>
 				<tr>
@@ -328,36 +300,5 @@ function cT($arrayPeople)
 	</table>
 	<?php
 }
-
-
-$class_vars = get_object_vars($john);
-foreach ($class_vars as $name => $value)
-{
-	echo $name . ': ' . $value . '<br />';
-}
-
-//$test = get_object_vars($john);
-//var_dump($test);
-
-echo '<pre>';
-print_r($personArray);
-echo '</pre>';
-
-
-function makeTable($array)
-{
-	echo 'Hello';
-}
-//echo $personArray[0];
-print_r(array_keys($personArray[0]));
-$testing = each($personArray);
-echo '<pre>';
-print_r($testing);
-echo '</pre>';
-
-//var_dump(get_object_vars($personArray));
-	
-
-
 
 ?>
