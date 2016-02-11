@@ -45,14 +45,12 @@ class Page
 	}
 	
 	// Create content
-	public function createContent($heading, $pageContent)
+	public function createContent($heading)
 	{
 		?>
 		<body>
 			<section>
 				<h1><?php echo $heading; ?></h1>
-				<p><?php echo $pageContent; ?></p>
-			</section>
 		<?php
 	}
 	
@@ -60,6 +58,7 @@ class Page
 	public function createFooter()
 	{
 		?>
+		  </section>
 			<footer>
 				<h3><?php echo $this->_footer; ?></h3>
 			</footer>
@@ -89,14 +88,29 @@ class Page
 		</table>
 		<?php
 	}
+	
+	public function createParagraph($text)
+	{
+		?>
+		<p><?php echo $text; ?></p>
+		<?php
+	}
 }
 
 // Testing
 $obj = new Page("Homepage");
 $obj->createHeader();
-//$link = $obj->createLink("http://www.w3schools.com", "W3Schools");
-$obj->createContent("Links", "This is a sample content.");
-$table = $obj->createTable("Header", "Content");
+
+
+$obj->createContent("Header");
+$obj->createParagraph("This is a sample paragraph.");
+$obj->createLink("http://www.w3schools.com", "W3Schools");
+$obj->createTable("Table", "Content");
+
+
 $obj->setFooter("This is a sample footer.");
-$obj->createFooter()
+$obj->createFooter();
+	
+
+
 ?>
