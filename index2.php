@@ -89,20 +89,21 @@ class Page
 		<?php
 	}
 	
-	
-	public function createForm($inputFieldsArray)
+	// Create form from an array of input fields
+	public function createForm($inputFields, $action)
 	{
 		?>
-		<form>
+		<form action="<?php echo $action; ?>" method="POST">
 			<?php
-			foreach ($inputFieldsArray as $key => $innerArray)
+			foreach ($inputFields as $key => $innerArray)
 			{
 				echo $key . '<br />'; 
 
 				if (is_array($innerArray))
 				{
 					?>
-					<input type="<?php echo $innerArray[0]; ?>" name="<?php echo $innerArray[1]; ?>"><br />
+					<input type="<?php echo $innerArray['type']; ?>" name="<?php echo $innerArray['name']; ?>"
+						value="<?php echo $innerArray['value']; ?>"><br />
 					<?php
 				}
 				else
@@ -126,17 +127,26 @@ class Page
 
 $inputFields = array(
 	"First name" => array(
-		"text",
-		"firstName"
+		"type" => "text",
+		"name" => "firstName",
+		"value" => "First Name"
 	),
 	"Last name" => array(
-		"text",
-		"lastName"
+		"type" => "text",
+		"name" => "lastName",
+		"value" => "Last Name"
 	),
 	"Middle name" => array(
-		"text",
-		"middleName"
-	)
+		"type" => "text",
+		"name" => "middleName",
+		"value" => "Middle Name"
+	),
+	"User password" => array(
+		"type" => "password",
+		"name" => "psw",
+		"value" => "Password"
+	),
+	
 );
 
 // Testing
@@ -148,58 +158,11 @@ $obj->createContent("Header");
 $obj->createParagraph("This is a sample paragraph.");
 $obj->createLink("http://www.w3schools.com", "W3Schools");
 $obj->createTable("Table", "Content");
-$obj->createForm($inputFields);
+$obj->createForm($inputFields, 'index2.php');
 
 
 $obj->setFooter("This is a sample footer.");
 $obj->createFooter();
-
-
-
-echo '<pre>';
-print_r($inputFields);
-echo '</pre>';
-
-createForm2($inputFields);
-function createForm2($inpt)
-{
-	foreach ($inpt as $key => $innerArray)
-	{
-		echo $key . '<br />';
-		if (is_array($innerArray))
-		{ 
-			?>
-			<input type="<?php echo $innerArray[0]; ?>" name="<?php echo $innerArray[1]; ?>"><br>
-			<?php 
-		}
-		else
-		{
-			echo $innerArray;
-		}
-	}
-}
-
-/*
-echo '<br/>';
-foreach ($inputFields as $key => $innerArray)
-{
-	echo $key . ' First key<br />';
-	if (is_array($innerArray))
-	{
-		foreach ($innerArray as $key => $innerArray2)
-		{
-			echo $key . 'Second key<br />';
-			if (is_array($innerArray2))
-			{
-				foreach ($innerArray2 as $key => $value)
-				{
-					echo 'key: ' . $key . ' value: ' . $value;
-				}
-			}
-		}
-	}
-}
-	*/
 
 
 ?>
