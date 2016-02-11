@@ -68,6 +68,14 @@ class Page
 		<?php
 	}
 	
+	// Create a link
+	public function createLink($url, $text)
+	{
+		?>
+		<a href="<?php echo $url; ?>" target="_blank"><?php echo $text; ?></a>
+		<?php
+	}
+	
 }
 	
 ?>
