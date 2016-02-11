@@ -76,6 +76,27 @@ class Page
 		<?php
 	}
 	
+	public function createTable($th, $td)
+	{
+		?>
+		<table>
+			<tr>
+				<th><?php echo $th; ?></th>
+			</tr>
+			<tr>
+				<td><?php echo $td; ?></td>
+			</tr>
+		</table>
+		<?php
+	}
 }
-	
+
+// Testing
+$obj = new Page("Homepage");
+$obj->createHeader();
+//$link = $obj->createLink("http://www.w3schools.com", "W3Schools");
+$obj->createContent("Links", "This is a sample content.");
+$table = $obj->createTable("Header", "Content");
+$obj->setFooter("This is a sample footer.");
+$obj->createFooter()
 ?>
