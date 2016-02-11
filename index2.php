@@ -97,7 +97,7 @@ class Page
 			<?php
 			foreach ($inputFields as $key => $innerArray)
 			{
-				echo $key . '<br />'; 
+				echo $key . '<br />';
 
 				if (is_array($innerArray))
 				{
