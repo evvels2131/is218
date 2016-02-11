@@ -53,8 +53,21 @@ class Page
 				<h1><?php echo $heading; ?></h1>
 				<p><?php echo $pageContent; ?></p>
 			</section>
-		</body>
+		<?php
 	}
+	
+	// Create footer
+	public function createFooter()
+	{
+		?>
+			<footer>
+				<h3><?php echo $this->_footer; ?></h3>
+			</footer>
+		</body>
+		</html>
+		<?php
+	}
+	
 }
 	
 ?>
