@@ -15,6 +15,16 @@ class Page
 	{
 		$this->_title = $newTitle;
 	}
+	
+	public function getFooter()
+	{
+		return $this->_footer;
+	}
+	
+	public function setFooter($newFooter)
+	{
+		$this->_footer = $newFooter;
+	}
 }
 	
 ?>
