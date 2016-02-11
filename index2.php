@@ -25,6 +25,19 @@ class Page
 	{
 		$this->_footer = $newFooter;
 	}
+	
+	// Create header
+	public function createHeader($title)
+	{
+		?>
+		<!DOCTYPE html>
+		<html>
+		<head>
+			<meta charset="UTF-8">
+			<title><?php echo $this->_title; ?></title>
+		</head>
+		<?php
+	}
 }
 	
 ?>
