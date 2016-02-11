@@ -5,6 +5,11 @@ class Page
 	private $_title;
 	private $_footer;
 	
+	public function __construct($pageTitle)
+	{
+		$this->_title = $pageTitle;
+	}
+	
 	// Getters and setters
 	public function getTitle()
 	{
@@ -27,7 +32,7 @@ class Page
 	}
 	
 	// Create header
-	public function createHeader($title)
+	public function createHeader()
 	{
 		?>
 		<!DOCTYPE html>
@@ -37,6 +42,18 @@ class Page
 			<title><?php echo $this->_title; ?></title>
 		</head>
 		<?php
+	}
+	
+	// Create content
+	public function createContent($heading, $pageContent)
+	{
+		?>
+		<body>
+			<section>
+				<h1><?php echo $heading; ?></h1>
+				<p><?php echo $pageContent; ?></p>
+			</section>
+		</body>
 	}
 }
 	
