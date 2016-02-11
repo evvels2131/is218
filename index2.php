@@ -101,9 +101,19 @@ class Page
 
 				if (is_array($innerArray))
 				{
+					if ($innerArray['checked'] == 'checked')
+					{
+						$checked = 'checked';
+					}
+					else
+					{
+						$checked = '';
+					}
 					?>
-					<input type="<?php echo $innerArray['type']; ?>" name="<?php echo $innerArray['name']; ?>"
-						value="<?php echo $innerArray['value']; ?>"><br />
+					<input type="<?php echo $innerArray['type']; ?>" 
+						name="<?php echo $innerArray['name']; ?>"
+						value="<?php echo $innerArray['value']; ?>" 
+						<?php echo $checked; ?> ><br />
 					<?php
 				}
 				else
@@ -146,7 +156,17 @@ $inputFields = array(
 		"name" => "psw",
 		"value" => "Password"
 	),
-	
+	"Male" => array(
+		"type" => "radio",
+		"name" => "gender",
+		"value" => "male",
+		"checked" => "checked"
+	),
+	"Female" => array(
+		"type" => "radio",
+		"name=" => "gender",
+		"value" => "female"
+	)
 );
 
 // Testing
