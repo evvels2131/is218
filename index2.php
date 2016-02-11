@@ -90,41 +90,57 @@ class Page
 	}
 	
 	// Create form from an array of input fields
+
+	
 	public function createForm($inputFields, $action)
 	{
 		?>
 		<form action="<?php echo $action; ?>" method="POST">
 			<?php
-			foreach ($inputFields as $key => $innerArray)
+			foreach ($inputFields as $key => $inputField)
 			{
-				echo $key . '<br />';
-
-				if (is_array($innerArray))
+				switch ($inputField['type'])
 				{
-					if ($innerArray['checked'] == 'checked')
-					{
-						$checked = 'checked';
-					}
-					else
-					{
-						$checked = '';
-					}
-					?>
-					<input type="<?php echo $innerArray['type']; ?>" 
-						name="<?php echo $innerArray['name']; ?>"
-						value="<?php echo $innerArray['value']; ?>" 
-						<?php echo $checked; ?> ><br />
-					<?php
-				}
-				else
-				{
-					echo $innerArray;
+					case 'text':
+						echo $inputField['desc'] . '<br />';
+						?>
+						<input type="text" 
+									 name="<?php echo $inputField['name']; ?>" 
+									 value="<?php echo $inputField['value']; ?>"><br />
+						<?php
+						break;
+					case 'password':
+						echo $inputField['desc'] . '<br />';
+						?>
+						<input type="password" 
+									 name="<?php echo $inputField['name']; ?>" 
+									 value="<?php echo $inputField['value']; ?>"><br />
+						<?php
+						break;
+					case 'radio':
+						?>
+						<input type="radio" 
+									 name="<?php echo $inputField['name']; ?>" 
+									 value="<?php echo $inputField['value']; ?>" 
+									 <?php echo $inputField['checked']; ?> >
+						<?php
+						echo $inputField['desc'] . '<br />';
+						break;
+					case 'checkbox':
+						?>
+						<input type="checkbox"
+									 name="<?php echo $inputField['name']; ?>"
+									 value="<?php echo $inputField['value']; ?>">
+						<?php
+						echo $inputField['desc'] . '<br />';
+						break;
 				}
 			}
 			?>
+			<br />
+			<input type="submit" value="Submit">
 		</form>
-		<input type="submit" value="Submit">
-		<?php
+			<?php
 	}
 	
 	public function createParagraph($text)
@@ -169,6 +185,62 @@ $inputFields = array(
 	)
 );
 
+$inputFields2 = array(
+	'0' => array(
+		'desc' => 'First name:',
+		'type' => 'text',
+		'name' => 'fname',
+		'value' => 'First Name'
+	),
+	'1' => array(
+		'desc' => 'First naddme:',
+		'type' => 'text',
+		'name' => 'ddd',
+		'value' => 'Firsddt Name'
+	),
+	'2' => array(
+		'desc' => 'Password',
+		'type' => 'password',
+		'name' => 'pass',
+		'value' => 'Password'
+	),
+	'3' => array(
+		'desc' => 'Male',
+		'type' => 'radio',
+		'name' => 'gender',
+		'value' => 'male',
+		'checked' => 'checked'
+	),
+	'4' => array(
+		'desc' => 'Female',
+		'type' => 'radio',
+		'name' => 'gender',
+		'value' => 'female'
+	),
+	'5' => array(
+		'desc' => 'Other',
+		'type' => 'radio',
+		'name' => 'gender',
+		'value' => 'other'
+	),
+	'6' => array(
+		'desc' => 'I have a bike',
+		'type' => 'checkbox',
+		'name' => 'vehicle1',
+		'value' => 'Bike'
+	),
+	'7' => array(
+		'desc' => 'I have a car',
+		'type' => 'checkbox',
+		'name' => 'vehicle2',
+		'value' => 'Car'
+	),
+);
+
+echo '<pre>';
+print_r($inputFields2);
+echo '</pre>';
+
 // Testing
 $obj = new Page("Homepage");
 $obj->createHeader();
@@ -178,7 +250,8 @@ $obj->createContent("Header");
 $obj->createParagraph("This is a sample paragraph.");
 $obj->createLink("http://www.w3schools.com", "W3Schools");
 $obj->createTable("Table", "Content");
-$obj->createForm($inputFields, 'index2.php');
+//$obj->createForm($inputFields, 'index2.php');
+$obj->createForm($inputFields2, 'index2.php');
 
 
 $obj->setFooter("This is a sample footer.");
