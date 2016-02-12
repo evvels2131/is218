@@ -39,6 +39,8 @@ class Page
 		<html>
 		<head>
 			<meta charset="UTF-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<title><?php echo $this->_title; ?></title>
 		</head>
 		<?php
@@ -302,6 +304,8 @@ $obj->createForm($inputFields, 'index2.php');
 
 // Create table
 createTable($people);
+echo '<hr>';
+createTable_v2($people);
 
 $obj->setFooter("This is a sample footer.");
 $obj->createFooter();
@@ -340,49 +344,46 @@ function createTable($people)
 	<?php
 }
 
-echo '<br /><br /><pre>';
-//var_dump($people);
-echo '</pre>';
-
-echo '<br /><br /><pre>';
-$newnew = object_to_array($people);
-//print_r($new);
-echo '</pre>';
-
-echo '<br/> <br/>';
-createTable_v2($people);
-
+//cTable($people);
 function createTable_v2($people)
 {
-	$firstPerson = $people[0];
-	$test = (array) $firstPerson;
-	
-	foreach ($test as $key => $value)
-	{
-		//echo 'key: ' . $key . ', value: ' . $value . '<br />';
-	}
-	
-	echo '<br/><br/><pre>';
-	//var_dump($test);
-	echo '</pre>';
-	
-	$array = json_decode($people, TRUE);
-	echo '<br/><br/><pre>';
-	//var_dump($array);
-	echo '</pre>';
+	$firstObject = $people[0];
+	$properties = $firstObject->test();
+	?>
+	<table>
+		<tr>
+			<?php
+			foreach ($properties as $key => $value)
+			{
+				?>
+				<th><?php echo $key; ?></th>
+				<?php
+			}
+			?>
+		</tr>
+		<?php
+		foreach ($people as $key => $value)
+		{
+			?>
+			<tr>
+			<?php
+			if (is_object($value))
+			{
+				$value = (array)$value;
+				foreach ($value as $key => $value)
+				{
+					?>
+					<td><?php echo $value; ?></td>
+					<?php
+				}
+			}
+			?>
+			</tr>
+			<?php
+		}
+		?>
+	</table>
+	<?php
 }
-
-function object_to_array($obj)
-{
-	$_arr = is_object($obj) ? get_object_vars($obj) : $obj;
-	foreach ($_arr as $key => $val)
-	{
-		$val = (is_array($val) || is_object($val)) ? object_to_array($val) : $val;
-		$arr[$key] = $val;
-	}
-	return $arr;
-}
-
-
 
 ?>
