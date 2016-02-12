@@ -121,19 +121,6 @@ class Page
 					break;
 			}
 		}
-	/*public function createTable($th, $td)
-	{
-		?>
-		<table>
-			<tr>
-				<th><?php echo $th; ?></th>
-			</tr>
-			<tr>
-				<td><?php echo $td; ?></td>
-			</tr>
-		</table>
-		<?php
-	}*/
 	
 	// Create form from an array of input fields
 	public function createForm($inputFields, $action)
@@ -203,7 +190,7 @@ class Person
 		$this->_emailAddress = $email;
 	}
 	
-	public function test()
+	public function getObjectVars()
 	{
 		return get_object_vars($this);
 		//var_dump(get_object_vars($this));
@@ -311,31 +298,31 @@ $obj->setFooter("This is a sample footer.");
 $obj->createFooter();
 
 // Function to create a table
-function createTable($people)
+function createTable($array)
 {
-	$firstPerson = $people[0];
-	$test = $firstPerson->test();
+	$firstObject = $array[0];
+	$properties = $firstObject->getObjectVars();
 	?>
 	<table>
 		<tr>
 			<?php
-			foreach ($test as $key => $value)
+			foreach ($properties as $property => $value)
 			{
 				?>
-				<th><?php echo $key; ?></th>
+				<th><?php echo $property; ?></th>
 				<?php
 			}
 			?>
 		</tr>
 			<?php
-			foreach ($people as $key => $value)
+			foreach ($array as $key => $object)
 			{
 				?>
 				<tr>
-					<td><?php echo $value->getTitle(); ?></td>
-					<td><?php echo $value->getFirstName(); ?></td>
-					<td><?php echo $value->getLastName(); ?></td>
-					<td><?php echo $value->getEmailAddress(); ?></td>
+					<td><?php echo $object->getTitle(); ?></td>
+					<td><?php echo $object->getFirstName(); ?></td>
+					<td><?php echo $object->getLastName(); ?></td>
+					<td><?php echo $object->getEmailAddress(); ?></td>
 				</tr>
 				<?php
 			}
@@ -345,32 +332,32 @@ function createTable($people)
 }
 
 //cTable($people);
-function createTable_v2($people)
+function createTable_v2($array)
 {
-	$firstObject = $people[0];
-	$properties = $firstObject->test();
+	$firstObject = $array[0];
+	$properties = $firstObject->getObjectVars();
 	?>
 	<table>
 		<tr>
 			<?php
-			foreach ($properties as $key => $value)
+			foreach ($properties as $property => $value)
 			{
 				?>
-				<th><?php echo $key; ?></th>
+				<th><?php echo $property; ?></th>
 				<?php
 			}
 			?>
 		</tr>
 		<?php
-		foreach ($people as $key => $value)
+		foreach ($array as $key => $object)
 		{
 			?>
 			<tr>
 			<?php
-			if (is_object($value))
+			if (is_object($object))
 			{
-				$value = (array)$value;
-				foreach ($value as $key => $value)
+				$object = (array)$object;
+				foreach ($object as $property => $value)
 				{
 					?>
 					<td><?php echo $value; ?></td>
