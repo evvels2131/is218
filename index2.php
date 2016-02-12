@@ -36,12 +36,18 @@ class Page
 	{
 		?>
 		<!DOCTYPE html>
-		<html>
+		<html lang="en">
 		<head>
 			<meta charset="UTF-8">
 			<meta http-equiv="X-UA-Compatible" content="IE=edge">
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<title><?php echo $this->_title; ?></title>
+			
+			<!--Bootstrap-->
+			<link rel="stylesheet" 
+				href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
+				integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" 
+				crossorigin="anonymous">
 		</head>
 		<?php
 	}
@@ -51,8 +57,22 @@ class Page
 	{
 		?>
 		<body>
-			<section>
-				<h1><?php echo $heading; ?></h1>
+			<!-- Navigation -->
+			<nav class="navbar navbar-inverse">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="#">IS 218</a>
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="#">Another one</a></li>
+						<li><a href="#">Another one</a></li>
+					</ul>
+				</div>
+			</nav>
+			<!-- end of Navigation -->
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<h1><?php echo $heading; ?></h1>
 		<?php
 	}
 	
@@ -60,10 +80,12 @@ class Page
 	public function createFooter()
 	{
 		?>
-		  </section>
-			<footer>
-				<h3><?php echo $this->_footer; ?></h3>
-			</footer>
+						<footer>
+							<h3><?php echo $this->_footer; ?></h3>
+						</footer>
+					</div> <!-- end of col-md-6-->
+				</div> <!-- end of row -->
+		  </div> <!-- end of container -->
 		</body>
 		</html>
 		<?php
@@ -133,11 +155,15 @@ class Page
 				switch ($inputField['type'])
 				{
 					case 'text':
-						echo $inputField['desc'] . '<br />';
+						//echo $inputField['desc'] . '<br />';
 						?>
-						<input type="text" 
-									 name="<?php echo $inputField['name']; ?>" 
-									 value="<?php echo $inputField['value']; ?>"><br />
+						<div class="form-group">
+							<label><?php echo $inputField['desc']; ?></label>
+							<input type="text" 
+							   		 class="form-control" 
+										 name="<?php echo $inputField['name']; ?>"
+										 placeholder="<?php echo $inputField['value']; ?>">
+						</div>
 						<?php
 						break;
 					case 'password':
