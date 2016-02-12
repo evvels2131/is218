@@ -75,6 +75,50 @@ class Page
 		<?php
 	}
 	
+	public function createParagraph($text)
+	{
+		?>
+		<p><?php echo $text; ?></p>
+		<?php
+	}
+	
+	// Create heading
+	public function createHeading($type, $text)
+		{
+			switch ($type)
+			{
+				case 'h1':
+					?>
+					<h1><?php echo $text; ?></h1>
+					<?php
+					break;
+				case 'h2':
+					?>
+					<h2><?php echo $text; ?></h2>
+					<?php
+					break;
+				case 'h3':
+					?>
+					<h3><?php echo $text; ?></h3>
+					<?php
+					break;
+				case 'h4':
+					?>
+					<h4><?php echo $text; ?></h4>
+					<?php
+					break;
+				case 'h5':
+					?>
+					<h5><?php echo $text; ?></h5>
+					<?php
+					break;	
+				case 'h6':
+					?>
+					<h6><?php echo $text; ?></h6>
+					<?php
+					break;
+			}
+		}
 	/*public function createTable($th, $td)
 	{
 		?>
@@ -140,83 +184,7 @@ class Page
 		</form>
 			<?php
 	}
-	
-	public function createParagraph($text)
-	{
-		?>
-		<p><?php echo $text; ?></p>
-		<?php
-	}
 }
-
-$inputFields2 = array(
-	'0' => array(
-		'desc' => 'First name:',
-		'type' => 'text',
-		'name' => 'fname',
-		'value' => 'First Name'
-	),
-	'1' => array(
-		'desc' => 'First naddme:',
-		'type' => 'text',
-		'name' => 'ddd',
-		'value' => 'Firsddt Name'
-	),
-	'2' => array(
-		'desc' => 'Password',
-		'type' => 'password',
-		'name' => 'pass',
-		'value' => 'Password'
-	),
-	'3' => array(
-		'desc' => 'Male',
-		'type' => 'radio',
-		'name' => 'gender',
-		'value' => 'male',
-		'checked' => 'checked'
-	),
-	'4' => array(
-		'desc' => 'Female',
-		'type' => 'radio',
-		'name' => 'gender',
-		'value' => 'female'
-	),
-	'5' => array(
-		'desc' => 'Other',
-		'type' => 'radio',
-		'name' => 'gender',
-		'value' => 'other'
-	),
-	'6' => array(
-		'desc' => 'I have a bike',
-		'type' => 'checkbox',
-		'name' => 'vehicle1',
-		'value' => 'Bike'
-	),
-	'7' => array(
-		'desc' => 'I have a car',
-		'type' => 'checkbox',
-		'name' => 'vehicle2',
-		'value' => 'Car'
-	),
-);
-
-// Testing
-$obj = new Page("Homepage");
-$obj->createHeader();
-
-
-$obj->createContent("Header");
-$obj->createParagraph("This is a sample paragraph.");
-$obj->createLink("http://www.w3schools.com", "W3Schools");
-//$obj->createTable("Table", "Content");
-//$obj->createForm($inputFields, 'index2.php');
-$obj->createForm($inputFields2, 'index2.php');
-
-
-$obj->setFooter("This is a sample footer.");
-$obj->createFooter();
-
 
 class Person
 {
@@ -260,14 +228,85 @@ class Person
 	}
 }
 
+$inputFields = array(
+	'0' => array(
+		'desc' => 'First name:',
+		'type' => 'text',
+		'name' => 'fname',
+		'value' => 'First Name'
+	),
+	'1' => array(
+		'desc' => 'Middle name:',
+		'type' => 'text',
+		'name' => 'mname',
+		'value' => 'Middle Name'
+	),
+	'2' => array(
+		'desc' => 'Password',
+		'type' => 'password',
+		'name' => 'pass',
+		'value' => 'Password'
+	),
+	'3' => array(
+		'desc' => 'Male',
+		'type' => 'radio',
+		'name' => 'gender',
+		'value' => 'male',
+		'checked' => 'checked'
+	),
+	'4' => array(
+		'desc' => 'Female',
+		'type' => 'radio',
+		'name' => 'gender',
+		'value' => 'female'
+	),
+	'5' => array(
+		'desc' => 'Other',
+		'type' => 'radio',
+		'name' => 'gender',
+		'value' => 'other'
+	),
+	'6' => array(
+		'desc' => 'I have a bike',
+		'type' => 'checkbox',
+		'name' => 'vehicle1',
+		'value' => 'Bike'
+	),
+	'7' => array(
+		'desc' => 'I have a car',
+		'type' => 'checkbox',
+		'name' => 'vehicle2',
+		'value' => 'Car'
+	)
+);
+
 $john = new Person('Waiter', 'John', 'Smith', 'johnsmith@njit.edu');
 $mary = new Person('Realtor', 'Mary', 'Smith', 'marysmith@njit.edu');
 $tony = new Person('Teacher', 'Tony', 'Hawk', 'tonyhawk@njit.edu');
 $johnny = new Person('Unemployed', 'Johnny', 'Appleseed', 'johnnyappleseed@njit.edu');
 
 $people = array($john, $mary, $tony, $johnny);
+
+// Testing
+$obj = new Page("Homepage");
+$obj->createHeader();
+
+$obj->createContent("Header");
+$obj->createParagraph("This is a sample paragraph.");
+$obj->createLink("http://www.w3schools.com", "W3Schools");
+//$obj->createTable("Table", "Content");
+$obj->createHeading('h1', 'This is a heading.');
+$obj->createHeading('h2', 'This is a heading.');
+$obj->createHeading('h3', 'This is a heading.');
+$obj->createForm($inputFields, 'index2.php');
+
+// Create table
 createTable($people);
 
+$obj->setFooter("This is a sample footer.");
+$obj->createFooter();
+
+// Function to create a table
 function createTable($people)
 {
 	$firstPerson = $people[0];
@@ -300,5 +339,50 @@ function createTable($people)
 	</table>
 	<?php
 }
+
+echo '<br /><br /><pre>';
+//var_dump($people);
+echo '</pre>';
+
+echo '<br /><br /><pre>';
+$newnew = object_to_array($people);
+//print_r($new);
+echo '</pre>';
+
+echo '<br/> <br/>';
+createTable_v2($people);
+
+function createTable_v2($people)
+{
+	$firstPerson = $people[0];
+	$test = (array) $firstPerson;
+	
+	foreach ($test as $key => $value)
+	{
+		//echo 'key: ' . $key . ', value: ' . $value . '<br />';
+	}
+	
+	echo '<br/><br/><pre>';
+	//var_dump($test);
+	echo '</pre>';
+	
+	$array = json_decode($people, TRUE);
+	echo '<br/><br/><pre>';
+	//var_dump($array);
+	echo '</pre>';
+}
+
+function object_to_array($obj)
+{
+	$_arr = is_object($obj) ? get_object_vars($obj) : $obj;
+	foreach ($_arr as $key => $val)
+	{
+		$val = (is_array($val) || is_object($val)) ? object_to_array($val) : $val;
+		$arr[$key] = $val;
+	}
+	return $arr;
+}
+
+
 
 ?>
