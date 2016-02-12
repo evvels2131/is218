@@ -71,7 +71,7 @@ class Page
 			<!-- end of Navigation -->
 			<div class="container">
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-8">
 						<h1><?php echo $heading; ?></h1>
 		<?php
 	}
@@ -86,6 +86,12 @@ class Page
 					</div> <!-- end of col-md-6-->
 				</div> <!-- end of row -->
 		  </div> <!-- end of container -->
+			<!--jQuery-->
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+			<!--Bootstrap-->
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
+				integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" 
+				crossorigin="anonymous"></script>
 		</body>
 		</html>
 		<?php
@@ -167,35 +173,49 @@ class Page
 						<?php
 						break;
 					case 'password':
-						echo $inputField['desc'] . '<br />';
+						//echo $inputField['desc'] . '<br />';
 						?>
-						<input type="password" 
-									 name="<?php echo $inputField['name']; ?>" 
-									 value="<?php echo $inputField['value']; ?>"><br />
+						<div class="form-group">
+							<label><?php echo $inputField['desc']; ?></label>
+							<input type="password"
+										 class="form-control"
+										 name="<?php echo $inputField['name']; ?>"
+										 placeholder="<?php echo $inputField['value']; ?>">
+						</div>
 						<?php
 						break;
 					case 'radio':
 						?>
-						<input type="radio" 
-									 name="<?php echo $inputField['name']; ?>" 
-									 value="<?php echo $inputField['value']; ?>" 
-									 <?php echo $inputField['checked']; ?> >
+						<div class="radio">
+							<label>
+								<input type="radio"
+											 name="<?php echo $inputField['name']; ?>"
+											 value="<?php echo $inputField['value']; ?>"
+											 <?php echo $inputField['checked']; ?>>
+								<?php echo $inputField['desc']; ?>
+							</label>
+						</div>
 						<?php
-						echo $inputField['desc'] . '<br />';
 						break;
 					case 'checkbox':
 						?>
-						<input type="checkbox"
-									 name="<?php echo $inputField['name']; ?>"
-									 value="<?php echo $inputField['value']; ?>">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox"
+											 name="<?php echo $inputField['name']; ?>"
+											 value="<?php echo $inputField['value']; ?>">
+								<?php echo $inputField['desc']; ?>
+											 
+							</label>
+						</div>
 						<?php
-						echo $inputField['desc'] . '<br />';
+						//echo $inputField['desc'] . '<br />';
 						break;
 				}
 			}
 			?>
 			<br />
-			<input type="submit" value="Submit">
+			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 			<?php
 	}
@@ -340,22 +360,33 @@ $obj = new Page("Homepage");
 $obj->createHeader();
 
 $obj->createContent("Header");
+echo '<hr>';
+
 $obj->createParagraph("This is a sample paragraph.");
+echo '<hr>';
+
 $obj->createLink("http://www.w3schools.com", "W3Schools");
 //$obj->createTable("Table", "Content");
+echo '<hr>';
+
 $obj->createHeading('h1', 'This is a heading.');
 $obj->createHeading('h2', 'This is a heading.');
 $obj->createHeading('h3', 'This is a heading.');
+echo '<hr>';
+
 $obj->createForm($inputFields, 'index2.php');
+echo '<hr>';
 
 // Create table
+echo '<h3>createTable($people) function</h3>';
 createTable($people);
-echo '<hr>';
+echo '<h3>createTable_v2($people) function</h3>';
 createTable_v2($people);
-echo '<hr>';
+echo '<h3>createTable_v2($cars) function</h3>';
 createTable_v2($cars);
+echo '<hr>';
 
-$obj->setFooter("This is a sample footer.");
+$obj->setFooter("Footer - Tomasz Goralczyk");
 $obj->createFooter();
 
 // Function to create a table
@@ -364,7 +395,7 @@ function createTable($array)
 	$firstObject = $array[0];
 	$properties = $firstObject->getObjectVars();
 	?>
-	<table>
+	<table class="table table-striped">
 		<tr>
 			<?php
 			foreach ($properties as $property => $value)
@@ -398,7 +429,7 @@ function createTable_v2($array)
 	$firstObject = $array[0];
 	$properties = $firstObject->getObjectVars();
 	?>
-	<table>
+	<table class="table table-striped">
 		<tr>
 			<?php
 			foreach ($properties as $property => $value)
