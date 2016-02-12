@@ -369,9 +369,9 @@ $obj->createLink("http://www.w3schools.com", "W3Schools");
 //$obj->createTable("Table", "Content");
 echo '<hr>';
 
-$obj->createHeading('h1', 'This is a heading.');
-$obj->createHeading('h2', 'This is a heading.');
-$obj->createHeading('h3', 'This is a heading.');
+$obj->createHeading('h1', 'This is a heading. <h1>');
+$obj->createHeading('h2', 'This is a heading. <h2>');
+$obj->createHeading('h3', 'This is a heading. <h3>');
 echo '<hr>';
 
 $obj->createForm($inputFields, 'index2.php');
