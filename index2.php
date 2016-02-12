@@ -217,6 +217,39 @@ class Person
 	}
 }
 
+class Car
+{
+	private $_make;
+	private $_model;
+	private $_color;
+	private $_year;
+	private $_engine;
+	private $_doors;
+	
+	public function __construct($make, $model, $color, $year, $engine, $doors)
+	{
+		$this->_make = $make;
+		$this->_model = $model;
+		$this->_color = $color;
+		$this->_year = $year;
+		$this->_engine = $engine;
+		$this->_doors = $doors;
+	}
+	
+	public function getObjectVars()
+	{
+		return get_object_vars($this);
+	}
+}
+
+$car1 = new Car('Chevrolet', 'Malibu', 'Tan', '2016', 'v4', '4');
+$car2 = new Car('Toyota', 'Camry', 'Black', '2015', 'v4', '4');
+$car3 = new Car('Honda', 'Civic', 'White', '2014', 'v4', '2');
+$car4 = new Car('Jeep', 'Grand Cherokee', 'Red', '2016', 'v8', '4');
+$car5 = new Car('Dodge', 'Ram', 'Yellow', '2015', 'v8', '4');
+
+$cars = array($car1, $car2, $car3, $car4, $car5);
+
 $inputFields = array(
 	'0' => array(
 		'desc' => 'First name:',
@@ -293,6 +326,8 @@ $obj->createForm($inputFields, 'index2.php');
 createTable($people);
 echo '<hr>';
 createTable_v2($people);
+echo '<hr>';
+createTable_v2($cars);
 
 $obj->setFooter("This is a sample footer.");
 $obj->createFooter();
