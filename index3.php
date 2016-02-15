@@ -18,4 +18,15 @@ class Link
 
 $link = Link::newLink('Google', 'http://www.google.com', '_BLANK');
 echo $link;
+
+// Menu Class
+class Menu
+{
+  private $_menu;
+
+  public function addMenuItem($newLink)
+  {
+    $this->_menu[] = $newLink;
+  }
+}
 ?>
