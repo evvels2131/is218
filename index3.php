@@ -52,4 +52,35 @@ $menu->addMenuItem($link3);
 
 $html = $menu->getMenu();
 echo $html;
+
+// Improved Menu class with id and class attributes
+class MenuWithAttributes
+{
+  private $_id;
+  private $_class;
+  private $_menuHeader;
+
+
+
+  // Getters and setters
+  public function getId()
+  {
+    return $this->_id;
+  }
+
+  public function setId($newId)
+  {
+    $this->$_id = $newId;
+  }
+
+  public function getClass()
+  {
+    return $this->_class;
+  }
+
+  public function setClass($newClass)
+  {
+    $this->$_class = $newClass;
+  }
+}
 ?>
