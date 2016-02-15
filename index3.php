@@ -60,7 +60,12 @@ class MenuWithAttributes
   private $_class;
   private $_menuHeader;
 
-
+  public function __construct($id = "", $class = "")
+  {
+    $this->_id = $id;
+    $this->_class = $class;
+    $this->_menuHeader = '<ul id="' . $this->_id . '" class="' . $class . '">';
+  }
 
   // Getters and setters
   public function getId()
