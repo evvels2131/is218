@@ -58,6 +58,7 @@ class MenuWithAttributes
 {
   private $_id;
   private $_class;
+  private $_menu;
   private $_menuHeader;
 
   public function __construct($id = "", $class = "")
@@ -87,5 +88,11 @@ class MenuWithAttributes
   {
     $this->$_class = $newClass;
   }
+
+  public function addMenuItem($newLink)
+  {
+    $this->_menu[] = $newLink;
+  }
+
 }
 ?>
