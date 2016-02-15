@@ -106,4 +106,12 @@ class MenuWithAttributes
     return $menuHTML;
   }
 }
+
+$menu2 = new MenuWithAttributes('idtest', 'classtest');
+$menu2->addMenuItem($link);
+$menu2->addMenuItem($link2);
+$menu2->addMenuItem($link3);
+
+$html2 = $menu2->getMenu();
+echo $html2;
 ?>
