@@ -41,4 +41,15 @@ class Menu
     return $menuHTML;
   }
 }
+
+$link2 = Link::newLink('NJIT', 'http://njit.edu', '_BLANK');
+$link3 = Link::newLink('CNN', 'http://cnn.com', '_BLANK');
+
+$menu = new Menu();
+$menu->addMenuItem($link);
+$menu->addMenuItem($link2);
+$menu->addMenuItem($link3);
+
+$html = $menu->getMenu();
+echo $html;
 ?>
