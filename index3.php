@@ -53,6 +53,20 @@ $menu->addMenuItem($link3);
 $html = $menu->getMenu();
 echo $html;
 
+// Input field class
+class Input
+{
+  public static function newInput($type, $name, $value)
+  {
+    $input = '<input type="' . $type . '" name="' . $name . '" value="' . $value .'">';
+    return $input;
+  }
+}
+
+$inputField = Input::newInput('text', 'fname', 'First Name');
+echo $inputField;
+
+
 // Improved Menu class with id and class attributes
 class MenuWithAttributes
 {
