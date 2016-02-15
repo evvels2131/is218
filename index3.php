@@ -28,5 +28,17 @@ class Menu
   {
     $this->_menu[] = $newLink;
   }
+
+  public function getMenu()
+  {
+    $menuHTML = '<ul>';
+    foreach ($this->_menu as $menuItem)
+    {
+      $menuHTML .= '<li>' . $menuItem . '</li>';
+    }
+    $menuHTML .= '</ul>';
+
+    return $menuHTML;
+  }
 }
 ?>
