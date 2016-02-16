@@ -78,7 +78,7 @@ class Form
   {
     $this->_action = $action;
     $this->_method = $method;
-    $this->_formHeader = '<form action="' . $type . '" method="' . $method . '">';
+    $this->_formHeader = '<form action="' . $this->_action . '" method="' . $this->_method . '">';
   }
 
   public function addNewInput($inputItem)
@@ -91,7 +91,7 @@ class Form
     $formHTML = $this->_formHeader;
     foreach ($this->_form as $inputItem)
     {
-      $formHTML .= $inputItem;
+      $formHTML .= $inputItem . '<br />';
     }
     $formHTML .= '</form>';
 
@@ -99,6 +99,15 @@ class Form
   }
 }
 
+$inputField2 = Input::newInput('text', 'lname', 'Last Name');
+$inputField3 = Input::newInput('password', 'pass', 'Password');
+
+$form = new Form('index4.php', 'POST');
+$form->addNewInput($inputField);
+$form->addNewInput($inputField2);
+$form->addNewInput($inputField3);
+
+echo $form->getForm();
 
 // Improved Menu class with id and class attributes
 class MenuWithAttributes
