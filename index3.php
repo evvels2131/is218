@@ -66,6 +66,39 @@ class Input
 $inputField = Input::newInput('text', 'fname', 'First Name');
 echo $inputField;
 
+// Form class
+class Form
+{
+  private $_action;
+  private $_method;
+  private $_formHeader;
+  private $_form;
+
+  public function __construct($action, $method)
+  {
+    $this->_action = $action;
+    $this->_method = $method;
+    $this->_formHeader = '<form action="' . $type . '" method="' . $method . '">';
+  }
+
+  public function addNewInput($inputItem)
+  {
+    $this->_form[] = $inputItem;
+  }
+
+  public function getForm()
+  {
+    $formHTML = $this->_formHeader;
+    foreach ($this->_form as $inputItem)
+    {
+      $formHTML .= $inputItem;
+    }
+    $formHTML .= '</form>';
+
+    return $formHTML;
+  }
+}
+
 
 // Improved Menu class with id and class attributes
 class MenuWithAttributes
