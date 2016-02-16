@@ -109,6 +109,8 @@ $form->addNewInput($inputField3);
 
 echo $form->getForm();
 
+// Table Class
+
 // Improved Menu class with id and class attributes
 class MenuWithAttributes
 {
