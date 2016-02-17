@@ -78,4 +78,22 @@ class CarView
     echo 'Model: ' . $car->getModel() . '<br />';
   }
 }
+
+// CarController
+class CarController
+{
+  public function post()
+  {
+    $make = $_POST['make'];
+    $model = $_POST['model'];
+
+    $car = new CarModel;
+
+    $car->setMake = $make;
+    $car->setEngine = $engine;
+
+    $car->save();
+  }
+
+}
 ?>
