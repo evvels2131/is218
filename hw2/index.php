@@ -15,11 +15,25 @@ $car->setYear('2014');
 // Call the save to store the record in the session
 $car->save();
 
-//session_unset();
+session_unset();
 
 echo '<pre>';
 print_r($_SESSION);
 echo '</pre>';
+
+echo '<hr>';
+echo '<b>$_SERVER["REQUEST_METHOD"]</b> --> ';
+echo $_SERVER['REQUEST_METHOD'];
+
+$obj = new CarController;
+if ($_SERVER['REQUEST_METHOD'] == 'GET')
+{
+  $obj->get();
+}
+else
+{
+  $obj->post();
+}
 
 // Model Class
 class Model
@@ -120,6 +134,8 @@ class CarController
     $form->addNewInput($make);
     $form->addNewInput($model);
     $form->addNewInput($submit);
+
+    echo $form->getForm();
   }
 }
 
@@ -130,10 +146,10 @@ class InputField
   {
     if (empty($name))
     {
-      $input = '<input type="' . $type . '" value="' . $value .  '">';
+      $input = '<input type="' . $type . '" value="' . $value .  '"><br />';
     }
     else {
-      $input = '<input type="' . $type . '" name="' . $name . '" value="' . $value .  '">';
+      $input = '<input type="' . $type . '" name="' . $name . '" value="' . $value .  '"><br />';
     }
 
     return $input;
@@ -152,7 +168,7 @@ class Form
   {
     $this->_action = $action;
     $this->_method = $method;
-    $this->_formHeader = '<form action="' . $this->_action . '" method="' . $this->_method . '">';
+    $this->_formHeader = '<form action="' . $this->_action . '" method="' . $this->_method . '"><br />';
   }
 
   public function addNewInput($inputItem)
@@ -181,6 +197,28 @@ class Link
     $link = '<a href="' . $href . '" target="' . $target . '" title="' . $title . '"';
 
     return $link;
+  }
+}
+
+class Menu
+{
+  private $_menu;
+
+  public function addMenuItem($link)
+  {
+    $this->_menu[] = $link;
+  }
+
+  public function getMenu()
+  {
+    $menuHTML = '<ul>';
+    foreach ($this->_menu as $menuItem)
+    {
+      $menuHTML .= '<li>' . $menuItem . '</li>';
+    }
+    $menuHTML .= '</ul>';
+
+    return $menuHTML;
   }
 }
 ?>
