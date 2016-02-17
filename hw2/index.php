@@ -1,15 +1,22 @@
 <?php
 
-// ModelClass
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Model Class
 class Model
 {
   private $_guid;
 
-  // Start the session
-  session_start();
+  public function __construct()
+  {
+    // Start the session
+    session_start();
 
-  // Create a unique ID to identify the record
-  $this->_guid = uniqid();
+    // Create a unique ID to identify the record
+    $this->_guid = uniqid();
+  }
 
   public function save()
   {
@@ -18,6 +25,7 @@ class Model
   }
 }
 
+// Car Class
 class Car extends Model
 {
   private $_make;
@@ -44,5 +52,4 @@ class Car extends Model
     $this->_model = $newModel;
   }
 }
-
 ?>
