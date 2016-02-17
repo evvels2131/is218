@@ -10,6 +10,7 @@ $car = new CarModel;
 // Set the properties
 $car->setMake('Ford');
 $car->setModel('Taurus');
+$car->setYear('2014');
 
 // Call the save to store the record in the session
 $car->save();
@@ -87,6 +88,7 @@ class CarView
   {
     echo 'Make: ' . $car->getMake() . '<br />';
     echo 'Model: ' . $car->getModel() . '<br />';
+    echo 'Year: ' . $car->getYear() . '<br />';
   }
 }
 
@@ -168,6 +170,17 @@ class Form
     $formHTML .= '</form>';
 
     return $formHTML;
+  }
+}
+
+// Link Class
+class Link
+{
+  public static function newLink($title, $href, $target)
+  {
+    $link = '<a href="' . $href . '" target="' . $target . '" title="' . $title . '"';
+
+    return $link;
   }
 }
 ?>
