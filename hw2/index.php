@@ -37,23 +37,6 @@ else
   $obj->post();
 }
 
-// InputField Class
-class InputField
-{
-  public static function newInputField($type, $name = "", $value)
-  {
-    if (empty($name))
-    {
-      $input = '<input type="' . $type . '" value="' . $value .  '"><br />';
-    }
-    else {
-      $input = '<input type="' . $type . '" name="' . $name . '" value="' . $value .  '"><br />';
-    }
-
-    return $input;
-  }
-}
-
 // Link Class
 class Link
 {
