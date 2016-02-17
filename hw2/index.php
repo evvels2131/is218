@@ -96,6 +96,16 @@ class CarController
   }
 }
 
+// InputField Class
+class InputField
+{
+  public static function inputField($type, $name, $value)
+  {
+    $input = '<input type="' . $type . '" name="' . $name . '" value="' . $value .  '">';
+    return $input;
+  }
+}
+
 // Form Class
 class Form
 {
