@@ -15,7 +15,7 @@ $car->setModel('Taurus');
 $car->setYear('2014');
 
 // Call the save to store the record in the session
-$car->save();
+//$car->save();
 
 //session_unset();
 
