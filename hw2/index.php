@@ -46,6 +46,7 @@ class CarModel extends Model
 {
   private $_make;
   private $_model;
+  private $_year;
 
   // Getters and setters
   public function getMake()
@@ -67,6 +68,16 @@ class CarModel extends Model
   {
     $this->_model = $newModel;
   }
+
+  public function getYear()
+  {
+    return $this->_year;
+  }
+
+  public function setYear($newYear)
+  {
+    $this->_year = $newYear;
+  }
 }
 
 // CarView Class
@@ -82,6 +93,7 @@ class CarView
 // CarController
 class CarController
 {
+  // Save a car if post request
   public function post()
   {
     $make = $_POST['make'];
@@ -94,14 +106,34 @@ class CarController
 
     $car->save();
   }
+
+  // Display a form if get request
+  public function get()
+  {
+    $make = InputField::newInputField('text', 'make', 'Make');
+    $model = InputField::newInputField('text', 'model', 'Model');
+    $submit = InputField::newInputField('submit', '', 'Submit');
+
+    $form = new Form('index.php', 'POST');
+    $form->addNewInput($make);
+    $form->addNewInput($model);
+    $form->addNewInput($submit);
+  }
 }
 
 // InputField Class
 class InputField
 {
-  public static function inputField($type, $name, $value)
+  public static function newInputField($type, $name = "", $value)
   {
-    $input = '<input type="' . $type . '" name="' . $name . '" value="' . $value .  '">';
+    if (empty($name))
+    {
+      $input = '<input type="' . $type . '" value="' . $value .  '">';
+    }
+    else {
+      $input = '<input type="' . $type . '" name="' . $name . '" value="' . $value .  '">';
+    }
+
     return $input;
   }
 }
