@@ -37,17 +37,6 @@ else
   $obj->post();
 }
 
-// Link Class
-class Link
-{
-  public static function newLink($title, $href, $target)
-  {
-    $link = '<a href="' . $href . '" target="' . $target . '" title="' . $title . '"';
-
-    return $link;
-  }
-}
-
 class Menu
 {
   private $_menu;
