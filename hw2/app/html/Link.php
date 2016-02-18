@@ -1,8 +1,6 @@
 <?php
 namespace app\html;
 
-include_once('autoloadFunction.php');
-
 // Link Class
 class Link extends HTML
 {
