@@ -4,7 +4,7 @@ namespace app\model;
 include_once('autoloadFunction.php');
 
 // Model Class
-class Model
+abstract class Model
 {
   private $_guid;
 
