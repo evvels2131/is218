@@ -4,7 +4,7 @@ namespace app\controller;
 include_once('autoloadFunction.php');
 
 // CarController
-class CarController
+class CarController extends Controller
 {
   // Save a car if post request
   public function post()
