@@ -11,8 +11,11 @@ abstract class Model
   public function __construct()
   {
     // Start the session
-    session_start();
-
+    if (!isset($_SESSION))
+    {
+      session_start();
+    }
+    
     // Create a unique ID to identify the record
     $this->_guid = uniqid();
   }
