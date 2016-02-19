@@ -2,6 +2,7 @@
 namespace app\view;
 
 include_once('autoloadFunction.php');
+
 // CarView Class
 class CarView extends View
 {
