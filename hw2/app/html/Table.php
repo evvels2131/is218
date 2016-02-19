@@ -3,7 +3,7 @@ namespace app\html;
 
 class Table extends HTML
 {
-  public function generateTable($array)
+  public static function generateTable($array)
   {
     $i = 0;
     $htmlTABLE = '<table><tr>';
