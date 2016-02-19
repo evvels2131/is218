@@ -29,6 +29,9 @@ class Table extends HTML
     }
     $htmlTABLE .= '</tr>';
 
+    // ID should be generated as links
+    $find = 'id';
+
     // Get the rest of the table
     foreach ($array as $key => $innerArray)
     {
@@ -37,7 +40,15 @@ class Table extends HTML
         $htmlTABLE .= '<tr>';
         foreach ($innerArray as $attribute => $value)
         {
-          $htmlTABLE .= '<td>' . $value . '</td>';
+          if (strpos($attribute, $find) !== false)
+          {
+            $href = 'index.php?value=' . $value;
+            $htmlTABLE .= '<td>' . Link::newLink('View', $href, '_BLANK') . '</td>';
+          }
+          else
+          {
+            $htmlTABLE .= '<td>' . $value . '</td>';
+          }
         }
         $htmlTABLE .= '</tr>';
       }
