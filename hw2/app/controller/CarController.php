@@ -1,13 +1,16 @@
 <?php
 namespace app\controller;
 
-include_once('autoloadFunction.php');
+use app\model\CarModel;
+use app\view\CarView;
+use app\html\Link;
+use app\html\Paragraph;
 
-// CarController
+// CarController for adding a new Car
 class CarController extends Controller
 {
   // Save a car if post request
-  public function post()
+  public static function post()
   {
     $make = $_POST['make'];
     $model = $_POST['model'];
@@ -20,23 +23,40 @@ class CarController extends Controller
     $car->setYear($year);
 
     $car->save();
+
+    Paragraph::newParagraph('Congratulations! You\'ve successfully added a new car!');
+
+    echo Link::newLink('<< Back', 'index.php', '_self');
   }
 
-  // Display a form if get request
-  public function get()
+  // Display a form or table if get request
+  public function get($array = "")
   {
-    $make = InputField::newInputField('text', 'make', 'Make');
-    $model = InputField::newInputField('text', 'model', 'Model');
-    $year = InputField::newInputField('text', 'year', 'Year');
-    $submit = InputField::newInputField('submit', '', 'Submit');
+    if (is_array($array) && !empty($array))
+    {
+      if (count($array) == count($array, COUNT_RECURSIVE))
+      {
+        // If not multidimensional, it's most likely asking
+        // for a single car
 
-    $form = new Form('index.php', 'POST');
-    $form->addNewInput($make);
-    $form->addNewInput($model);
-    $form->addNewInput($year);
-    $form->addNewInput($submit);
+        echo Link::newLink('Return', 'index.php', '_self');
+        echo '<br /><br />';
 
-    echo $form->getForm();
+        // Display car details
+        CarView::viewCarDetails($array);
+      }
+      else
+      {
+        // If it's multidimensional, it's most likely asking for
+        // all cars
+
+        // Show all cars
+        CarView::viewCars($array);
+
+        // Show a form to add a new car
+        CarView::addNewCar();
+      }
+    }
   }
 }
 ?>
