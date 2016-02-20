@@ -57,6 +57,11 @@ class CarController extends Controller
         CarView::addNewCar();
       }
     }
+    else
+    {
+      // Show form if no cars stored in the session
+      CarView::addNewCar();
+    }
   }
 }
 ?>
