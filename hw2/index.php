@@ -1,13 +1,6 @@
 <?php
 use app\controller\CarController;
 use app\model\CarModel;
-use app\model\Model;
-use app\view\CarView;
-use app\html\Form;
-use app\html\InputField;
-use app\html\Link;
-use app\html\Menu;
-use app\html\Table;
 
 include_once('autoloadFunction.php');
 
