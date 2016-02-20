@@ -1,7 +1,13 @@
 <?php
 use app\controller\CarController;
 use app\model\CarModel;
+use app\model\Model;
 use app\view\CarView;
+use app\html\Form;
+use app\html\InputField;
+use app\html\Link;
+use app\html\Menu;
+use app\html\Table;
 
 include_once('autoloadFunction.php');
 
@@ -10,39 +16,52 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Instantiate the car model
-$car = new CarModel();
+$carm = new CarModel;
 
-// Set the properties
-$car->setMake('Ford');
-$car->setModel('Taurus');
-$car->setYear('2014');
-
-$car2 = new CarModel();
-$car2->setMake('Chevy');
-$car2->setModel('Malibu');
-$car2->setYear('2012');
-
-// Call the save to store the record in the session
-$car->save();
-$car2->save();
+$array = $_SESSION;
 
 //session_unset();
 
+// Debug information
 echo '<pre>';
 print_r($_SESSION);
 echo '</pre>';
-/*
-echo '<hr>';
+
+echo '<br />';
 echo '<b>$_SERVER["REQUEST_METHOD"]</b> --> ';
 echo $_SERVER['REQUEST_METHOD'];
 
-$obj = new CarController;
+echo '<pre>';
+if (!empty($_POST))
+{
+  print_r($_POST);
+}
+echo '</pre>';
+
+echo '<b>print_r($_GET)</b> --> ';
+print_r($_GET);
+echo '<hr>';
+///////////////////////////////
+
+$carController = new CarController;
 if ($_SERVER['REQUEST_METHOD'] == 'GET')
 {
-  $obj->get();
+  if (!empty($_GET['id']))
+  {
+    $id = $_GET['id'];
+    $array = $_SESSION[$id];
+
+    // Get details of a single car
+    $carController->get($array);
+  }
+  else
+  {
+    // Get table with cars
+    $carController->get($array);
+  }
 }
 else
 {
-  $obj->post();
-}*/
+  $carController->post();
+}
 ?>
