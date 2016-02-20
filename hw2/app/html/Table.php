@@ -5,62 +5,65 @@ class Table extends HTML
 {
   public static function generateTable($array)
   {
-    $i = 0;
-    $find = 'id'; // ID should be generated as links
-    $htmlTABLE = '<table><tr>';
-
-    // Get table headings
-    foreach ($array as $key => $innerArray)
+    if (is_array($array))
     {
-      if (is_array($innerArray))
-      {
-        foreach ($innerArray as $attribute => $value)
-        {
-          if (strpos($attribute, $find) !== false)
-          {
-            $htmlTABLE .= '<th>Action</th>';
-          }
-          else
-          {
-            $pos = strrpos($attribute, '_') + 1;
-            $strlen = strlen($attribute) - 1;
-            $cleanAttribute = substr($attribute, $pos, $strlen);
-            $htmlTABLE .= '<th>' . ucfirst($cleanAttribute) . '</th>';
-          }
-        }
+      $i = 0;
+      $find = 'id'; // ID should be generated as links
+      $htmlTABLE = '<table><tr>';
 
-        if (++$i == 1)
+      // Get table headings
+      foreach ($array as $key => $innerArray)
+      {
+        if (is_array($innerArray))
         {
-          break;
+          foreach ($innerArray as $attribute => $value)
+          {
+            if (strpos($attribute, $find) !== false)
+            {
+              $htmlTABLE .= '<th>Action</th>';
+            }
+            else
+            {
+              $pos = strrpos($attribute, '_') + 1;
+              $strlen = strlen($attribute) - 1;
+              $cleanAttribute = substr($attribute, $pos, $strlen);
+              $htmlTABLE .= '<th>' . ucfirst($cleanAttribute) . '</th>';
+            }
+          }
+
+          if (++$i == 1)
+          {
+            break;
+          }
         }
       }
-    }
-    $htmlTABLE .= '</tr>';
+      $htmlTABLE .= '</tr>';
 
-    // Get the rest of the table
-    foreach ($array as $key => $innerArray)
-    {
-      if (is_array($innerArray))
+      // Get the rest of the table
+      foreach ($array as $key => $innerArray)
       {
-        $htmlTABLE .= '<tr>';
-        foreach ($innerArray as $attribute => $value)
+        if (is_array($innerArray))
         {
-          if (strpos($attribute, $find) !== false)
+          $htmlTABLE .= '<tr>';
+          foreach ($innerArray as $attribute => $value)
           {
-            $href = 'index.php?value=' . $value;
-            $htmlTABLE .= '<td>' . Link::newLink('View', $href, '_BLANK') . '</td>';
+            if (strpos($attribute, $find) !== false)
+            {
+              $href = 'index.php?page=car&id=' . $value;
+              $htmlTABLE .= '<td>' . Link::newLink('View', $href, '_self') . '</td>';
+            }
+            else
+            {
+              $htmlTABLE .= '<td>' . $value . '</td>';
+            }
           }
-          else
-          {
-            $htmlTABLE .= '<td>' . $value . '</td>';
-          }
+          $htmlTABLE .= '</tr>';
         }
-        $htmlTABLE .= '</tr>';
       }
-    }
-    $htmlTABLE .= '<table>';
+      $htmlTABLE .= '<table>';
 
-    return $htmlTABLE;
+      return $htmlTABLE;
+    }
   }
 }
 
