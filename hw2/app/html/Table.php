@@ -1,6 +1,8 @@
 <?php
 namespace app\html;
 
+use app\html\HTML;
+
 class Table extends HTML
 {
   public static function generateTable($array)
@@ -24,10 +26,8 @@ class Table extends HTML
             }
             else
             {
-              $pos = strrpos($attribute, '_') + 1;
-              $strlen = strlen($attribute) - 1;
-              $cleanAttribute = substr($attribute, $pos, $strlen);
-              $htmlTABLE .= '<th>' . ucfirst($cleanAttribute) . '</th>';
+              $clean = HTML::cleanAttribute($attribute);
+              $htmlTABLE .= '<th>' . $clean . '</th>';
             }
           }
 
@@ -60,7 +60,7 @@ class Table extends HTML
           $htmlTABLE .= '</tr>';
         }
       }
-      $htmlTABLE .= '<table>';
+      $htmlTABLE .= '</table>';
 
       return $htmlTABLE;
     }
