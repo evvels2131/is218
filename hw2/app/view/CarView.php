@@ -4,6 +4,7 @@ namespace app\view;
 use app\html\Table;
 use app\html\InputField;
 use app\html\Form;
+use app\html\HTML;
 
 include_once('autoloadFunction.php');
 
@@ -44,10 +45,8 @@ class CarView extends View
   {
     foreach ($car as $attribute => $value)
     {
-      $pos = strrpos($attribute, '_') + 1;
-      $strlen = strlen($attribute) - 1;
-      $cleanAttribute = ucfirst(substr($attribute, $pos, $strlen));
-      echo $cleanAttribute . ': ' . $value . '<br />';
+      $clean = HTML::cleanAttribute($attribute);
+      echo '<b>' . $clean . '</b>: ' . $value . '<br />';
     }
   }
 }
