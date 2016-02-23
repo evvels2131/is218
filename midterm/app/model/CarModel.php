@@ -27,5 +27,15 @@ class CarModel extends Model
   {
     $this->_model = $newModel;
   }
+
+  public function getYear()
+  {
+    return $this->_year;
+  }
+
+  public function setYear($newYear)
+  {
+    $this->_year = $newYear;
+  }
 }
 ?>
