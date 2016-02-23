@@ -17,5 +17,15 @@ class CarModel extends Model
   {
     $this->_make = $newMake;
   }
+
+  public function getModel()
+  {
+    return $this->_model;
+  }
+
+  public function setModel($newModel)
+  {
+    $this->_model = $newModel;
+  }
 }
 ?>
