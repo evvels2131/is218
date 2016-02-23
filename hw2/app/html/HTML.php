@@ -12,7 +12,6 @@ abstract class HTML
 
     return $cleanAttribute;
   }
-
 }
 
 ?>
