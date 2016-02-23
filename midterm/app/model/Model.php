@@ -24,5 +24,11 @@ abstract class Model
       $this->_guid = uniqid();
     }
   }
+
+  public function save()
+  {
+    // Save the model into the session
+    $_SESSION[$this->_guid] = (array) $this;
+  }
 }
 ?>
