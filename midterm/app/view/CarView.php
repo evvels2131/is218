@@ -10,6 +10,15 @@ class CarView extends View
     echo 'Model: ' . $car->getModel() . '<br />';
     echo 'Year: ' . $car->getYear() . '<br />';
   }
+
+  public static function viewCarDetails($car)
+  {
+    foreach ($car as $attribute => $value)
+    {
+      $clean = HTML::cleanAttribute($attribute);
+      echo '<b>' . $clean . '</b>: ' . $value . '<br />';
+    }
+  }
 }
 
 ?>
