@@ -1,6 +1,8 @@
 <?php
 namespace app\view;
 
+use app\view\html\HTML;
+
 class CarView extends View
 {
   // Show details of a car
@@ -20,5 +22,4 @@ class CarView extends View
     }
   }
 }
-
 ?>
