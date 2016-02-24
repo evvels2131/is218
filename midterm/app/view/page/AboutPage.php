@@ -15,5 +15,4 @@ class AboutPage extends Page
     Paragraph::newParagraph('This is the AboutPage. post() method called.');
   }
 }
-
 ?>
