@@ -9,5 +9,10 @@ class CarsView extends View
   {
     echo Table::generateTable($array);
   }
+
+  public static function viewCarsTable($array)
+  {
+    echo Table::generateTable($array);
+  }
 }
 ?>
