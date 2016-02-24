@@ -8,7 +8,7 @@
 <a href="https://web.njit.edu/~tg77/is218/index2.php">web.njit.edu/~tg77/is218/index2.php</a>
 <br />
 <b>Homework 2 - Car Table and View: </b>
-<a href="https://web.njit.edu/~tg77/is218/"web.njit.edu/~tg77/is218/</a>
+<a href="https://web.njit.edu/~tg77/is218/">web.njit.edu/~tg77/is218/</a>
 <br />
 <b>Tomasz Goralczyk</b><br />
 <b>IS 218-002</b><br />
