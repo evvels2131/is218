@@ -16,6 +16,7 @@ $array = $_SESSION;
 //session_unset();
 
 // Debug information
+/*
 echo '<pre>';
 print_r($_SESSION);
 echo '</pre>';
@@ -34,6 +35,7 @@ echo '</pre>';
 echo '<b>print_r($_GET)</b> --> ';
 print_r($_GET);
 echo '<hr>';
+*/
 ///////////////////////////////
 
 $carController = new CarController;
