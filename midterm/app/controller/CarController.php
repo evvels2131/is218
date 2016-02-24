@@ -21,6 +21,8 @@ class CarController extends Controller
     $car->setYear($year);
 
     $car->save();
+
+    header('Location: ./index.php');
   }
 
   public function get($page = "")
