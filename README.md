@@ -12,6 +12,10 @@
 <b>Homework 2 - Car Table and View: </b>
 <a href="https://web.njit.edu/~tg77/is218/hw2/index.php" target="_blank">
   web.njit.edu/~tg77/is218/hw2/index.php</a>
+<br />
+<b>Midterm Project </b>
+<a href="https://web.njit.edu/~tg77/is218/midterm/index.php" target="_blank">
+  web.njit.edu/~tg77/is218/midterm/index.php</a>
 <br /><br />
 <b>Tomasz Goralczyk</b><br />
 <b>IS 218-002</b><br />
