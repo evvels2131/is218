@@ -9,18 +9,12 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 //////////////////////////////////////
-echo Link::newLink('Home', 'index.php', '_self');
-echo '<br />';
-echo Link::newLink('About', 'index.php?page=about', '_self');
-echo '<br />';
-echo Link::newLink('Add a new car', 'index.php?page=addcar', '_self');
-
-
-
 $carController = new CarController;
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET')
 {
+  isset($_SESSION) ? $session_array = $_SESSION : $session_array = '';
+
   if (!empty($_GET))
   {
     $requestedPage = $_GET['page'];
@@ -29,7 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
     {
       $carController->get($requestedPage);
     }
-    else if ($_GET['page'] == 'addcar')
+    else if ($requestedPage == 'addcar')
+    {
+      $carController->get($requestedPage);
+    }
+    else if ($requestedPage == 'showcars')
     {
       $carController->get($requestedPage);
     }
@@ -41,15 +39,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
 }
 else
 {
-  // post, but will get to this soon
+  $carController->post();
 }
 
-
-
-
-
-
-
+echo Link::newLink('Home', 'index.php', '_self');
+echo '<br />';
+echo Link::newLink('About', 'index.php?page=about', '_self');
+echo '<br />';
+echo Link::newLink('Add a new car', 'index.php?page=addcar', '_self');
+echo '<br />';
+echo Link::newLink('Show all cars', 'index.php?page=showcars', '_self');
+echo '<br />';
+//session_unset();
 
 echo '<hr>';
 echo '<h1>Debugging information</h1>';
