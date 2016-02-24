@@ -3,7 +3,7 @@ namespace app\view\page;
 
 use app\view\html\Paragraph;
 
-class AboutPage extends Page
+class HomePage extends Page
 {
   public function get()
   {
