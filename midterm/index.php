@@ -1,5 +1,8 @@
 <?php
 use app\controller\CarController;
+use app\controller\HomePageController;
+use app\controller\ShowCarsPageController;
+use app\controller\AddCarPageController;
 use app\view\html\Link;
 
 require_once('autoloadFn.php');
@@ -19,22 +22,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
   {
     $requestedPage = $_GET['page'];
 
-    if ($requestedPage == 'about')
+    switch ($requestedPage)
     {
-      $carController->get($requestedPage);
-    }
-    else if ($requestedPage == 'addcar')
-    {
-      $carController->get($requestedPage);
-    }
-    else if ($requestedPage == 'showcars')
-    {
-      $carController->get($requestedPage);
+      case 'about':
+        $carController->get($requestedPage);
+        break;
+      case 'addcar':
+        $addcarspageController = new AddCarPageController;
+        $addcarspageController->get();
+        //$carController->get($requestedPage);
+        break;
+      case 'showcars':
+        $showcarspageController = new ShowCarsPageController();
+        $showcarspageController->get();
+        break;
     }
   }
   else
   {
-    $carController->get();
+    $homepageController = new HomePageController;
+    $homepageController->get();
   }
 }
 else
