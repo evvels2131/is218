@@ -9,7 +9,7 @@
 <br />
 <b>Homework 2 - Car Table and View: </b>
 <a href="https://web.njit.edu/~tg77/is218/">web.njit.edu/~tg77/is218/</a>
-<br />
+<br /><br />
 <b>Tomasz Goralczyk</b><br />
 <b>IS 218-002</b><br />
 <b>Professor Keith Williams</b><br />
