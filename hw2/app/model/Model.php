@@ -1,7 +1,7 @@
 <?php
 namespace app\model;
 
-use app\model\CarModel;
+//use app\model\CarModel;
 
 include_once('autoloadFunction.php');
 
