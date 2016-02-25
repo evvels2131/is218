@@ -1,17 +1,13 @@
 <?php
 namespace app\view\page;
 
+use app\view\html\Table;
+
 class ShowCarsPage extends Page
 {
-  public function get($array = "")
+  public function __construct($array = "")
   {
-    // Display a table with all cars stored in a session
-    CarsView::viewCarsTable($array);
-  }
-
-  public function post()
-  {
-    Paragraph::newParagraph('This is the ShowCarsPage. post() method called.');
+    echo Table::generateTable($array);
   }
 }
 ?>
