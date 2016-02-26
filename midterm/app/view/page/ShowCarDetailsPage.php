@@ -2,6 +2,8 @@
 namespace app\view\page;
 
 use app\view\html\HTML;
+use app\view\html\InputField;
+use app\view\html\Form;
 
 class ShowCarDetailsPage extends Page
 {
@@ -16,6 +18,19 @@ class ShowCarDetailsPage extends Page
       $clean = HTML::cleanAttribute($attribute);
       echo '<b>' . $clean . '</b>: ' . $value . '<br />';
     }
+
+    $form = new Form('index.php', 'POST');
+    foreach ($car as $attribute => $value)
+    {
+      $clean = HTML::cleanAttributeForm($attribute);
+      $$clean = InputField::newInputField('text', $clean, $value);
+      $form->addNewInput($$clean);
+    }
+    $submit = InputField::newInputField('submit', '', 'Submit');
+    $form->addNewInput($submit);
+
+    echo $form->getForm();
+
   }
 }
 
