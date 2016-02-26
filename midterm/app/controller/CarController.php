@@ -14,7 +14,15 @@ class CarController extends Controller
     $model  = $_POST['model'];
     $year   = $_POST['year'];
 
-    $car = new CarModel;
+    if (isset($_POST['id']))
+    {
+      $id = $_POST['id'];
+      $car = new CarModel($id);
+    }
+    else
+    {
+      $car = new CarModel;
+    }
 
     $car->setMake($make);
     $car->setModel($model);
@@ -22,30 +30,8 @@ class CarController extends Controller
 
     $car->save();
 
-    header('Location: ./index.php');
-  }
-
-  public function get($page = "")
-  {
-    if (!empty($page))
-    {
-      if ($page == 'about')
-      {
-        $about = new AboutPage;
-        $about->get();
-      }
-      else if ($page == 'addcar')
-      {
-        $addCar = new AddCarPage;
-        $addCar->get();
-      }
-    }
-    else
-    {
-      $home = new HomePage;
-      $home->get();
-    }
+    echo '<h2>You have successfully added a new car.</h2>';
+    //header('Location: ./index.php');
   }
 }
-
 ?>
