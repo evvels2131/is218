@@ -1,8 +1,11 @@
 <?php
+session_start();
+
 use app\controller\CarController;
 use app\controller\HomePageController;
 use app\controller\ShowCarsPageController;
 use app\controller\AddCarPageController;
+use app\controller\ShowCarDetailsController;
 use app\view\html\Link;
 
 require_once('autoloadFn.php');
@@ -12,11 +15,21 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 //////////////////////////////////////
-$carController = new CarController;
+echo Link::newLink('Home', 'index.php', '_self');
+echo '<br />';
+echo Link::newLink('Add a new car', 'index.php?page=addcar', '_self');
+echo '<br />';
+echo Link::newLink('Show all cars', 'index.php?page=showcars', '_self');
+echo '<br />';
+echo '<hr>';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET')
 {
+  // Store the session array
   isset($_SESSION) ? $session_array = $_SESSION : $session_array = '';
+
+  // Store the get array
+  isset($_GET) ? $get_array = $_GET : $get_array = '';
 
   if (!empty($_GET))
   {
@@ -24,39 +37,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
 
     switch ($requestedPage)
     {
-      case 'about':
-        $carController->get($requestedPage);
-        break;
       case 'addcar':
-        $addcarspageController = new AddCarPageController;
-        $addcarspageController->get();
-        //$carController->get($requestedPage);
+        $addCarPageController = new AddCarPageController;
+        //$addcarspageController->get();
         break;
       case 'showcars':
-        $showcarspageController = new ShowCarsPageController();
-        $showcarspageController->get();
+        $showCarsPageController = new ShowCarsPageController($session_array);
+        break;
+      case 'car':
+        $showCarDetails = new ShowCarDetailsController($session_array, $get_array);
         break;
     }
   }
   else
   {
-    $homepageController = new HomePageController;
-    $homepageController->get();
+    $homePageController = new HomePageController;
   }
 }
 else
 {
+  $carController = new CarController;
   $carController->post();
 }
 
-echo Link::newLink('Home', 'index.php', '_self');
-echo '<br />';
-echo Link::newLink('About', 'index.php?page=about', '_self');
-echo '<br />';
-echo Link::newLink('Add a new car', 'index.php?page=addcar', '_self');
-echo '<br />';
-echo Link::newLink('Show all cars', 'index.php?page=showcars', '_self');
-echo '<br />';
 //session_unset();
 
 echo '<hr>';
@@ -82,11 +85,16 @@ if (!empty($_GET))
 }
 
 // Session
-if (isset($_SESSION))
+if (!empty($_SESSION))
 {
   echo '<br /><br /><b>$_SESSION</b><pre>';
   print_r($_SESSION);
   echo '</pre>';
+}
+
+if (!isset($_SESSION))
+{
+  echo '<br /><br />SESSION NOT SET AND I DONT KNOW WHY!!';
 }
 
 ?>
