@@ -30,5 +30,10 @@ abstract class Model
     // Save the model into the session
     $_SESSION[$this->_guid] = (array) $this;
   }
+
+  public function delete()
+  {
+    unset($_SESSION[$this->_guid]);
+  }
 }
 ?>
