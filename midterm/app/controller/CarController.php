@@ -14,9 +14,9 @@ class CarController extends Controller
     $model  = $_POST['model'];
     $year   = $_POST['year'];
 
-    if (isset($_POST['id']))
+    if (isset($_POST['guid']))
     {
-      $id = $_POST['id'];
+      $id = $_POST['guid'];
       $car = new CarModel($id);
     }
     else
