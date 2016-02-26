@@ -56,12 +56,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
 }
 else
 {
+  // Store the post array
+  isset($_POST) ? $post_array = $_POST : $post_array = '';
+
   $carController = new CarController;
-  $carController->post();
+  $carController->post($post_array);
 }
 
 //session_unset();
 
+/*
 echo '<hr>';
 echo '<h1>Debugging information</h1>';
 
@@ -96,5 +100,5 @@ if (!isset($_SESSION))
 {
   echo '<br /><br />SESSION NOT SET AND I DONT KNOW WHY!!';
 }
-
+*/
 ?>
