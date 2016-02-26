@@ -2,17 +2,14 @@
 namespace app\view\page;
 
 use app\view\html\Paragraph;
+use app\view\html\Heading;
 
 class HomePage extends Page
 {
-  public function get()
+  public function __construct()
   {
-    Paragraph::newParagraph('This is the HomePage. get() method called.');
-  }
-
-  public function post()
-  {
-    Paragraph::newParagraph('This is the HomePage. post() method called.');
+    echo Heading::newHeading('h1', 'Home Page Bitches');
+    echo Paragraph::newParagraph('Sample paragraph');
   }
 }
 ?>
