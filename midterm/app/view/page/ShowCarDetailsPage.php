@@ -37,7 +37,7 @@ class ShowCarDetailsPage extends Page
         $form->addNewInput($$clean);
       }
     }
-    $submit = InputField::newInputField('submit', '', 'Submit');
+    $submit = InputField::newInputField('submit', '', 'Save');
     $form->addNewInput($submit);
 
     echo $form->getForm();
