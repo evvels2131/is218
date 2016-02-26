@@ -8,7 +8,7 @@ class HomePage extends Page
 {
   public function __construct()
   {
-    echo Heading::newHeading('h1', 'Home Page Bitches');
+    echo Heading::newHeading('h1', 'Home Page');
     echo Paragraph::newParagraph('Sample paragraph');
   }
 }
