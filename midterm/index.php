@@ -4,7 +4,7 @@ session_start();
 use app\controller\CarController;
 use app\controller\HomePageController;
 use app\controller\ShowCarsPageController;
-use app\controller\AddCarPageController;
+use app\controller\AddCarController;
 use app\controller\ShowCarDetailsController;
 use app\view\html\Link;
 
@@ -18,8 +18,6 @@ error_reporting(E_ALL);
 echo Link::newLink('Home', 'index.php', '_self');
 echo '<br />';
 echo Link::newLink('Add a new car', 'index.php?page=addcar', '_self');
-echo '<br />';
-echo Link::newLink('Show all cars', 'index.php?page=showcars', '_self');
 echo '<br />';
 echo '<hr>';
 
@@ -38,11 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
     switch ($requestedPage)
     {
       case 'addcar':
-        $addCarPageController = new AddCarPageController;
-        //$addcarspageController->get();
-        break;
-      case 'showcars':
-        $showCarsPageController = new ShowCarsPageController($session_array);
+        $addCarPageController = new AddCarController;
         break;
       case 'car':
         $showCarDetails = new ShowCarDetailsController($session_array, $get_array);
@@ -51,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
   }
   else
   {
-    $homePageController = new HomePageController;
+    $homePageController = new HomePageController($session_array);
   }
 }
 else
@@ -65,7 +59,6 @@ else
 
 //session_unset();
 
-/*
 echo '<hr>';
 echo '<h1>Debugging information</h1>';
 
@@ -100,5 +93,4 @@ if (!isset($_SESSION))
 {
   echo '<br /><br />SESSION NOT SET AND I DONT KNOW WHY!!';
 }
-*/
 ?>
