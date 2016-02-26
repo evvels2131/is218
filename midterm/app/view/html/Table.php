@@ -48,7 +48,7 @@ class Table extends HTML
             if (strpos($attribute, $find) !== false)
             {
               $href = 'index.php?page=car&id=' . $value;
-              $htmlTABLE .= '<td>' . Link::newLink('View', $href, '_self') . '</td>';
+              $htmlTABLE .= '<td>' . Link::newLink('View/Edit', $href, '_self') . '</td>';
             }
             else
             {
