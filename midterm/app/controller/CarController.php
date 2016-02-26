@@ -1,14 +1,12 @@
 <?php
 namespace app\controller;
 
-use app\view\page\AboutPage;
-use app\view\page\HomePage;
-use app\view\page\AddCarPage;
 use app\model\CarModel;
 
 class CarController extends Controller
 {
-  public function post()
+  // Add a new car
+  public function post($post_array = '')
   {
     $make   = $_POST['make'];
     $model  = $_POST['model'];
@@ -28,9 +26,16 @@ class CarController extends Controller
     $car->setModel($model);
     $car->setYear($year);
 
-    $car->save();
+    if (isset($_POST['delete']))
+    {
+      $car->delete();
+    }
+    else
+    {
+      $car->save();
+    }
 
-    echo '<h2>You have successfully added a new car.</h2>';
+    echo '<h2>Success.</h2>';
     //header('Location: ./index.php');
   }
 }
