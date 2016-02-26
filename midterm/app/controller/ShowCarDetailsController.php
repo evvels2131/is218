@@ -1,8 +1,6 @@
 <?php
 namespace app\controller;
 
-//use app\view\page\ShowCarDetailsdPage;
-//use app\view\CarView;
 use app\view\ShowCarDetailsView;
 
 class ShowCarDetailsController extends Controller
