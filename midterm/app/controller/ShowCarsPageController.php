@@ -2,19 +2,13 @@
 namespace app\controller;
 
 use app\view\page\ShowCarsPage;
+use app\view\CarsView;
 
 class ShowCarsPageController extends Controller
 {
-  public function post()
+  public function __construct($session_array = '')
   {
-    echo '<h1>ShowCarsPageController</h1>';
-    echo 'This is the <b>post()</b> function<br /><br />';
-  }
-
-  public function get()
-  {
-    echo '<h1>ShowCarsPageController</h1>';
-    echo 'This is the <b>get()</b> function<br /><br />';
+    $carsView = new CarsView($session_array);
   }
 }
 
