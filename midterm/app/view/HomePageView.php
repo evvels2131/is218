@@ -5,9 +5,9 @@ use app\view\page\HomePage;
 
 class HomePageView extends View
 {
-  public function __construct()
+  public function __construct($array = '')
   {
-    $homePage = new HomePage();
+    $homePage = new HomePage($array);
   }
 }
 
