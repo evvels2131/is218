@@ -10,7 +10,7 @@ class InputField extends HTML
       $input = '<input type="' . $type . '" value="' . $value .  '"><br />';
     }
     else {
-      $input = '<input type="' . $type . '" name="' . $name . '" placeholder="' . $value .  '"><br />';
+      $input = '<input type="' . $type . '" name="' . $name . '" value="' . $value .  '"><br />';
     }
 
     return $input;
