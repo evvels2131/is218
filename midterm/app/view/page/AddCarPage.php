@@ -7,7 +7,7 @@ use app\view\html\Form;
 
 class AddCarPage extends Page
 {
-  public function get()
+  public function __construct()
   {
     $make   = InputField::newInputField('text', 'make', 'Make');
     $model  = InputField::newInputField('text', 'model', 'Model');
@@ -21,11 +21,6 @@ class AddCarPage extends Page
     $form->addNewInput($submit);
 
     echo $form->getForm();
-  }
-
-  public function post()
-  {
-    Paragraph::newParagraph('This is the AddNewCarPage. post() method called.');
   }
 }
 ?>
