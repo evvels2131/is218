@@ -9,9 +9,11 @@ class HomePage extends Page
 {
   public function __construct($array = '')
   {
-    //$array = '';
-    echo Heading::newHeading('h1', 'Midterm Project - IS 218-002');
-    echo Heading::newHeading('h2', 'Tomasz Goralczyk');
+    // Get header
+    echo parent::getHeader('Home');
+
+    echo Heading::newHeading('h3', 'Midterm Project - IS 218-002');
+    echo Heading::newHeading('h3', 'Tomasz Goralczyk');
     echo '<hr>';
 
     if (!empty($array))
@@ -26,6 +28,9 @@ class HomePage extends Page
       echo Heading::newHeading('h3', 'Add a new car by clicking the
         "Add New Car" link above.');
     }
+
+    // Get footer
+    echo parent::getFooter();
   }
 }
 ?>
