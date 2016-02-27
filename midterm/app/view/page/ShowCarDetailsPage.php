@@ -16,7 +16,7 @@ class ShowCarDetailsPage extends Page
     // Get the proper car in the array
     $car = $array[$carID['id']];
 
-    echo Heading::newHeading('h1', 'Car Details');
+    echo parent::alertDiv('success', Heading::newHeading('h3', 'Car Details'));
 
     // Display information about the car
     foreach ($car as $attribute => $value)
@@ -25,7 +25,8 @@ class ShowCarDetailsPage extends Page
       echo '<b>' . $clean . '</b>: ' . $value . '<br />';
     }
 
-    echo Heading::newHeading('h2', 'Edit or delete the car below');
+    echo '<br />';
+    echo parent::alertDiv('warning', Heading::newHeading('h4', 'Edit or delete the car below'));
 
     $form = new Form('index.php', 'POST');
     foreach ($car as $attribute => $value)
@@ -50,7 +51,7 @@ class ShowCarDetailsPage extends Page
     $form->addNewInput($save);
     $form->addNewInput($delete);
 
-    echo $form->getForm();
+    echo parent::formDiv($form->getForm());
 
     // Get footer
     echo parent::getFooter();
