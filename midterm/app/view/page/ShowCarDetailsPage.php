@@ -10,6 +10,9 @@ class ShowCarDetailsPage extends Page
 {
   public function __construct($array = '', $carID = '')
   {
+    // Get header
+    echo parent::getHeader('Car Details');
+
     // Get the proper car in the array
     $car = $array[$carID['id']];
 
@@ -42,12 +45,15 @@ class ShowCarDetailsPage extends Page
         $form->addNewInput($$clean);
       }
     }
-    $save = InputField::newInputField('submit', 'save', 'Save');
+    $save   = InputField::newInputField('submit', 'save', 'Save');
     $delete = InputField::newInputField('submit', 'delete', 'Delete');
     $form->addNewInput($save);
     $form->addNewInput($delete);
 
     echo $form->getForm();
+
+    // Get footer
+    echo parent::getFooter();
   }
 }
 
