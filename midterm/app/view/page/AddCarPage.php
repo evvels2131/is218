@@ -11,8 +11,8 @@ class AddCarPage extends Page
   {
     // Get header
     echo parent::getHeader('New Car');
-
-    echo Heading::newHeading('h1', 'Add a New Car');
+    
+    echo parent::alertDiv('success', Heading::newHeading('h3', 'Add a New Car'));
 
     $make   = InputField::newInputField('text', 'make', 'Make', '', 'Make');
     $model  = InputField::newInputField('text', 'model', 'Model', '', 'Model');
@@ -25,10 +25,11 @@ class AddCarPage extends Page
     $form->addNewInput($year);
     $form->addNewInput($submit);
 
-    echo $form->getForm();
+    echo parent::formDiv($form->getForm());
 
     // Get footer
     echo parent::getFooter();
   }
 }
+
 ?>
