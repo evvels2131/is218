@@ -35,8 +35,15 @@ class CarController extends Controller
       $car->save();
     }
 
-    echo '<h2>Success.</h2>';
-    //header('Location: ./index.php');
+    // Try redirecting to the home page
+    if (headers_sent())
+    {
+      die('Redirect failed. Please go back to Home Page');
+    }
+    else
+    {
+      exit(header('Location: ./index.php'));
+    }
   }
 }
 ?>
