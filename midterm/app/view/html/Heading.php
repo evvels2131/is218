@@ -29,5 +29,4 @@ class Heading extends HTML
     return $htmlHeading;
   }
 }
-
 ?>
