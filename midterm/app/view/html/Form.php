@@ -25,11 +25,14 @@ class Form extends HTML
     $formHTML = $this->_formHeader;
     foreach ($this->_form as $inputItem)
     {
-      $formHTML .= $inputItem . '<br />';
+      $formHTML .= '<div class="form-group">';
+      $formHTML .= $inputItem;
+      $formHTML .= '</div>';
     }
     $formHTML .= '</form>';
 
     return $formHTML;
   }
 }
+
 ?>
