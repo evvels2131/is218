@@ -1,12 +1,8 @@
 <?php
 session_start();
 
-use app\controller\CarController;
-use app\controller\HomePageController;
-use app\controller\ShowCarsPageController;
-use app\controller\AddCarController;
-use app\controller\ShowCarDetailsController;
 use app\view\html\Link;
+use app\App;
 
 require_once('autoloadFn.php');
 
@@ -15,50 +11,17 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 //////////////////////////////////////
+
+$app = new App;
+
+
+
 echo Link::newLink('Home', 'index.php', '_self');
 echo '<br />';
 echo Link::newLink('Add a new car', 'index.php?page=addcar', '_self');
 echo '<br />';
-echo '<hr>';
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET')
-{
-  // Store the session array
-  isset($_SESSION) ? $session_array = $_SESSION : $session_array = '';
-
-  // Store the get array
-  isset($_GET) ? $get_array = $_GET : $get_array = '';
-
-  if (!empty($_GET))
-  {
-    $requestedPage = $_GET['page'];
-
-    switch ($requestedPage)
-    {
-      case 'addcar':
-        $addCarPageController = new AddCarController;
-        break;
-      case 'car':
-        $showCarDetails = new ShowCarDetailsController($session_array, $get_array);
-        break;
-    }
-  }
-  else
-  {
-    $homePageController = new HomePageController($session_array);
-  }
-}
-else
-{
-  // Store the post array
-  isset($_POST) ? $post_array = $_POST : $post_array = '';
-
-  $carController = new CarController;
-  $carController->post($post_array);
-}
-
-//session_unset();
-
+/*
 echo '<hr>';
 echo '<h1>Debugging information</h1>';
 
@@ -93,4 +56,5 @@ if (!isset($_SESSION))
 {
   echo '<br /><br />SESSION NOT SET AND I DONT KNOW WHY!!';
 }
+*/
 ?>
