@@ -9,7 +9,7 @@ class Table extends HTML
     {
       $i = 0;
       $find = 'id'; // ID should be generated as links
-      $htmlTABLE = '<table><tr>';
+      $htmlTABLE = '<table class="table table-striped"><tr>';
 
       // Get table headings
       foreach ($array as $key => $innerArray)
@@ -64,4 +64,5 @@ class Table extends HTML
     }
   }
 }
+
 ?>
