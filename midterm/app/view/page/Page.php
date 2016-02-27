@@ -38,7 +38,6 @@ abstract class Page
 
     public function getFooter()
     {
-      //$this->_html .=
       $pageHTML =
             '</div>
           </div>
@@ -50,7 +49,6 @@ abstract class Page
       </body>
       </html>';
 
-      //return $this->_html;
       return $pageHTML;
   }
 }
