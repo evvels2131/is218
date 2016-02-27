@@ -7,8 +7,7 @@ class Paragraph extends HTML
   {
     $paragraph = '<p>' . $text . '</p>';
 
-    echo $paragraph;
+    return $paragraph;
   }
 }
-
 ?>

@@ -10,5 +10,4 @@ class Link extends HTML
     return $link;
   }
 }
-
 ?>

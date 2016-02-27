@@ -22,5 +22,4 @@ class Menu extends HTML
     return $menuHTML;
   }
 }
-
 ?>
