@@ -1,6 +1,8 @@
 <?php
 namespace app\view\page;
 
+use app\view\html\Link;
+
 abstract class Page
 {
   public function getHeader($title)
@@ -24,8 +26,8 @@ abstract class Page
           <div class="container-fluid">
             <a class="navbar-brand" href="index.php">IS-218</a>
             <ul class="nav navbar-nav">
-              <li><a href="index.php">Home</a></li>
-              <li><a href="index.php?page=addcar">Add New Car</a></li>
+              <li>' . Link::newLink('Home', 'index.php', '_self') . '</li>
+              <li>' . Link::newLink('Add New Car', 'index.php?page=addcar', '_self') . '</li>
             </ul>
           </div>
         </nav>
