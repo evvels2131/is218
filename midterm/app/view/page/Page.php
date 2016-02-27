@@ -22,15 +22,16 @@ abstract class Page
       <body>
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">IS 218</a>
+            <a class="navbar-brand" href="index.php">IS-218</a>
             <ul class="nav navbar-nav">
-              <li class="active"><a href="index.php">Home</a></li>
+              <li><a href="index.php">Home</a></li>
               <li><a href="index.php?page=addcar">Add New Car</a></li>
             </ul>
           </div>
         </nav>
         <div class="container">
           <div class="row">
+            <div class="col-md-2"></div>
             <div class="col-md-8">';
 
       return $pageHTML;
@@ -40,6 +41,7 @@ abstract class Page
     {
       $pageHTML =
             '</div>
+             <div class="col-md-2"></div>
           </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
@@ -50,6 +52,34 @@ abstract class Page
       </html>';
 
       return $pageHTML;
+  }
+
+  public function formDiv($form)
+  {
+    $formHTML = '<div class="col-md-4">' . $form . '</div>';
+
+    return $formHTML;
+  }
+
+  public function alertDiv($alert, $content)
+  {
+    switch ($alert)
+    {
+      case 'success':
+        $divHTML = '<div class="alert alert-success">' . $content . '</div>';
+        break;
+      case 'info':
+        $divHTML = '<div class="alert alert-info">' . $content . '</div>';
+        break;
+      case 'warning':
+        $divHTML = '<div class="alert alert-warning">' . $content . '</div>';
+        break;
+      case 'danger':
+        $divHTML = '<div class="alert alert-danger">' . $content . '</div>';
+        break;
+    }
+
+    return $divHTML;
   }
 }
 
