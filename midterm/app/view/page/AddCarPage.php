@@ -9,12 +9,15 @@ class AddCarPage extends Page
 {
   public function __construct()
   {
+    // Get header
+    echo parent::getHeader('New Car');
+
     echo Heading::newHeading('h1', 'Add a New Car');
 
-    $make   = InputField::newInputField('text', 'make', 'Make', '', 'placeholder');
-    $model  = InputField::newInputField('text', 'model', 'Model', '', 'placeholder');
-    $year   = InputField::newInputField('text', 'year', 'Year', '', 'placeholder');
-    $submit = InputField::newInputField('submit', '', 'Submit', '', 'placeholder');
+    $make   = InputField::newInputField('text', 'make', 'Make', '', 'Make');
+    $model  = InputField::newInputField('text', 'model', 'Model', '', 'Model');
+    $year   = InputField::newInputField('text', 'year', 'Year', '', 'Year');
+    $submit = InputField::newInputField('submit', '', 'Submit');
 
     $form = new Form('index.php', 'POST');
     $form->addNewInput($make);
@@ -23,6 +26,9 @@ class AddCarPage extends Page
     $form->addNewInput($submit);
 
     echo $form->getForm();
+
+    // Get footer
+    echo parent::getFooter();
   }
 }
 ?>
