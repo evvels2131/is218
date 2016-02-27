@@ -12,21 +12,21 @@ class HomePage extends Page
     // Get header
     echo parent::getHeader('Home');
 
-    echo Heading::newHeading('h3', 'Midterm Project - IS 218-002');
-    echo Heading::newHeading('h3', 'Tomasz Goralczyk');
-    echo '<hr>';
+    echo parent::alertDiv('success',
+      Heading::newHeading('h3', 'Tomasz Goralczyk - Midterm Project - IS 218-002'));
 
     if (!empty($array))
     {
-      echo Heading::newHeading('h3', 'Cars Stored in Session');
+      echo parent::alertDiv('warning', Heading::newHeading('h4', 'Cars Stored in Session'));
       echo Table::generateTable($array);
     }
     else
     {
-      echo Heading::newHeading('h3', 'No cars stored in session to be
+      $content = Heading::newHeading('h3', 'No cars stored in session to be
         displayed.');
-      echo Heading::newHeading('h3', 'Add a new car by clicking the
+      $content .= Heading::newHeading('h3', 'Add a new car by clicking the
         "Add New Car" link above.');
+        echo parent::alertDiv('danger', $content);
     }
 
     // Get footer
