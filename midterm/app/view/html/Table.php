@@ -47,8 +47,14 @@ class Table extends HTML
           {
             if (strpos($attribute, $find) !== false)
             {
+              // Show details about the car
               $href = 'index.php?page=car&id=' . $value;
-              $htmlTABLE .= '<td>' . Link::newLink('View/Edit', $href, '_self') . '</td>';
+              $htmlTABLE .= '<td>' . Link::newLink('View', $href, '_self');
+              $htmlTABLE .= '&emsp;&emsp;';
+
+              // Show form to edit the car
+              $href = 'index.php?page=editcar&id=' . $value;
+              $htmlTABLE .= Link::newLink('Edit', $href, '_self') . '</td>';
             }
             else
             {
