@@ -22,11 +22,23 @@ abstract class View
       </head>
       <body>
         <nav class="navbar navbar-inverse">
-          <div class="container-fluid">
+          <div class="container">
             <a class="navbar-brand" href="index.php">IS-218</a>
-            <ul class="nav navbar-nav">
-              <li>' . Link::newLink('Home', 'index.php', '_self') . '</li>
+            <ul class="nav navbar-nav">';
+            if (isset($_SESSION))
+            {
+              $pageHTML .= '
+                <li>' . Link::newLink('Home', 'index.php', '_self') . '</li>
+                <li>' . Link::newLink('Users', 'index.php?page=users', '_self') . '</li>
             </ul>
+            <p class="navbar-text navbar-right">Signed in as <b>'
+              . $_SESSION['username'] . '</b></p>';
+            }
+            else
+            {
+              $pageHTML .= '<li>' . Link::newLink('Home', 'index.php', '_self') . '</li></ul>';
+            }
+            $pageHTML .= '
           </div>
         </nav>
         <div class="container">';
