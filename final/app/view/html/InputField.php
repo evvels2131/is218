@@ -3,10 +3,10 @@ namespace app\view\html;
 
 class InputField extends HTML
 {
-  public static function newInputField($type, $name, $placeholder,
+  public static function newInputField($type, $name, $placeholder = '',
     $value = '')
   {
-    if ($type == 'text')
+    if ($type == 'text' || $type == 'password')
     {
       $input = '<input type="' . $type . '" name="' . $name . '"
         placeholder="' . $placeholder . '">';
