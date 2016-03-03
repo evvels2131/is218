@@ -19,11 +19,10 @@ class HomePage extends Page
     }
     else
     {
-      $content = Heading::newHeading('h3', 'No cars stored in session to be
-        displayed.');
-      $content .= Heading::newHeading('h3', 'Add a new car by clicking the
-        "Add New Car" link above.');
-        echo parent::alertDiv('danger', $content);
+        echo parent::alertDiv('danger', Heading::newHeading('h4', 'No cars stored in session to be
+          displayed.'));
+        echo parent::alertDiv('info', Heading::newHeading('h4', 'Add a new car
+          by clicking the <strong>"Add New Car"</strong> link above.'));
     }
 
     // Get footer
