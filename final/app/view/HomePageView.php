@@ -3,6 +3,7 @@ namespace app\view;
 
 use app\view\html\Form;
 use app\view\html\InputField;
+use app\view\html\Button;
 
 class HomePageView extends View
 {
@@ -28,8 +29,10 @@ class HomePageView extends View
       $content .= $form->getForm();
     }
 
+    //$content .= Button::newButton('submit', 'btn-info', 'Information');
+    // Generate HTML and display content
     echo parent::htmlHeader('Home');
-    echo parent::htmlDiv($content, 2);
+    echo parent::htmlDiv($content, 6);
     echo parent::htmlFooter();
   }
 }
