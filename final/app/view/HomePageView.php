@@ -8,10 +8,11 @@ class HomePageView extends View
 {
   public function __construct($data = '')
   {
-    echo 'Homepage<br /><br />';
+    //echo 'Homepage<br /><br />';
+    $content = '';
     if (isset($_SESSION))
     {
-      echo 'Welcome <strong>' . $_SESSION['username'] . '</strong>!';
+      $content .= 'Welcome <strong>' . $_SESSION['username'] . '</strong>!';
     }
     else
     {
@@ -23,8 +24,13 @@ class HomePageView extends View
       $form->addNewInput($username);
       $form->addNewInput($password);
       $form->addNewInput($submit);
-      echo $form->getForm();
+
+      $content .= $form->getForm();
     }
+
+    echo parent::htmlHeader('Home');
+    echo parent::htmlDiv($content, 2);
+    echo parent::htmlFooter();
   }
 }
 
