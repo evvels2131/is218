@@ -15,6 +15,11 @@ class Form extends HTML
     $this->_formHeader = '<form action="' . $this->_action . '"
       method="' . $this->_method . '"><br />';
   }
+
+  public function addNewInput($inputItem)
+  {
+    $this->_form[] = $inputItem;
+  }
 }
 
 ?>
