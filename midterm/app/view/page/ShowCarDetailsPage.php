@@ -16,7 +16,7 @@ class ShowCarDetailsPage extends Page
     // Get the proper car in the array
     $car = $array[$carID['id']];
 
-    echo parent::alertDiv('success', Heading::newHeading('h3', 'Car Details'));
+    echo parent::alertDiv('warning', Heading::newHeading('h4', 'Car Details'));
 
     // Display information about the car
     foreach ($car as $attribute => $value)
@@ -24,34 +24,6 @@ class ShowCarDetailsPage extends Page
       $clean = HTML::cleanAttribute($attribute);
       echo '<b>' . $clean . '</b>: ' . $value . '<br />';
     }
-
-    echo '<br />';
-    echo parent::alertDiv('warning', Heading::newHeading('h4', 'Edit or delete the car below'));
-
-    $form = new Form('index.php', 'POST');
-    foreach ($car as $attribute => $value)
-    {
-      $clean = HTML::cleanAttribute($attribute, 'false');
-
-      if ($clean == 'guid')
-      {
-        // Disable the GUID input field so it cannot be edited
-        $$clean = InputField::newInputField('text', $clean, $value, 'readonly');
-        $form->addNewInput($$clean);
-      }
-      else
-      {
-        // If not a GUID input field, allow for editing
-        $$clean = InputField::newInputField('text', $clean, $value);
-        $form->addNewInput($$clean);
-      }
-    }
-    $save   = InputField::newInputField('submit', 'save', 'Save');
-    $delete = InputField::newInputField('submit', 'delete', 'Delete');
-    $form->addNewInput($save);
-    $form->addNewInput($delete);
-
-    echo parent::formDiv($form->getForm());
 
     // Get footer
     echo parent::getFooter();
