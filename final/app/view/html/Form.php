@@ -20,6 +20,21 @@ class Form extends HTML
   {
     $this->_form[] = $inputItem;
   }
+
+  public function getForm()
+  {
+    $formHTML = $this->_formHeader;
+
+    foreach ($this->_form as $inputItem)
+    {
+      $formHTML .= '<div class="form-group">';
+      $formHTML .= $inputItem;
+      $formHTML .= '</div>';
+    }
+    $formHTML .= '</form>';
+
+    return $formHTML;
+  }
 }
 
 ?>
