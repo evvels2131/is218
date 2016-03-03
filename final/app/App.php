@@ -1,15 +1,31 @@
 <?php
-
 namespace app;
+
+use app\controller\HomePageController;
 
 class App
 {
   public function __construct()
   {
     // Check if session is set
-    isset($_SESSION) ? $session_array = $_SESSION : $session_array = '';
+    if (isset($_SESSION)) $session_array = $_SESSION;
 
-    echo 'test';
+    // Display appropriate views based on the request method
+    if ($_SERVER['REQUEST_METHOD'] == 'GET')
+    {
+      switch ($_GET['page'])
+      {
+        case 'about':
+          $aboutPageController = new AboutPageController;
+          break;
+        default:
+          $homePageController = new HomePageController;
+      }
+    }
+    else
+    {
+      // controller->post();
+    }
   }
 }
 
