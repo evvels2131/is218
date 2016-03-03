@@ -12,9 +12,6 @@ class HomePage extends Page
     // Get header
     echo parent::getHeader('Home');
 
-    echo parent::alertDiv('success',
-      Heading::newHeading('h3', 'Tomasz Goralczyk - Midterm Project - IS 218-002'));
-
     if (!empty($array))
     {
       echo parent::alertDiv('warning', Heading::newHeading('h4', 'Cars Stored in Session'));
