@@ -16,7 +16,6 @@ class EditCarPage extends Page
     // Get the proper car in the array
     $car = $array[$carID['id']];
 
-    echo '<br />';
     echo parent::alertDiv('warning', Heading::newHeading('h4', 'Edit or delete the car below'));
 
     $form = new Form('index.php', 'POST');
