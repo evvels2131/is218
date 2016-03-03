@@ -6,6 +6,7 @@ use app\controller\HomePageController;
 use app\controller\ShowCarsPageController;
 use app\controller\AddCarController;
 use app\controller\ShowCarDetailsController;
+use app\controller\EditCarController;
 
 class App
 {
@@ -26,6 +27,9 @@ class App
         case 'car':
           $showCarDetailsController =
             new ShowCarDetailsController($session_array, $get_array);
+          break;
+        case 'editcar':
+          $editCarController = new EditCarController($session_array, $get_array);
           break;
         default:
           $homePageController = new HomePageController($session_array);
