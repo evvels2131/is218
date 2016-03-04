@@ -23,5 +23,18 @@ class Model
     $this->_db->login($username, $email, $password);
   }
 
+  // Check if user is logged in
+  public function is_loggedin()
+  {
+    if (isset($_SESSION['user_session']))
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+
 }
 ?>
