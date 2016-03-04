@@ -96,28 +96,6 @@ class Database
     }
   }
 
-  // Check if user is logged in
-  public function loggedin()
-  {
-    if (isset($_SESSION['user_session']))
-    {
-      return true;
-    }
-    else
-    {
-      return false;
-    }
-  }
-
-  // Log out
-  public function logout()
-  {
-    session_destroy();
-    unset($_SESSION['user_session']);
-    unset($_SESSION['user_name']);
-    return true;
-  }
-
   public function __destruct()
   {
     $this->_dbconn = null;
