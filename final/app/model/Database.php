@@ -80,6 +80,22 @@ class Database
     }
   }
 
+  // Gets all the users in the database
+  public function getUsers()
+  {
+    try
+    {
+      $stmt = $this->_dbconn->prepare('SELECT * FROM users');
+      $stmt->execute();
+
+      return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    catch (PDOException $e)
+    {
+      echo '<b>Error:</b> ' . $e->getMessage() . '<br />';
+    }
+  }
+
   public function __destruct()
   {
     $this->_dbconn = null;
