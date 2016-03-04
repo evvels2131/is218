@@ -35,9 +35,9 @@ class Database
         (user_name, user_email, user_pass) VALUES
         (:uname, :uemail, :upass)');
 
-      $stmt->bindParam(':uname', $user_name);
-      $stmt->bindParam(':uemail', $user_email);
-      $stmt->bindParam(':upass', $user_pass);
+      $stmt->bindParam(':uname', $username);
+      $stmt->bindParam(':uemail', $email);
+      $stmt->bindParam(':upass', $password);
 
       $stmt->execute();
     }
@@ -96,11 +96,6 @@ class Database
     }
   }
 
-  public function __destruct()
-  {
-    $this->_dbconn = null;
-  }
-
   // Check if user is logged in
   public function loggedin()
   {
@@ -123,7 +118,10 @@ class Database
     return true;
   }
 
+  public function __destruct()
+  {
+    $this->_dbconn = null;
+  }
+
 }
-
-
 ?>
