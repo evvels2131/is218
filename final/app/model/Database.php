@@ -26,6 +26,27 @@ class Database
     }
   }
 
+  // User registration
+  public function register($username, $email, $password)
+  {
+    try
+    {
+      $stmt = $this->_dbconn->prepare('INSERT INTO users
+        (user_name, user_email, user_pass) VALUES
+        (:uname, :uemail, :upass)');
+
+      $stmt->bindParam(':uname', $user_name);
+      $stmt->bindParam(':uemail', $user_email);
+      $stmt->bindParam(':upass', $user_pass);
+
+      $stmt->execute();
+    }
+    catch (PDOException $e)
+    {
+      echo '<b>Error:</b> ' . $e->getMessage() . '<br />';
+    }
+  }
+
 }
 
 
