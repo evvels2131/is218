@@ -5,6 +5,7 @@ use app\view\html\HTML;
 use app\view\html\InputField;
 use app\view\html\Form;
 use app\view\html\Heading;
+use app\view\html\Button;
 
 class EditCarPage extends Page
 {
@@ -36,8 +37,8 @@ class EditCarPage extends Page
         $form->addNewInput($$clean);
       }
     }
-    $save   = InputField::newInputField('submit', 'save', 'Save');
-    $delete = InputField::newInputField('submit', 'delete', 'Delete');
+    $save   = Button::newButton('submit', 'save', 'btn-success', 'Save');
+    $delete = Button::newButton('submit', 'delete', 'btn-danger', 'Delete');
     $form->addNewInput($save);
     $form->addNewInput($delete);
 
