@@ -1,7 +1,7 @@
 <?php
 namespace app\view\html;
 
-class Button
+class Button extends HTML
 {
   public static function newButton($type, $class, $text)
   {
