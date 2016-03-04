@@ -36,5 +36,12 @@ class Model
     }
   }
 
+  // Log out
+  public function logout()
+  {
+    session_unset();
+    return true;
+  }
+
 }
 ?>
