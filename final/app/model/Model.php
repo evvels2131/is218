@@ -18,5 +18,10 @@ class Model
     $this->_db->register($username, $email, $password);
   }
 
+  public function login($username, $email, $password)
+  {
+    $this->_db->login($username, $email, $password);
+  }
+
 }
 ?>
