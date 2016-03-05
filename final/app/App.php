@@ -2,6 +2,7 @@
 namespace app;
 
 use app\controller\HomePageController;
+use app\controller\SignupPageController;
 
 class App
 {
@@ -13,13 +14,21 @@ class App
     // Display appropriate views based on the request method
     if ($_SERVER['REQUEST_METHOD'] == 'GET')
     {
-      switch ($_GET['page'])
+      if (isset($_GET['page']))
       {
-        case 'about':
-          $aboutPageController = new AboutPageController;
-          break;
-        default:
-          $homePageController = new HomePageController;
+        switch ($_GET['page'])
+        {
+          case 'about':
+            $aboutPageController = new AboutPageController;
+            break;
+          case 'signup':
+            $signupPageController = new SignupPageController;
+            break;
+        }
+      }
+      else
+      {
+        $homePageController = new HomePageController;
       }
     }
     else
