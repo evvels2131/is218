@@ -11,22 +11,22 @@ class InputField extends HTML
       if (!empty($readonly))
       {
         $input = '<input type="' . $type . '" name="' . $name . '"
-          value="' . $value . '" readonly class="form-control">';
+          class="form-control" value="' . $value . '" placeholder="ID" readonly >';
       }
       else if (!empty($placeholder))
       {
         $input = '<input type="' . $type . '" name="' . $name . '"
-          placeholder="' . $placeholder .'" class="form-control">';
+          class="form-control" placeholder="' . $placeholder .'">';
       }
       else if (!empty($name))
       {
         $input = '<input type="' . $type . '" name="' . $name . '"
-          value="' . $value . '" class="form-control">';
+          class="form-control" value="' . $value . '" >';
       }
       else
       {
-        $input = '<input type="' . $type . '" value="' . $value . '"
-        class="form-control">';
+        $input = '<input type="' . $type . '" class="form-control">
+          value="' . $value . '"';
       }
     }
     else
