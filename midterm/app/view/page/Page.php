@@ -31,20 +31,38 @@ abstract class Page
             </ul>
           </div>
         </nav>
-        <div class="container">
-          <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">';
+        <div class="container">';
 
       return $pageHTML;
     }
 
+    // Bootstrap row
+    public function htmlDiv($content, $columns)
+    {
+      // Center the column in Bootstrap
+      $side = (12 - $columns) / 2;
+
+      $pageHTML = '
+        <div class="row">
+          <div class="col-md-' . $side . '"></div>
+          <div class="col-md-' . $columns . '">' . $content . '</div>
+          <div class="col-md-' . $side . '"></div>
+        </div>';
+
+      return $pageHTML;
+    }
+
+    // Bootstrap alert div tags
+    public function htmlAlertDiv($class, $content)
+    {
+      $htmlAlert = '<div class="alert alert-' . $class . '">' . $content . '</div>';
+
+      return $htmlAlert;
+    }
+
     public function getFooter()
     {
-      $pageHTML =
-            '</div>
-             <div class="col-md-2"></div>
-          </div>
+      $pageHTML = '
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 			  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
@@ -54,58 +72,6 @@ abstract class Page
       </html>';
 
       return $pageHTML;
-  }
-
-  public function formDiv($form)
-  {
-    $formHTML = '<div class="col-md-4">' . $form . '</div>';
-
-    return $formHTML;
-  }
-
-  // Bootstrap row
-  public function htmlDiv($content, $columns)
-  {
-    // Center the column in Bootstrap
-    $side = (12 - $columns) / 2;
-
-    $pageHTML = '
-      <div class="row">
-        <div class="col-md-' . $side . '"></div>
-        <div class="col-md-' . $columns . '">' . $content . '</div>
-        <div class="col-md-' . $side . '"></div>
-      </div>';
-
-    return $pageHTML;
-  }
-
-  // Bootstrap alert div tags
-  public function htmlAlertDiv($class, $content)
-  {
-    $htmlAlert = '<div class="alert alert-' . $class . '">' . $content . '</div>';
-
-    return $htmlAlert;
-  }
-
-  public function alertDiv($alert, $content)
-  {
-    switch ($alert)
-    {
-      case 'success':
-        $divHTML = '<div class="alert alert-success">' . $content . '</div>';
-        break;
-      case 'info':
-        $divHTML = '<div class="alert alert-info">' . $content . '</div>';
-        break;
-      case 'warning':
-        $divHTML = '<div class="alert alert-warning">' . $content . '</div>';
-        break;
-      case 'danger':
-        $divHTML = '<div class="alert alert-danger">' . $content . '</div>';
-        break;
-    }
-
-    return $divHTML;
   }
 }
 
