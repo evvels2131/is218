@@ -63,6 +63,13 @@ abstract class Page
     return $formHTML;
   }
 
+  public function htmlAlertDiv($class, $content)
+  {
+    $htmlAlert = '<div class="alert alert-' . $class . '">' . $content . '</div>';
+
+    return $htmlAlert;
+  }
+
   public function alertDiv($alert, $content)
   {
     switch ($alert)
