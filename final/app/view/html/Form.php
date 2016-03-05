@@ -13,7 +13,7 @@ class Form extends HTML
     $this->_action = $action;
     $this->_method = $method;
     $this->_formHeader = '<form action="' . $this->_action . '"
-      method="' . $this->_method . '"><br />';
+      method="' . $this->_method . '" class="form-horizontal"><br />';
   }
 
   public function addNewInput($inputItem)
@@ -25,12 +25,43 @@ class Form extends HTML
   {
     $formHTML = $this->_formHeader;
 
-    foreach ($this->_form as $inputItem)
+    // Grab only input values
+    $search = 'input';
+    $matches = array();
+
+    foreach ($this->_form as $key => $value)
     {
+      if (preg_match("/\b$search\b/i", $value))
+      {
+        $matches[$key] = $value;
+      }
+    }
+
+    // Generate input values
+    foreach ($matches as $inputItem)
+    {
+      // Grab the label for the input field
+      $last = strrpos($inputItem, '"');
+      $secondLast = strrpos($inputItem, '"', $last - strlen($inputItem) - 1) + 1;
+      $result = substr($inputItem, $secondLast, $last - $secondLast);
+
       $formHTML .= '<div class="form-group">';
+      $formHTML .= '<label>' . $result . '</label>';
       $formHTML .= $inputItem;
       $formHTML .= '</div>';
     }
+
+    $formHTML .= '<div class="form-group">';
+    $formHTML .= '<div class="btn-group">';
+    foreach ($this->_form as $inputItem)
+    {
+      if (strpos($inputItem, 'btn') !== false)
+      {
+        $formHTML .= $inputItem;
+      }
+    }
+    $formHTML .= '</div>';
+    $formHTML .= '</div>';
     $formHTML .= '</form>';
 
     return $formHTML;
