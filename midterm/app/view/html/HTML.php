@@ -21,7 +21,7 @@ abstract class HTML
   }
 
   // Return an array that contains only the specified values
-  public static function arrayWithValues($array, $search)
+  public static function getValuesFromArray($array, $search)
   {
     $matches = array();
 
@@ -37,7 +37,7 @@ abstract class HTML
   }
 
   // Return input labels
-  public static function getInputFieldLabels($inputItem)
+  public static function getLabels($inputItem)
   {
     $last = strrpos($inputItem, '"');
     $secondLast = strrpos($inputItem, '"', $last - strlen($inputItem) - 1) + 1;
