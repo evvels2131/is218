@@ -6,6 +6,7 @@ use app\view\html\InputField;
 use app\view\html\Form;
 use app\view\html\Heading;
 use app\view\html\Button;
+use app\view\html\Link;
 
 class EditCarPage extends Page
 {
@@ -17,7 +18,10 @@ class EditCarPage extends Page
     // Get the proper car in the array
     $car = $array[$carID['id']];
 
-    echo parent::alertDiv('warning', Heading::newHeading('h4', 'Edit or delete the car below'));
+    $content = parent::htmlAlertDiv('warning', Heading::newHeading('h5', 'Edit or delete the car below'));
+    echo parent::htmlDiv($content, 8);
+
+    //echo
 
     $form = new Form('index.php', 'POST');
     foreach ($car as $attribute => $value)
@@ -42,7 +46,9 @@ class EditCarPage extends Page
     $form->addNewInput($save);
     $form->addNewInput($delete);
 
-    echo parent::formDiv($form->getForm());
+    $content = $form->getForm();
+    $content .= Link::newLink('Home', 'index.php', '_self') . '</li></ul>';
+    echo parent::htmlDiv($content, 4);
 
     // Get footer
     echo parent::getFooter();
