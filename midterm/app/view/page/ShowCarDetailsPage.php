@@ -5,6 +5,7 @@ use app\view\html\HTML;
 use app\view\html\InputField;
 use app\view\html\Form;
 use app\view\html\Heading;
+use app\view\html\Link;
 
 class ShowCarDetailsPage extends Page
 {
@@ -16,14 +17,19 @@ class ShowCarDetailsPage extends Page
     // Get the proper car in the array
     $car = $array[$carID['id']];
 
-    echo parent::alertDiv('warning', Heading::newHeading('h4', 'Car Details'));
+    $content = parent::htmlAlertDiv('warning', Heading::newHeading('h5', 'Car Details'));
+    echo parent::htmlDiv($content, 8);
 
     // Display information about the car
     foreach ($car as $attribute => $value)
     {
       $clean = HTML::cleanAttribute($attribute);
-      echo '<b>' . $clean . '</b>: ' . $value . '<br />';
+      $ctn .=  '<b>' . $clean . '</b>: ' . $value . '<br />';
     }
+
+    $ctn .= Link::newLink('Go Back', 'index.php', '_self');
+
+    echo parent::htmlDiv($ctn, 6);
 
     // Get footer
     echo parent::getFooter();
