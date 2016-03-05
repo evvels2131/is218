@@ -12,12 +12,12 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 //print_r($_SESSION);
-//$app = new App;
+$app = new App;
 
 //$_SESSION['username'] = 'tgoralczyk1';
 //session_unset();
 
-
+/*
 $db = new Database;
 $db->register('Jimmy', 'jimmy@gmail.com', '102kgku22');
 $db->register('Brian', 'brian@gmail.com', '213sgku22');
