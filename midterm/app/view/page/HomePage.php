@@ -14,15 +14,20 @@ class HomePage extends Page
 
     if (!empty($array))
     {
-      echo parent::alertDiv('warning', Heading::newHeading('h4', 'Cars Stored in Session'));
-      echo Table::generateTable($array);
+      $content = parent::htmlAlertDiv('warning', Heading::newHeading('h5', 'Cars Stored in Session'));
+      echo parent::htmlDiv($content, 8);
+
+      $content = Table::generateTable($array);
+      echo parent::htmlDiv($content, 6);
     }
     else
     {
-        echo parent::alertDiv('danger', Heading::newHeading('h4', 'No cars stored in session to be
+        $content = parent::htmlAlertDiv('danger', Heading::newHeading('h5', 'No cars stored in session to be
           displayed.'));
-        echo parent::alertDiv('info', Heading::newHeading('h4', 'Add a new car
+        $content .= parent::htmlAlertDiv('info', Heading::newHeading('h5', 'Add a new car
           by clicking the <strong>"Add New Car"</strong> link above.'));
+
+        echo parent::htmlDiv($content, 8);
     }
 
     // Get footer
