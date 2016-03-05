@@ -23,8 +23,6 @@ class SignupPageView extends View
     $email      = InputField::newInputField('text', 'email', 'Email');
     $password   = InputField::newInputField('password', 'pass', 'Password');
     $submit     = Button::newButton('submit', 'btn-primary', 'Register');
-    $delete     = Button::newButton('submit', 'btn-info', 'Delete');
-
 
     $form = new Form('index.php', 'POST');
     $form->addNewInput($firstname);
@@ -33,7 +31,6 @@ class SignupPageView extends View
     $form->addNewInput($email);
     $form->addNewInput($password);
     $form->addNewInput($submit);
-    $form->addNewInput($delete);
 
     $content = $form->getForm();
     $content .= Link::newLink('Go Back', 'index.php', '_self');
