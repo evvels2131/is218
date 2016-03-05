@@ -63,6 +63,23 @@ abstract class Page
     return $formHTML;
   }
 
+  // Bootstrap row
+  public function htmlDiv($content, $columns)
+  {
+    // Center the column in Bootstrap
+    $side = (12 - $columns) / 2;
+
+    $pageHTML = '
+      <div class="row">
+        <div class="col-md-' . $side . '"></div>
+        <div class="col-md-' . $columns . '">' . $content . '</div>
+        <div class="col-md-' . $side . '"></div>
+      </div>';
+
+    return $pageHTML;
+  }
+
+  // Bootstrap alert div tags
   public function htmlAlertDiv($class, $content)
   {
     $htmlAlert = '<div class="alert alert-' . $class . '">' . $content . '</div>';
