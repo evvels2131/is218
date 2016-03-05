@@ -4,6 +4,7 @@ namespace app\view\page;
 use app\view\html\Heading;
 use app\view\html\InputField;
 use app\view\html\Form;
+use app\view\html\Link;
 
 class AddCarPage extends Page
 {
@@ -12,7 +13,8 @@ class AddCarPage extends Page
     // Get header
     echo parent::getHeader('New Car');
 
-    echo parent::alertDiv('warning', Heading::newHeading('h4', 'Add a New Car'));
+    $content = parent::htmlAlertDiv('warning', Heading::newHeading('h5', 'Add a New Car'));
+    echo parent::htmlDiv($content, 8);
 
     $make   = InputField::newInputField('text', 'make', 'Make', '', 'Make');
     $model  = InputField::newInputField('text', 'model', 'Model', '', 'Model');
@@ -25,7 +27,9 @@ class AddCarPage extends Page
     $form->addNewInput($year);
     $form->addNewInput($submit);
 
-    echo parent::formDiv($form->getForm());
+    $content = $form->getForm();
+    $content .= Link::newLink('Go Back', 'index.php', '_self');
+    echo parent::htmlDiv($content, 4);
 
     // Get footer
     echo parent::getFooter();
