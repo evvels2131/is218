@@ -61,6 +61,14 @@ abstract class View
     return $pageHTML;
   }
 
+  // Options: success, info, warning, danger
+  public function htmlAlertDiv($class, $content)
+  {
+    $htmlAlert = '<div class="alert alert-' . $class . '">' . $content . '</div>';
+
+    return $htmlAlert;
+  }
+
   public function htmlFooter()
   {
     $pageHTML = '
