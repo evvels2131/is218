@@ -19,5 +19,20 @@ abstract class HTML
 
     return $cleanAttribute;
   }
+
+  public static function arrayWithValues($array, $search)
+  {
+    $matches = array();
+
+    foreach ($array as $key => $value)
+    {
+      if (preg_match("/\b$search\b/i", $value))
+      {
+        $matches[$key] = $value;
+      }
+    }
+
+    return $matches;
+  }
 }
 ?>
