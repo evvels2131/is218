@@ -20,6 +20,7 @@ abstract class HTML
     return $cleanAttribute;
   }
 
+  // Return an array that contains only the specified values
   public static function arrayWithValues($array, $search)
   {
     $matches = array();
@@ -33,6 +34,16 @@ abstract class HTML
     }
 
     return $matches;
+  }
+
+  // Return input labels
+  public static function getInputFieldLabels($inputItem)
+  {
+    $last = strrpos($inputItem, '"');
+    $secondLast = strrpos($inputItem, '"', $last - strlen($inputItem) - 1) + 1;
+    $result = substr($inputItem, $secondLast, $last - $secondLast);
+
+    return $result;
   }
 }
 ?>
