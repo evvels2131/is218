@@ -40,7 +40,7 @@ class HomePageView extends View
     }
 
     // Generate HTML and display content
-    echo parent::htmlDiv($content, 6);
+    echo parent::htmlDiv($content, 4);
     echo parent::htmlFooter();
   }
 }
