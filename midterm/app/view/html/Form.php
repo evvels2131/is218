@@ -23,12 +23,30 @@ class Form extends HTML
   public function getForm()
   {
     $formHTML = $this->_formHeader;
-    foreach ($this->_form as $inputItem)
+
+    $inputs = HTML::getValuesFromArray($this->_form, 'input');
+    $buttons = HTML::getValuesFromArray($this->_form, 'button');
+
+    // Generate all input fields
+    foreach ($inputs as $inputItem)
     {
+      $label = HTML::getLabels($inputItem);
+
       $formHTML .= '<div class="form-group">';
+      $formHTML .= '<label>' . $label . '</label>';
       $formHTML .= $inputItem;
       $formHTML .= '</div>';
     }
+
+    // Generate all buttons
+    $formHTML .= '<div class="form-group">';
+    $formHTML .= '<div class="btn-group">';
+    foreach ($buttons as $inputItem)
+    {
+      $formHTML .= $inputItem;
+    }
+    $formHTML .= '</div></div>';
+
     $formHTML .= '</form>';
 
     return $formHTML;
