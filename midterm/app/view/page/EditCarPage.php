@@ -47,7 +47,7 @@ class EditCarPage extends Page
     $form->addNewInput($delete);
 
     $content = $form->getForm();
-    $content .= Link::newLink('Home', 'index.php', '_self') . '</li></ul>';
+    $content .= Link::newLink('Go Back', 'index.php', '_self') . '</li></ul>';
     echo parent::htmlDiv($content, 4);
 
     // Get footer
