@@ -24,7 +24,7 @@ class EditCarPage extends Page
     // newInputField($type, $name, $value, $readonly, $placeholder)
     // newButton($type, $name, $class, $text)
 
-    $form = new Form('index.php', 'POST');
+    $form = new Form('index.php?page=editcar', 'POST');
     foreach ($car as $attribute => $value)
     {
       $clean = HTML::cleanAttribute($attribute, 'false');
