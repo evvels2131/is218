@@ -26,23 +26,22 @@ class ShowCarDetailsPage extends Page
       $clean = HTML::cleanAttribute($attribute);
       if ($clean == 'Image')
       {
-        $ctn .= '<br /><img src="' . $value . '" alt="image" class="img-rounded" height="200">
-          <br /><br />';
+        $image = '<img src="' . $value . '" alt="image" class="img-thumbnail">';
       }
       else if ($clean == 'Guid')
       {
-        break;
+        continue;
       }
       else
       {
         $ctn .=  '<b>' . $clean . '</b>: ' . $value . '<br />';
       }
-
     }
 
-    $ctn .= Link::newLink('Go Back', 'index.php', '_self');
-
-    echo parent::htmlDiv($ctn, 6);
+    $ctn .= Link::newLink('<br />Go Back', 'index.php', '_self');
+    $well = parent::htmlWell('lg', $ctn);
+    echo parent::htmlDiv($image, 6);
+    echo parent::htmlDiv($well, 6);
 
     // Get footer
     echo parent::getFooter();
