@@ -2,12 +2,18 @@
 namespace app\controller;
 
 use app\view\ShowCarDetailsView;
+use app\model\CarModel;
 
 class ShowCarDetailsController extends Controller
 {
-  public function __construct($session_array = '', $get_array = '')
+  public function get()
   {
-    $showCarDetailsView = new ShowCarDetailsView($session_array, $get_array);
+    $showCarDetailsView = new ShowCarDetailsView($_SESSION, $_GET);
+  }
+
+  public function post()
+  {
+
   }
 }
 
