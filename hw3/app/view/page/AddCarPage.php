@@ -24,10 +24,10 @@ class AddCarPage extends Page
     $make   = InputField::newInputField('text', 'make', '', '', 'Make');
     $model  = InputField::newInputField('text', 'model', '', '', 'Model');
     $year   = InputField::newInputField('text', 'year', '', '', 'Year');
-    $carPic = InputField::newInputField('file', 'inputFile', '', '', 'File Input');
+    $carPic = InputField::newInputField('file', 'file', '', '', 'File Input');
     $submit = Button::newButton('submit', '', 'primary', 'Submit');
 
-    $form = new Form('index.php', 'POST');
+    $form = new Form('index.php?page=addcar', 'POST');
     $form->addNewInput($make);
     $form->addNewInput($model);
     $form->addNewInput($year);
