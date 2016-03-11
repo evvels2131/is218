@@ -8,7 +8,7 @@ class InputField extends HTML
   {
     if ($type == 'file')
     {
-      $input = '<input type="file" id="' . $name . '" placeholder="' . $placeholder . '">';
+      $input = '<input type="file" name="' . $name . '" placeholder="' . $placeholder . '">';
     }
     else if (!empty($type) && !empty($name) && !empty($value) && !empty($readonly))
     {
