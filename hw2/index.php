@@ -18,6 +18,7 @@ $array = $_SESSION;
 //session_unset();
 
 // Debug information
+/*
 echo '<h1>Debugging information</h1>';
 echo '<pre>';
 print_r($_SESSION);
@@ -36,7 +37,7 @@ echo '</pre>';
 
 echo '<b>print_r($_GET)</b> --> ';
 print_r($_GET);
-echo '<hr>';
+echo '<hr>';*/
 
 ///////////////////////////////
 
