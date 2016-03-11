@@ -24,7 +24,20 @@ class ShowCarDetailsPage extends Page
     foreach ($car as $attribute => $value)
     {
       $clean = HTML::cleanAttribute($attribute);
-      $ctn .=  '<b>' . $clean . '</b>: ' . $value . '<br />';
+      if ($clean == 'Image')
+      {
+        $ctn .= '<br /><img src="' . $value . '" alt="image" class="img-rounded" height="200">
+          <br /><br />';
+      }
+      else if ($clean == 'Guid')
+      {
+        break;
+      }
+      else
+      {
+        $ctn .=  '<b>' . $clean . '</b>: ' . $value . '<br />';
+      }
+
     }
 
     $ctn .= Link::newLink('Go Back', 'index.php', '_self');
