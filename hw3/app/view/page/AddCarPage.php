@@ -5,6 +5,7 @@ use app\view\html\Heading;
 use app\view\html\InputField;
 use app\view\html\Form;
 use app\view\html\Link;
+use app\view\html\Button;
 
 class AddCarPage extends Page
 {
@@ -16,10 +17,14 @@ class AddCarPage extends Page
     $content = parent::htmlAlertDiv('warning', Heading::newHeading('h5', 'Add a New Car'));
     echo parent::htmlDiv($content, 8);
 
-    $make   = InputField::newInputField('text', 'make', 'Make', '', 'Make');
-    $model  = InputField::newInputField('text', 'model', 'Model', '', 'Model');
-    $year   = InputField::newInputField('text', 'year', 'Year', '', 'Year');
-    $submit = InputField::newInputField('submit', '', 'Submit');
+    // newInputField($type, $name, $value, $readonly, $placeholder)
+    // I need: type, name, placeholder
+    // newButton($type, $name, $class, $text)
+    // I need: type, class, text
+    $make   = InputField::newInputField('text', 'make', '', '', 'Make');
+    $model  = InputField::newInputField('text', 'model', '', '', 'Model');
+    $year   = InputField::newInputField('text', 'year', '', '', 'Year');
+    $submit = Button::newButton('submit', '', 'primary', 'Submit');
 
     $form = new Form('index.php', 'POST');
     $form->addNewInput($make);
