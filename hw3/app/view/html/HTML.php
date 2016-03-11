@@ -43,7 +43,7 @@ abstract class HTML
     $secondLast = strrpos($inputItem, '"', $last - strlen($inputItem) - 1) + 1;
     $result = substr($inputItem, $secondLast, $last - $secondLast);
 
-    return $result;
+    return ucfirst($result);
   }
 }
 ?>
