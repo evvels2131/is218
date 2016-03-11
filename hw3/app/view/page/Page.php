@@ -60,6 +60,14 @@ abstract class Page
       return $htmlAlert;
     }
 
+    // Bootstrap wells
+    public function htmlWell($class, $content)
+    {
+      $wellHTML = '<div class="well well-' . $class . '">' . $content . '</div>';
+
+      return $wellHTML;
+    }
+
     public function getFooter()
     {
       $pageHTML = '
