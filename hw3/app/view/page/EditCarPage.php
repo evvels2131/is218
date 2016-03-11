@@ -21,7 +21,8 @@ class EditCarPage extends Page
     $content = parent::htmlAlertDiv('warning', Heading::newHeading('h5', 'Edit or delete the car below'));
     echo parent::htmlDiv($content, 8);
 
-    //echo
+    // newInputField($type, $name, $value, $readonly, $placeholder)
+    // newButton($type, $name, $class, $text)
 
     $form = new Form('index.php', 'POST');
     foreach ($car as $attribute => $value)
@@ -31,7 +32,7 @@ class EditCarPage extends Page
       if ($clean == 'guid')
       {
         // Disable the GUID input field so it cannot be edited
-        $$clean = InputField::newInputField('text', $clean, $value, 'readonly');
+        $$clean = InputField::newInputField('text', $clean, $value, 'readonly', '');
         $form->addNewInput($$clean);
       }
       else
@@ -41,8 +42,8 @@ class EditCarPage extends Page
         $form->addNewInput($$clean);
       }
     }
-    $save   = Button::newButton('submit', 'save', 'btn-success', 'Save');
-    $delete = Button::newButton('submit', 'delete', 'btn-danger', 'Delete');
+    $save   = Button::newButton('submit', 'save', 'success', 'Save');
+    $delete = Button::newButton('submit', 'delete', 'danger', 'Delete');
     $form->addNewInput($save);
     $form->addNewInput($delete);
 
