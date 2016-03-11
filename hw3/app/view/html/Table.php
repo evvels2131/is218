@@ -56,6 +56,10 @@ class Table extends HTML
               $href = 'index.php?page=editcar&id=' . $value;
               $htmlTABLE .= Link::newLink('Edit', $href, '_self') . '</td>';
             }
+            else if (strpos($attribute, 'image') !== false)
+            {
+              $htmlTABLE .= '<td><img src="' . $value . '" alt="image" class="img-rounded" width="60"></td>';
+            }
             else
             {
               $htmlTABLE .= '<td>' . $value . '</td>';
