@@ -6,6 +6,7 @@ class CarModel extends Model
   private $_make;
   private $_model;
   private $_year;
+  private $_image;
 
   // Getters and setters
   public function getMake()
@@ -36,6 +37,16 @@ class CarModel extends Model
   public function setYear($newYear)
   {
     $this->_year = $newYear;
+  }
+
+  public function getImage()
+  {
+    return $this->_image;
+  }
+
+  public function setImage($image)
+  {
+    $this->_image = $image;
   }
 }
 ?>
