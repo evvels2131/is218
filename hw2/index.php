@@ -4,6 +4,8 @@ use app\model\CarModel;
 
 include_once('autoloadFunction.php');
 
+session_start();
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -16,7 +18,7 @@ $array = $_SESSION;
 //session_unset();
 
 // Debug information
-/*
+echo '<h1>Debugging information</h1>';
 echo '<pre>';
 print_r($_SESSION);
 echo '</pre>';
@@ -35,7 +37,7 @@ echo '</pre>';
 echo '<b>print_r($_GET)</b> --> ';
 print_r($_GET);
 echo '<hr>';
-*/
+
 ///////////////////////////////
 
 $carController = new CarController;
