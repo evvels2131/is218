@@ -35,6 +35,10 @@ class EditCarPage extends Page
         $$clean = InputField::newInputField('text', $clean, $value, 'readonly', '');
         $form->addNewInput($$clean);
       }
+      else if ($clean == 'image')
+      {
+        $image = '<img src="' . $value . '" alt="image" class="img-thumbnail">';
+      }
       else
       {
         // If not a GUID input field, allow for editing
@@ -49,7 +53,10 @@ class EditCarPage extends Page
 
     $content = $form->getForm();
     $content .= Link::newLink('Go Back', 'index.php', '_self') . '</li></ul>';
+
+    echo parent::htmlDiv($image, 6);
     echo parent::htmlDiv($content, 4);
+
 
     // Get footer
     echo parent::getFooter();
