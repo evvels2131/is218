@@ -20,8 +20,8 @@ class InputField extends HTML
       }
       else if (!empty($name))
       {
-        $input = '<input type="' . $type . '" name="' . $name . '"
-          class="form-control" value="' . $value . '" >';
+        $input = '<input type="' . $type . '" class="form-control"
+          value="' . $value . '" name="' . $name . '" >';
       }
       else
       {
