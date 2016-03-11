@@ -24,6 +24,16 @@ class CarController extends Controller
       exit(header('Location: ./index.php'));
     }
   }
+
+  public function get()
+  {
+
+  }
+
+  public function post()
+  {
+    
+  }
 }
 
 ?>
