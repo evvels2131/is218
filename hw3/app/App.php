@@ -12,32 +12,24 @@ class App
 {
   public function __construct()
   {
-    // Array for session, get, and post
-    isset($_SESSION) ? $session_array = $_SESSION : $session_array = '';
-    isset($_GET) ? $get_array = $_GET : $get_array = '';
-    isset($_POST) ? $post_array = $_POST : $post_array = '';
-
-    if ($_SERVER['REQUEST_METHOD'] == 'GET')
+    $request_method = $_SERVER['REQUEST_METHOD'];
+    switch ($_GET['page'])
     {
-      switch ($_GET['page'])
-      {
-        case 'addcar':
-          $addCarController = new AddCarController;
-          break;
-        case 'car':
-          $showCarDetailsController =
-            new ShowCarDetailsController($session_array, $get_array);
-          break;
-        case 'editcar':
-          $editCarController = new EditCarController($session_array, $get_array);
-          break;
-        default:
-          $homePageController = new HomePageController($session_array);
-      }
-    }
-    else
-    {
-      $carController = new CarController($post_array);
+      case 'addcar':
+        $addCarController = new AddCarController;
+        $addCarController->$request_method();
+        break;
+      case 'car':
+        $showCarDetailsController = new ShowCarDetailsController();
+        $showCarDetailsController->$request_method();
+        break;
+      case 'editcar':
+        $editCarController = new EditCarController;
+        $editCarController->$request_method();
+        break;
+      default:
+        $homePageController = new homePageController;
+        $homePageController->$request_method();
     }
   }
 }
