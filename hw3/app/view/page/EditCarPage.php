@@ -69,12 +69,9 @@ class EditCarPage extends Page
     echo parent::htmlDiv($img, 6);
     echo parent::htmlDiv($content, 4);
 
-
     // Get footer
     echo parent::getFooter();
   }
 }
-
-
 
 ?>
