@@ -58,7 +58,14 @@ class Table extends HTML
             }
             else if (strpos($attribute, 'image') !== false)
             {
-              $htmlTABLE .= '<td><img src="' . $value . '" alt="image" class="img-rounded" width="60"></td>';
+              if (!empty($value))
+              {
+                $htmlTABLE .= '<td><img src="' . $value . '" alt="image" class="img-rounded" width="60"></td>';
+              }
+              else
+              {
+                $htmlTABLE .= '<td>N/A</td>';
+              }
             }
             else
             {
