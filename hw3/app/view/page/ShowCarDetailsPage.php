@@ -26,7 +26,15 @@ class ShowCarDetailsPage extends Page
       $clean = HTML::cleanAttribute($attribute);
       if ($clean == 'Image')
       {
-        $image = '<img src="' . $value . '" alt="image" class="img-thumbnail">';
+        $image = Heading::newHeading('h2', 'Image');
+        if (!empty($value))
+        {
+          $image .= '<img src="' . $value . '" alt="image" class="img-thumbnail">';
+        }
+        else
+        {
+          $image .= Heading::newHeading('h4', 'Not Available');
+        }
       }
       else if ($clean == 'Guid')
       {
