@@ -18,8 +18,24 @@ class EditCarController extends Controller
     $car->setMake($_POST['make']);
     $car->setModel($_POST['model']);
     $car->setYear($_POST['year']);
+    $car->setImage($_POST['image']);
 
-    isset($_POST['delete']) ? $car->delete() : $car->save();
+    // Save picture of the car if picture submitted
+    if (isset($_FILES['file']) && $_FILES['file']['size'] > 0)
+    {
+      $src = parent::saveImage();
+      $car->setImage($src);
+      $car->save();
+    }
+    else if (isset($_POST['delete']))
+    {
+      $car->delete();
+      parent::deleteImage();
+    }
+    else
+    {
+      $car->save();
+    }
 
     if (headers_sent())
     {
@@ -27,7 +43,7 @@ class EditCarController extends Controller
     }
     else
     {
-      exit(header('Location: ./index.php'));
+      exit(header('Location: index.php'));
     }
   }
 }
