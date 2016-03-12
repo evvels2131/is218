@@ -40,9 +40,6 @@ abstract class Controller
             }
 
             $response = 'uploads/' . $name;
-
-            //header('Location: index.php');
-            //exit;
           }
           break;
         case UPLOAD_ERR_INI_SIZE:
