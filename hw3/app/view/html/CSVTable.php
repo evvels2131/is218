@@ -5,28 +5,27 @@ class CSVTable extends HTML
 {
   public static function generateCSVTable($array)
   {
-    $htmlTable = '<table class="table table-striped"><tr>';
+    $tableHTML = '<table class="table table-striped"><tr>';
 
-    // Generate Table Headers
+    // Create table headers
     foreach ($array[0] as $key => $value)
     {
-      $htmlTable .= '<th>' . $value . '</th>';
-      if (++$i == 12) break; // limits the table to 12 heading columns
+      $tableHTML .= '<th>' . $value . '</th>';
+      if (++$i == 12) break; // limits to 12 column headings
     }
-    $htmlTable .= '</tr>';
+    $tableHTML .= '</tr>';
 
-    // Generate rows for the table
     foreach ($array as $key => $value)
     {
       if ($key == 0)
       {
-        // Skip the first row, which was used for table headers
+        // Skip the first row
         continue;
       }
-      else if ($key < 200) // limits the table rows to 200
+      else if ($key < 200) // Limits to 200 table rows
       {
-        $htmlTable .= '<tr>';
-        foreach ($value as $key => $value)
+        $tableHTML .= '<tr>';
+        foreach ($value as $key => $val)
         {
           // Limits to 13 columns
           if (++$key == 13)
@@ -36,14 +35,15 @@ class CSVTable extends HTML
           }
           else
           {
-            $htmlTable .= '<td>' . $value . '</td>';
+            $tableHTML .= '<td>' . $val . '</td>';
           }
         }
-        $htmlTable .= '</table>';
+        $tableHTML .= '</tr>';
       }
     }
+    $tableHTML .= '</table>';
 
-    return $htmlTable;
+    return $tableHTML;
   }
 }
 
