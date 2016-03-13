@@ -16,13 +16,13 @@ abstract class Controller
         case UPLOAD_ERR_OK:
           $valid = true;
           // validate file extensions
-          if (!in_array($ext, array('jpg', 'jpeg', 'png', 'gif')))
+          if (!in_array($ext, array('jpg', 'jpeg', 'png', 'gif', 'csv')))
           {
             $valid = false;
             $response = 'Invalid file extension';
           }
           // validate file size
-          if ($size/1024/1024 > 2)
+          if ($size/1024/1024 > 4)
           {
             $valid = false;
             $response = 'File size is exceeding maximum allowed size';
