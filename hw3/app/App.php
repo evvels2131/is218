@@ -7,6 +7,7 @@ use app\controller\ShowCarsPageController;
 use app\controller\AddCarController;
 use app\controller\ShowCarDetailsController;
 use app\controller\EditCarController;
+use app\controller\ImportCSVController;
 
 class App
 {
@@ -26,6 +27,10 @@ class App
       case 'editcar':
         $editCarController = new EditCarController;
         $editCarController->$request_method();
+        break;
+      case 'importcsv':
+        $importCSVController = new ImportCSVController;
+        $importCSVController->$request_method();
         break;
       default:
         $homePageController = new homePageController;
