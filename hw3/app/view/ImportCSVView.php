@@ -19,127 +19,59 @@ class ImportCSVView extends View
     $content = parent::htmlAlertDiv('warning', Heading::newHeading('h5', 'Import CSV File'));
     echo parent::htmlDiv($content, 8);
 
-    // Form to upload CSV file
-    $csvFile = InputField::newInputField('file', 'file', '', '', 'File Input');
-    $submit = Button::newButton('submit', '', 'primary btn-sm', 'Upload');
+    // Check if a csv file exists in the uploads folder
+    // If so, display a table and a button to delete the file if necessary
+    $dir = 'uploads/*.csv';
 
-    $form = new Form('index.php?page=importcsv', 'POST');
-    $form->addNewInput($csvFile);
-    $form->addNewInput($submit);
-
-    $content = Heading::newHeading('h4', 'Import CSV File Below:');
-    $content .= $form->getForm();
-    echo parent::htmlDiv($content, 4);
-
-    $arrResult = array();
-    $handle = fopen('uploads/16tstcar.csv', 'r');
-    if ($handle)
+    foreach (glob($dir) as $file)
     {
-      while (($data = fgetcsv($handle, 1000, ',')) != false)
+      if ($file != NULL)
       {
-        $arrResult[] = $data;
-      }
-      fclose($handle);
-    }
+        $content = Heading::newHeading('h3', 'File currently being processed:');
+        $content .= '<p><strong>' . basename($file) . '</strong></p>';
+        $content .= '<a href="index.php?page=importcsv&deleteFile=' . $file . '"
+          class="btn btn-danger btn-xs" role="button">Remove</a>';
 
-    $table = CSVTable::generateCSVTable($arrResult);
+        echo parent::htmlDiv($content, 6);
 
-    $table = '<table class="table table-striped"><tr>';
-    // table header
-    $cols = 0;
-    foreach ($arrResult[0] as $key => $value)
-    {
-      $table .= '<th>' . $value . '</th>';
-      if (++$i == 12) break; // limit to create only 12 table headings
-    }
-    $table .= '</tr>';
+        $arrayCSV = array();
+        $pathToFile = 'uploads/' . basename($file);
+        $handle = fopen($pathToFile, 'r');
 
-    foreach ($arrResult as $key => $value)
-    {
-      if ($key == 0)
-      {
-        // Skip the first row
-        continue;
-      }
-      else if ($key < 200) // limit only to display 200 table rows
-      {
-        $table .= '<tr>';
-        foreach ($value as $key => $val)
+        if ($handle)
         {
-          // Limit to display only 13 columns
-          if (++$key == 13)
+          while (($data = fgetcsv($handle, 1000, ',')) != false)
           {
-            $key = 0;
-            break;
+            $arrayCSV[] = $data;
           }
-          else
-          {
-            $table .= '<td>' . $val . '</td>';
-          }
+          fclose($handle);
         }
-        $table .= '</tr>';
+        $table = '<br /><br />';
+        $table .= Heading::newHeading('h3', 'This table only shows 13 columns and 200 rows');
+        $table .= '<br />';
+        $table .= CSVTable::generateCSVTable($arrayCSV);
+        echo parent::htmlDiv($table, 10);
       }
     }
-    $table .= '</table>';
 
-    /*$firstArray = $arrResult[0];
-
-    foreach ($firstArray as $key => $value)
+    // If no csv files in the uploads directory, display the form
+    if (glob($dir) == NULL)
     {
-      echo $key . $value;
-    }*/
+      // Form to upload CSV file
+      $csvFile = InputField::newInputField('file', 'file', '', '', 'File Input');
+      $submit = Button::newButton('submit', '', 'primary btn-sm', 'Upload');
 
-    echo parent::htmlDiv($table, 12);
+      $form = new Form('index.php?page=importcsv', 'POST');
+      $form->addNewInput($csvFile);
+      $form->addNewInput($submit);
 
-
-    /*echo '<table>';
-    $f = fopen('uploads/16tstcar.csv', 'r');
-    while (($line = fgetcsv($f)) !== false)
-    {
-      echo '<tr>';
-      foreach ($line as $cell)
-      {
-        echo '<td>' . htmlspecialchars($cell) .'</td>';
-
-        //if (++$i == 2) break;
-      }
-      echo '</tr>';
+      $content = Heading::newHeading('h4', 'Import CSV File Below:');
+      $content .= $form->getForm();
+      echo parent::htmlDiv($content, 4);
     }
-    fclose($f);
-    echo '</table>';
-
-    /*foreach ($arrResult as $key => $value)
-    {
-      if (is_array($value))
-      {
-        foreach ($value as $key => $value)
-        {
-          echo '<strong>Key</strong>: ' . $key . ' <strong>Value:</strong> ' . $value . '<br />';
-        }
-      }
-      //echo '<strong>Key</strong>: ' . $key . ' <strong>Value:</strong> ' . $value . '<br />';
-    }*/
-
-    //$table = Table::generateTable($arrResult);
-    //echo parent::htmlDiv($table, 12);
-
-
-
-    //$content = print_r($arrResult);
-    //echo parent::htmlDiv($content, 10);
-
-
-
-
 
     // Footer
     echo parent::getFooter();
-    //echo Table::generateTable($arrResult);
-    /*echo '<pre>';
-    print_r($arrResult);
-    echo '</pre>';*/
-    //print_r($arrResult);
-    //echo 'haha';*/
   }
 }
 ?>
