@@ -3,7 +3,8 @@ namespace app\controller;
 
 abstract class Controller
 {
-    public function saveImage()
+    // Save a file
+    public function saveFile()
     {
       $name     = $_FILES['file']['name'];
       $tmpName  = $_FILES['file']['tmp_name'];
@@ -33,13 +34,6 @@ abstract class Controller
             $targetPath = dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR . 'uploads' .
               DIRECTORY_SEPARATOR . $name;
             move_uploaded_file($tmpName, $targetPath);
-
-            if (isset($_POST['image']) && !empty($_POST['image']))
-            {
-              unlink($_POST['image']);
-            }
-
-            $response = 'uploads/' . $name;
           }
           break;
         case UPLOAD_ERR_INI_SIZE:
@@ -73,16 +67,7 @@ abstract class Controller
       return $response;
     }
 
-    public function deleteImage()
-    {
-      $filePath = $_POST['image'];
-
-      if (file_exists($filePath))
-      {
-        unlink($filePath);
-      }
-    }
-
+    // Delete the file by providing the file path
     public function deleteFile($filePath)
     {
       if (file_exists($filePath))
