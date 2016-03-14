@@ -7,13 +7,10 @@ use app\view\html\Table;
 
 class HomePageView extends View
 {
-  public function __construct()
+  public function __construct($session_array = '')
   {
     // Header
     echo parent::getHeader('Home');
-
-    // Store the session array
-    $session_array = $_SESSION;
 
     // Content
     if (!empty($session_array))
