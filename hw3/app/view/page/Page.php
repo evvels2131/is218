@@ -28,6 +28,7 @@ abstract class Page
             <ul class="nav navbar-nav">
               <li>' . Link::newLink('Home', 'index.php', '_self') . '</li>
               <li>' . Link::newLink('Add New Car', 'index.php?page=addcar', '_self') . '</li>
+              <li>' . Link::newLink('Import CSV File', 'index.php?page=importcsv', '_self') . '</li> 
             </ul>
           </div>
         </nav>
