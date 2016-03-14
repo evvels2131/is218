@@ -9,7 +9,6 @@ class ImportCSVController extends Controller
   {
     if (isset($_GET['deleteFile']) && !empty($_GET['deleteFile']))
     {
-      //echo $_GET['deleteFile'];
       parent::deleteFile($_GET['deleteFile']);
 
       header('Location: index.php?page=importcsv');
@@ -25,7 +24,7 @@ class ImportCSVController extends Controller
     // Save the CSV file if submitted
     if (isset($_FILES['file']) && $_FILES['file']['size'] > 0)
     {
-      parent::saveImage();
+      parent::saveFile();
     }
 
     if (headers_sent())
