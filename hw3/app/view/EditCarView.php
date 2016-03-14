@@ -40,7 +40,10 @@ class EditCarView extends View
         $img = Heading::newHeading('h2', 'Image');
         if (!empty($value))
         {
-          $img .= '<img src="' . $value . '" alt="image" class="img-thumbnail">';
+          $img = '<div class="thumbnail">';
+          $img .= '<img src="' . $value . '" alt="image">';
+          $img .= '</div>';
+          
           $$clean = InputField::newInputField('text', $clean, $value, 'readonly', 'Image Path');
           $form->addNewInput($$clean);
         }
