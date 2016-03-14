@@ -7,7 +7,17 @@ class ImportCSVController extends Controller
 {
   public function get()
   {
-    $importCSVView = new ImportCSVView;
+    if (isset($_GET['deleteFile']) && !empty($_GET['deleteFile']))
+    {
+      //echo $_GET['deleteFile'];
+      parent::deleteFile($_GET['deleteFile']);
+
+      header('Location: index.php?page=importcsv');
+    }
+    else
+    {
+      $importCSVView = new ImportCSVView;
+    }
   }
 
   public function post()
