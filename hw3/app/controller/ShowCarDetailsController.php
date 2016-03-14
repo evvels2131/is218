@@ -8,7 +8,10 @@ class ShowCarDetailsController extends Controller
 {
   public function get()
   {
-    $showCarDetailsView = new ShowCarDetailsView($_SESSION, $_GET);
+    $session_array = $_SESSION;
+    $car_id = $_GET;
+
+    $showCarDetailsView = new ShowCarDetailsView($session_array, $car_id);
   }
 
   public function post()
