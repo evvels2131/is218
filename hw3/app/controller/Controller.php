@@ -82,6 +82,14 @@ abstract class Controller
         unlink($filePath);
       }
     }
+
+    public function deleteFile($filePath)
+    {
+      if (file_exists($filePath))
+      {
+        unlink($filePath);
+      }
+    }
 }
 
 ?>
