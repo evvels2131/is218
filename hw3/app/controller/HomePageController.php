@@ -7,7 +7,7 @@ class HomePageController extends Controller
 {
   public function get()
   {
-    $homePageView = new HomePageView($_SESSION);
+    $homePageView = new HomePageView();
   }
 
   public function post()
