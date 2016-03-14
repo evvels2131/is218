@@ -8,7 +8,10 @@ class EditCarController extends Controller
 {
   public function get()
   {
-    $editCarView = new EditCarView($_SESSION, $_GET);
+    $session_array = $_SESSION;
+    $car_id = $_GET;
+
+    $editCarView = new EditCarView($session_array, $car_id);
   }
 
   public function post()
@@ -23,14 +26,24 @@ class EditCarController extends Controller
     // Save picture of the car if picture submitted
     if (isset($_FILES['file']) && $_FILES['file']['size'] > 0)
     {
-      $src = parent::saveImage();
-      $car->setImage($src);
+      // Replace the existing image with a new image of a car
+      if (isset($_POST['image']) && !empty($_POST['image']))
+      {
+        parent::deleteFile($_POST['image']);
+      }
+
+      parent::saveFile();
+
+      $path = 'uploads/' . $_FILES['file']['name'];
+
+      $car->setImage($path);
       $car->save();
     }
     else if (isset($_POST['delete']))
     {
+      // Delete the car and its image
       $car->delete();
-      parent::deleteImage();
+      parent::deleteFile($_POST['image']);
     }
     else
     {
