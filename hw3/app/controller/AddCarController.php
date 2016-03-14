@@ -15,10 +15,6 @@ class AddCarController extends Controller
   // This will save the information
   public function post()
   {
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-
     $car = new CarModel;
 
     $car->setMake($_POST['make']);
@@ -37,6 +33,7 @@ class AddCarController extends Controller
       $car->save();
     }
 
+    // Redirect
     if (headers_sent())
     {
       die('Redirect failed. Please go back to home page');
