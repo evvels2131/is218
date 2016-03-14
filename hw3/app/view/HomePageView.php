@@ -7,19 +7,22 @@ use app\view\html\Table;
 
 class HomePageView extends View
 {
-  public function __construct($array = '')
+  public function __construct()
   {
     // Header
     echo parent::getHeader('Home');
 
+    // Store the session array
+    $session_array = $_SESSION;
+
     // Content
-    if (!empty($array))
+    if (!empty($session_array))
     {
       $heading = Heading::newHeading('h5', 'Cars Stored in Session');
       $content = parent::htmlAlertDiv('warning', $heading);
       echo parent::htmlDiv($content, 8);
 
-      $content = Table::generateTable($array);
+      $content = Table::generateTable($session_array);
       echo parent::htmlDiv($content, 6);
     }
     else
