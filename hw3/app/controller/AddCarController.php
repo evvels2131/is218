@@ -24,8 +24,9 @@ class AddCarController extends Controller
     // Save picture of the car if picture submitted
     if (isset($_FILES['file']) && $_FILES['file']['size'] > 0)
     {
-      $src = parent::saveImage();
-      $car->setImage($src);
+      $src = parent::saveFile();
+      $path = 'uploads/' . $_FILES['file']['name'];
+      $car->setImage($path);
       $car->save();
     }
     else
