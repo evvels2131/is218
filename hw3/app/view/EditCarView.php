@@ -43,7 +43,7 @@ class EditCarView extends View
           $img = '<div class="thumbnail">';
           $img .= '<img src="' . $value . '" alt="image">';
           $img .= '</div>';
-          
+
           $$clean = InputField::newInputField('text', $clean, $value, 'readonly', 'Image Path');
           $form->addNewInput($$clean);
         }
