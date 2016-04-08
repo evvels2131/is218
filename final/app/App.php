@@ -8,32 +8,17 @@ class App
 {
   public function __construct()
   {
-    // Check if session is set
-    if (isset($_SESSION)) $session_array = $_SESSION;
+    $request_method = $_SERVER['REQUEST_METHOD'];
 
-    // Display appropriate views based on the request method
-    if ($_SERVER['REQUEST_METHOD'] == 'GET')
+    switch ($_GET['page'])
     {
-      if (isset($_GET['page']))
-      {
-        switch ($_GET['page'])
-        {
-          case 'about':
-            $aboutPageController = new AboutPageController;
-            break;
-          case 'signup':
-            $signupPageController = new SignupPageController;
-            break;
-        }
-      }
-      else
-      {
-        $homePageController = new HomePageController;
-      }
-    }
-    else
-    {
-      // controller->post();
+      case 'signup':
+        $signupPageController = new SignupPageController();
+        $signupPageController->$request_method();
+        break;
+      default:
+        $homePageController = new HomePageController();
+        $homePageController->$request_method();
     }
   }
 }
