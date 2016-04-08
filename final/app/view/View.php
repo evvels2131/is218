@@ -29,10 +29,12 @@ abstract class View
             {
               $pageHTML .= '
                 <li>' . Link::newLink('Home', 'index.php', '_self') . '</li>
-                <li>' . Link::newLink('Users', 'index.php?page=users', '_self') . '</li>
+                <li>' . Link::newLink('Top Secret', '#', '_self') . '</li>
             </ul>
-            <p class="navbar-text navbar-right">Signed in as <b>'
-              . $_SESSION['user_session'] . '</b></p>';
+            <a href="index.php?logout=true"><button type="button" class="btn btn-default navbar-btn navbar-right">
+              Logout</button></a>
+            <p class="navbar-text navbar-right">Signed in as <b>' . $_SESSION['user_session'] .
+              '</b>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;</p>';
             }
             else
             {
