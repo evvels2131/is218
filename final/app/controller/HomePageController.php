@@ -14,10 +14,10 @@ class HomePageController extends Controller
 
   public function post()
   {
-    if (isset($_POST['email']) || isset($_POST['password']))
+    if (isset($_POST['email']) && isset($_POST['password']))
     {
-      $email = $_POST['email'];
-      $password = $_POST['password'];
+      $email = parent::sanitizeString($_POST['email']);
+      $password = parent::sanitizeString($_POST['password']);
 
       $user = new UserModel();
       $user->setEmail($email);
