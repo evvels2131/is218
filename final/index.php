@@ -13,7 +13,7 @@ $app = new App;
 
 /* DEBUGGING INFO */
 
-//session_unset();
+session_unset();
 
 echo '<hr>';
 echo '<h2>Debugging Information</h2>';
