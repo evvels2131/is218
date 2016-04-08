@@ -11,7 +11,14 @@ class ErrorPageView extends View
 {
   public function __construct($errors = '')
   {
+    echo parent::htmlHeader('Error');
 
+    $heading = parent::htmlAlertDiv('danger', Heading::newHeading('h4', 'Oops! Something went wrong!'));
+    echo parent::htmlDiv($heading, 8);
+
+    echo parent::htmlDiv($errors, 6);
+
+    echo parent::htmlFooter();
   }
 }
 
