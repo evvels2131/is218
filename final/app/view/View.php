@@ -25,14 +25,14 @@ abstract class View
           <div class="container">
             <a class="navbar-brand" href="index.php">IS-218</a>
             <ul class="nav navbar-nav">';
-            if (isset($_SESSION))
+            if (isset($_SESSION['user_session']))
             {
               $pageHTML .= '
                 <li>' . Link::newLink('Home', 'index.php', '_self') . '</li>
                 <li>' . Link::newLink('Users', 'index.php?page=users', '_self') . '</li>
             </ul>
             <p class="navbar-text navbar-right">Signed in as <b>'
-              . $_SESSION['username'] . '</b></p>';
+              . $_SESSION['user_session'] . '</b></p>';
             }
             else
             {
