@@ -1,6 +1,7 @@
 <?php
-
 namespace app\model;
+
+use app\model\Database;
 
 class UserModel extends Model
 {
@@ -25,7 +26,7 @@ class UserModel extends Model
     return $this->_lname;
   }
 
-  public function setLastName($lastName);
+  public function setLastName($lastName)
   {
     $this->_lname = $lastName;
   }
@@ -48,6 +49,12 @@ class UserModel extends Model
   public function setPassword($password)
   {
     $this->_password = $password;
+  }
+
+  public function register()
+  {
+    $db = new Database();
+    $db->registerUser($this->_fname, $this->_lname, $this->_email, $this->_password);
   }
 }
 
