@@ -18,6 +18,17 @@ class ErrorPageView extends View
 
     echo parent::htmlDiv($errors, 6);
 
+    /*
+    <button onclick="goBack()">Go Back</button>
+
+    <script>
+      function goBack() {
+        window.history.back();
+      }
+    }
+    </script>
+    */
+
     echo parent::htmlFooter();
   }
 }
