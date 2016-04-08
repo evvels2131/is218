@@ -42,10 +42,15 @@ class Database
       $stmt->bindParam(':password', $pass);
 
       $stmt->execute();
+
+      return true;
     }
     catch (PDOException $e)
     {
       echo 'Database error: ' . $e->getMessage() . '<br />';
+
+      return false;
+      
       die();
     }
   }
@@ -67,11 +72,12 @@ class Database
 
       if ($stmt->rowCount() > 0)
       {
-        //echo $row['password'];
         session_start();
         $_SESSION['user_session'] = $row['email'];
         $_SESSION['user_fname']   = $row['fname'];
         $_SESSION['user_lname']   = $row['lname'];
+
+        return true;
         /*if (password_verify($pass, $row['password']))
         {
           // Read more here: http://php.net/manual/en/function.password-verify.php
@@ -92,6 +98,8 @@ class Database
       else
       {
         echo 'Incorrect password and email. Please try again.';
+
+        return false;
       }
     }
     catch (PDOException $e)
@@ -101,47 +109,9 @@ class Database
     }
   }
 
-
-
-  // User login
-  public function login($username, $email, $password)
-  {
-    try
-    {
-      $stmt = $this->_dbconn->prepare('SELECT * FROM users WHERE
-        user_name=:uname OR user_email=:umail LIMIT 1');
-
-      $stmt->execute(array(':uname' => $uname, ':umail' => $umail));
-
-      $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-      if ($stmt->rowCount() > 0)
-      {
-        if (password_verify($upass, $row['user_pass']))
-        {
-          $_SESSION['user_session'] = $row['user_id'];
-          $_SESSION['user_name'] = $row['user_name'];
-
-          return true;
-        }
-        else
-        {
-          return false;
-        }
-      }
-    }
-    catch (PDOException $e)
-    {
-      echo '<b>Error:</b> ' . $e->getMessage() . '<br />';
-    }
-  }
-
-
-
   public function __destruct()
   {
     $this->_dbconn = null;
   }
-
 }
 ?>
