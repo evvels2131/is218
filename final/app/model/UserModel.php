@@ -19,6 +19,16 @@ class UserModel extends Model
   {
     $this->_fname = $firstName;
   }
+
+  public function getLastName()
+  {
+    return $this->_lname;
+  }
+
+  public function setLastName($lastName);
+  {
+    $this->_lname = $lastName;
+  }
 }
 
 
