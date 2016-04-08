@@ -10,26 +10,26 @@ use app\view\html\Heading;
 
 class SignupPageView extends View
 {
-  public function __construct($data = '')
+  public function __construct()
   {
     echo parent::htmlHeader('Home');
 
-    $heading = parent::htmlAlertDiv('info', Heading::newHeading('h4', 'Sing up below'));
+    $heading = parent::htmlAlertDiv('info', Heading::newHeading('h4', 'Sign up below'));
     echo parent::htmlDiv($heading, 8);
 
     $firstname  = InputField::newInputField('text', 'fname', 'First name');
     $lastname   = InputField::newInputField('text', 'lname', 'Last name');
-    $username   = InputField::newInputField('text', 'username', 'Username');
     $email      = InputField::newInputField('text', 'email', 'Email');
     $password   = InputField::newInputField('password', 'pass', 'Password');
+    $password2  = InputField::newInputField('password', 'pass2', 'Re-enter password');
     $submit     = Button::newButton('submit', 'btn-primary', 'Register');
 
     $form = new Form('index.php', 'POST');
     $form->addNewInput($firstname);
     $form->addNewInput($lastname);
-    $form->addNewInput($username);
     $form->addNewInput($email);
     $form->addNewInput($password);
+    $form->addNewInput($password2);
     $form->addNewInput($submit);
 
     $content = $form->getForm();
