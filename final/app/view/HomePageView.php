@@ -14,9 +14,9 @@ class HomePageView extends View
   {
     echo parent::htmlHeader('Home');
     $content = '';
-    if (isset($_SESSION))
+    if (isset($_SESSION['user_session']))
     {
-      $content .= 'Welcome <strong>' . $_SESSION['username'] . '</strong>!';
+      $content .= 'Welcome <strong>' . $_SESSION['user_session'] . '</strong>!';
     }
     else
     {
