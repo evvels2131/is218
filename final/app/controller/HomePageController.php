@@ -9,6 +9,16 @@ class HomePageController extends Controller
 {
   public function get()
   {
+    if (isset($_GET['logout']))
+    {
+      session_unset();
+      unset($_SESSION['user_session']);
+      unset($_SESSION['user_fname']);
+      unset($_SESSION['user_lname']);
+
+      header('Location: index.php');
+    }
+
     $homePageView = new HomePageView();
   }
 
