@@ -51,10 +51,25 @@ class UserModel extends Model
     $this->_password = $password;
   }
 
+  // Register a new user
   public function register()
   {
     $db = new Database();
-    $db->registerUser($this->_fname, $this->_lname, $this->_email, $this->_password);
+
+    $result = ($db->registerUser($this->_fname, $this->_lname, $this->_email,
+      $this->_password)) ? true : false;
+
+    return $result;
+  }
+
+  // Login a user
+  public function login()
+  {
+    $db = new Database();
+
+    $result = ($db->userLogin($this->_email, $this->_password)) ? true : false;
+
+    return $result;
   }
 }
 
