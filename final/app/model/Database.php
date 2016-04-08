@@ -13,7 +13,7 @@ class Database
     $db_user      = 'root';
     $db_password  = 'root';
     $db_host      = 'localhost';
-    $db_name      = 'dblogin';
+    $db_name      = 'is218';
 
     try
     {
