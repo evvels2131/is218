@@ -39,6 +39,16 @@ class UserModel extends Model
   {
     $this->_email = $email;
   }
+
+  public function getPassword()
+  {
+    return $this->_password;
+  }
+
+  public function setPassword($password)
+  {
+    $this->_password = $password;
+  }
 }
 
 ?>
