@@ -45,12 +45,12 @@ class Database
 
       return true;
     }
-    catch (PDOException $e)
+    catch (\PDOException $e)
     {
       echo 'Database error: ' . $e->getMessage() . '<br />';
 
       return false;
-      
+
       die();
     }
   }
@@ -72,7 +72,6 @@ class Database
 
       if ($stmt->rowCount() > 0)
       {
-        session_start();
         $_SESSION['user_session'] = $row['email'];
         $_SESSION['user_fname']   = $row['fname'];
         $_SESSION['user_lname']   = $row['lname'];
@@ -102,7 +101,7 @@ class Database
         return false;
       }
     }
-    catch (PDOException $e)
+    catch (\PDOException $e)
     {
       echo 'Database error: ' . $e->getMessage() . '<br />';
       die();
