@@ -13,10 +13,13 @@ class HomePageView extends View
   public function __construct($data = '')
   {
     echo parent::htmlHeader('Home');
+
     $content = '';
     if (isset($_SESSION['user_session']))
     {
-      $content .= 'Welcome <strong>' . $_SESSION['user_session'] . '</strong>!';
+      $message = 'Welcome <b>' . $_SESSION['user_fname'] . ' ' . $_SESSION['user_lname'] . '</b>!';
+      $heading = parent::htmlAlertDiv('info', Heading::newHeading('h4', $message));
+      echo parent::htmlDiv($heading, 8);
     }
     else
     {
