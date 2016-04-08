@@ -5,47 +5,54 @@ use \PDO;
 
 class Database
 {
+  const DB_USER     = 'root';
+  const DB_PASSWORD = 'root';
+  const DB_HOST     = 'localhost';
+  const DB_NAME     = 'is218';
+
   private $_dbconn;
 
   public function __construct()
   {
-    // Database information
-    $db_user      = 'root';
-    $db_password  = 'root';
-    $db_host      = 'localhost';
-    $db_name      = 'is218';
-
     try
     {
-      $this->_dbconn = new PDO("mysql:host=$db_host;dbname=$db_name",
-        $db_user, $db_password);
+      $this->_dbconn = new PDO('mysql:host=' . self::DB_HOST . ';dbname=' . self::DB_NAME,
+        self::DB_USER, self::DB_PASSWORD, array(PDO::ATTR_PERSISTENT => true));
+      $this->_dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     catch (PDOException $e)
     {
-      echo '<b>Error:</b> ' . $e->getMessage() . '<br />';
+      echo 'Error: ' . $e->getMessage() . '<br />';
+      die();
     }
+
   }
 
   // User registration
-  public function register($username, $email, $password)
+  public function registerUser($fname, $lname, $email, $pass)
   {
     try
     {
-      $stmt = $this->_dbconn->prepare('INSERT INTO users
-        (user_name, user_email, user_pass) VALUES
-        (:uname, :uemail, :upass)');
+      $stmt = $this->_dbconn->prepare('INSERT INTO users_is218 (email, fname,
+        lname, password) VALUES (:email, :fname, :lname, :password)');
 
-      $stmt->bindParam(':uname', $username);
-      $stmt->bindParam(':uemail', $email);
-      $stmt->bindParam(':upass', $password);
+      $stmt->bindParam(':email', $email);
+      $stmt->bindParam(':fname', $fname);
+      $stmt->bindParam(':lname', $lname);
+      $stmt->bindParam(':password', $pass);
 
       $stmt->execute();
     }
     catch (PDOException $e)
     {
-      echo '<b>Error:</b> ' . $e->getMessage() . '<br />';
+      echo 'Error: ' . $e->getMessage() . '<br />';
+      die();
     }
   }
+
+
+
+
 
   // User login
   public function login($username, $email, $password)
@@ -80,21 +87,7 @@ class Database
     }
   }
 
-  // Gets all the users in the database
-  public function getUsers()
-  {
-    try
-    {
-      $stmt = $this->_dbconn->prepare('SELECT * FROM users');
-      $stmt->execute();
 
-      return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-    catch (PDOException $e)
-    {
-      echo '<b>Error:</b> ' . $e->getMessage() . '<br />';
-    }
-  }
 
   public function __destruct()
   {
