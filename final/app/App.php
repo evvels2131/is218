@@ -10,15 +10,20 @@ class App
   {
     $request_method = $_SERVER['REQUEST_METHOD'];
 
-    switch ($_GET['page'])
+    if (!isset($_GET['page']))
     {
-      case 'signup':
-        $signupPageController = new SignupPageController();
-        $signupPageController->$request_method();
-        break;
-      default:
-        $homePageController = new HomePageController();
-        $homePageController->$request_method();
+      $homePageController = new HomePageController();
+      $homePageController->$request_method();
+    }
+    else
+    {
+      switch ($_GET['page'])
+      {
+        case 'signup':
+          $signupPageController = new SignupPageController();
+          $signupPageController->$request_method();
+          break;
+      }
     }
   }
 }
