@@ -24,7 +24,7 @@ class SignupPageView extends View
     $password2  = InputField::newInputField('password', 'pass2', 'Re-enter password');
     $submit     = Button::newButton('submit', 'btn-primary', 'Register');
 
-    $form = new Form('index.php', 'POST');
+    $form = new Form('index.php?page=signup', 'POST');
     $form->addNewInput($firstname);
     $form->addNewInput($lastname);
     $form->addNewInput($email);
