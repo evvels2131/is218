@@ -2,8 +2,8 @@
 namespace app\controller;
 
 use app\view\SignupPageView;
-use app\model\UserModel;
 use app\view\NotificationsView;
+use app\model\UserModel;
 
 class SignupPageController extends Controller
 {
@@ -16,11 +16,11 @@ class SignupPageController extends Controller
   {
     if (isset($_POST) && !empty($_POST))
     {
-      $firstname  = $_POST['fname'];
-      $lastname   = $_POST['lname'];
-      $email      = $_POST['email'];
-      $password   = $_POST['pass'];
-      $password2  = $_POST['pass2'];
+      $firstname  = parent::sanitizeString($_POST['fname']);
+      $lastname   = parent::sanitizeString($_POST['lname']);
+      $email      = parent::sanitizeString($_POST['email']);
+      $password   = parent::sanitizeString($_POST['pass']);
+      $password2  = parent::sanitizeString($_POST['pass2']);
 
       $user = new UserModel();
       $user->setFirstName($firstname);
