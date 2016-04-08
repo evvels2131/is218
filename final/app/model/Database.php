@@ -45,12 +45,61 @@ class Database
     }
     catch (PDOException $e)
     {
-      echo 'Error: ' . $e->getMessage() . '<br />';
+      echo 'Database error: ' . $e->getMessage() . '<br />';
       die();
     }
   }
 
+  // User login
+  public function userLogin($email, $pass)
+  {
+    try
+    {
+      $stmt = $this->_dbconn->prepare('SELECT * FROM users_is218 WHERE
+        email=:email AND password=:password LIMIT 1');
 
+      $stmt->bindParam(':email', $email);
+      $stmt->bindParam(':password', $pass);
+
+      $stmt->execute();
+
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      if ($stmt->rowCount() > 0)
+      {
+        //echo $row['password'];
+        session_start();
+        $_SESSION['user_session'] = $row['email'];
+        $_SESSION['user_fname']   = $row['fname'];
+        $_SESSION['user_lname']   = $row['lname'];
+        /*if (password_verify($pass, $row['password']))
+        {
+          // Read more here: http://php.net/manual/en/function.password-verify.php
+          session_start();
+          $_SESSION['user_session'] = $row['email'];
+          $_SESSION['user_fname'] = $row['fname'];
+          $_SESSION['user_lname'] = $row['lname'];
+          echo 'true';
+          return true;
+
+        }
+        else
+        {
+          echo 'false';
+          return false;
+        }*/
+      }
+      else
+      {
+        echo 'Incorrect password and email. Please try again.';
+      }
+    }
+    catch (PDOException $e)
+    {
+      echo 'Database error: ' . $e->getMessage() . '<br />';
+      die();
+    }
+  }
 
 
 
