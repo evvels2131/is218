@@ -2,8 +2,6 @@
 //session_start();
 
 use app\App;
-use app\model\Database;
-use app\model\Model;
 
 require_once('autoloadFunction.php');
 
@@ -11,27 +9,45 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-//print_r($_SESSION);
 $app = new App;
 
-//$_SESSION['username'] = 'tgoralczyk1';
-//session_unset();
+/* DEBUGGING INFO */
 
-/*
-$db = new Database;
-$db->register('Jimmy', 'jimmy@gmail.com', '102kgku22');
-$db->register('Brian', 'brian@gmail.com', '213sgku22');
+echo '<hr>';
+echo '<h2>Debugging Information</h2>';
 
-$mdb = new Model;
-$mdb->registerNewUser('Marcin', 'marcing@gmail.com', '102103');
-echo '<pre>';
-print_r($db->getUsers());
-echo '</pre>';
-//$db->register('Steve', 'steve@gmail.com', '1291931');
-//print_r($db->getUsers());
+if (isset($_SESSION))
+{
+  echo '<h4>$_SESSION</h4>';
+  echo '<pre>';
+  print_r($_SESSION);
+  echo '</pre>';
+}
 
+if (isset($_GET))
+{
+  echo '<h4>$_GET</h4>';
+  echo '<pre>';
+  print_r($_GET);
+  echo '</pre>';
+}
 
+if (isset($_SERVER['REQUEST_METHOD']))
+{
+  echo '<h4>$_SERVER["REQUEST_METHOD"]</h4>';
+  echo '<pre>';
+  echo $_SERVER['REQUEST_METHOD'];
+  echo '</pre>';
+}
 
+if (isset($_POST) && !empty($_POST))
+{
+  echo '<h4>$_POST</h4>';
+  echo '<pre>';
+  print_r($_POST);
+  echo '</pre>';
+}
 
+echo '<hr>';
 
 ?>
