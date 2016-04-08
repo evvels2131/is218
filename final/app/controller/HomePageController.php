@@ -5,9 +5,14 @@ use app\view\HomePageView;
 
 class HomePageController extends Controller
 {
-  public function __construct($data = '')
+  public function get()
   {
-    $homePageView = new HomePageView($data);
+    $homePageView = new HomePageView();
+  }
+
+  public function post()
+  {
+
   }
 }
 
