@@ -24,7 +24,7 @@ class HomePageView extends View
         Sing in or sing up below'));
       echo parent::htmlDiv($heading, 8);
 
-      $username = InputField::newInputField('text', 'username', 'Username');
+      $username = InputField::newInputField('text', 'email', 'Email');
       $password = InputField::newInputField('password', 'password', 'Password');
       $submit   = Button::newButton('submit', 'btn-primary', 'Sing in');
 
