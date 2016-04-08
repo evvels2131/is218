@@ -3,11 +3,10 @@ namespace app\controller;
 
 use app\view\SignupPageView;
 use app\model\UserModel;
-use app\view\ErrorPageView;
+use app\view\NotificationsView;
 
 class SignupPageController extends Controller
 {
-
   public function get()
   {
     $signupPageView = new SignupPageView();
@@ -22,11 +21,28 @@ class SignupPageController extends Controller
       $email      = $_POST['email'];
       $password   = $_POST['pass'];
       $password2  = $_POST['pass2'];
+
+      $user = new UserModel();
+      $user->setFirstName($firstname);
+      $user->setLastName($lastname);
+      $user->setEmail($email);
+      $user->setPassword($password);
+
+      if ($user->register() == true)
+      {
+        $result = 'Cogratulations! You\'ve successfully registered.';
+        $notificationsView = new NotificationsView($result);
+      }
+      else
+      {
+        $result = 'Oops! Something went wrong.<br />' . 'Please try again.';
+        $notificationsView = new NotificationsView($result);
+      }
     }
     else
     {
-      $error_info = 'Something went wrong!';
-      $errorPageView = new ErrorPageView($error_info);
+      $result = 'Oops! Something went wrong.<br />' . 'Please try again.';
+      $notificationsView = new NotificationsView($result);
     }
 
     // Redirect
