@@ -5,9 +5,15 @@ use app\view\SignupPageView;
 
 class SignupPageController extends Controller
 {
-  public function __construct($data = '')
+
+  public function get()
   {
-    $singupPageView = new SignupPageView($data);
+    $signupPageView = new SignupPageView();
+  }
+
+  public function post()
+  {
+
   }
 }
 
