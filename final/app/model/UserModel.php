@@ -29,7 +29,16 @@ class UserModel extends Model
   {
     $this->_lname = $lastName;
   }
-}
 
+  public function getEmail()
+  {
+    return $this->_email;
+  }
+
+  public function setEmail($email)
+  {
+    $this->_email = $email;
+  }
+}
 
 ?>
