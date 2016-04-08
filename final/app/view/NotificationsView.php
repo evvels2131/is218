@@ -19,6 +19,7 @@ class NotificationsView extends View
     echo parent::htmlDiv($notifications, 4);
 
     echo parent::htmlDiv('<button type="button" id="backButton" class="btn btn-primary">Home</button>', 4);
+    //echo parent::htmlDiv('<a href="index.php">Home</a>', 4);
 
     echo parent::htmlFooter();
   }
