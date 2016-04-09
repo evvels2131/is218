@@ -4,6 +4,7 @@ namespace app;
 use app\controller\HomePageController;
 use app\controller\SignupPageController;
 use app\controller\ProfilePageController;
+use app\controller\AddCarPageController;
 
 class App
 {
@@ -27,6 +28,10 @@ class App
         case 'profile':
           $profileController = new ProfilePageController();
           $profileController->$request_method();
+          break;
+        case 'addcar':
+          $addcarController = new AddCarPageController();
+          $addcarController->$request_method();
           break;
       }
     }
