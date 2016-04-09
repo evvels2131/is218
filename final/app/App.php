@@ -3,6 +3,7 @@ namespace app;
 
 use app\controller\HomePageController;
 use app\controller\SignupPageController;
+use app\controller\ProfilePageController;
 
 class App
 {
@@ -22,6 +23,10 @@ class App
         case 'signup':
           $signupPageController = new SignupPageController();
           $signupPageController->$request_method();
+          break;
+        case 'profile':
+          $profileController = new ProfilePageController();
+          $profileController->$request_method();
           break;
       }
     }
