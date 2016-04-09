@@ -34,7 +34,7 @@ class Database
     try
     {
       $stmt = $this->_dbconn->prepare('INSERT INTO users_is218 (email, fname,
-        lname, password) VALUES (:email, :fname, :lname, :password)');
+        lname, password, signup_date) VALUES (:email, :fname, :lname, :password, NOW())');
 
       $stmt->bindParam(':email', $email);
       $stmt->bindParam(':fname', $fname);
@@ -96,7 +96,7 @@ class Database
       }
       else
       {
-        echo 'Incorrect password and email. Please try again.';
+        //echo 'Incorrect password and email. Please try again.';
 
         return false;
       }
