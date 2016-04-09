@@ -46,7 +46,8 @@ class HomePageController extends Controller
     }
     else
     {
-      echo 'Email or password missing.';
+      $result = 'Oops! Something went wrong. <br />Please go back and try again.';
+      $notificationsView = new NotificationsView($result);
     }
 
     // Redirect
