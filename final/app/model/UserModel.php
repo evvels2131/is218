@@ -92,6 +92,15 @@ class UserModel extends Model
 
     return $result;
   }
+
+  public function getUserInformation()
+  {
+    $db = new Database();
+
+    $result = $db->getUserInformation($this->_id);
+
+    return $result;
+  }
 }
 
 ?>
