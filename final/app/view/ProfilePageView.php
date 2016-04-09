@@ -12,7 +12,8 @@ class ProfilePageView extends View
   {
     echo parent::htmlHeader('Profile Information');
 
-    $heading = Heading::newHeading('h4', 'Your profile information.');
+    $text = 'Profile information of <b>' . $_SESSION['user_fname'] . ' ' . $_SESSION['user_lname'] . '</b>';
+    $heading = Heading::newHeading('h4', $text);
     $content = parent::htmlAlertDiv('info', $heading);
     echo parent::htmlDiv($content, 8);
 
