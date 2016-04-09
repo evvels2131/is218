@@ -34,7 +34,7 @@ abstract class View
             <a href="index.php?logout=true"><button type="button" class="btn btn-default navbar-btn navbar-right">
               Logout</button></a>
             <p class="navbar-text navbar-right">Signed in as <a href="index.php?page=profile"><b>'
-              . $_SESSION['user_session'] . '</b></a>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;</p>';
+              . $_SESSION['user_fname'] . ' ' . $_SESSION['user_lname'] . '</b></a>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;</p>';
             }
             else
             {
