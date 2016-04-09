@@ -30,6 +30,7 @@ abstract class View
               $pageHTML .= '
                 <li>' . Link::newLink('Home', 'index.php', '_self') . '</li>
                 <li>' . Link::newLink('Profile', 'index.php?page=profile', '_self') . '</li>
+                <li>' . Link::newLink('Add New Car', 'index.php?page=addcar', '_self') . '</li>
             </ul>
             <a href="index.php?logout=true"><button type="button" class="btn btn-default navbar-btn navbar-right">
               Logout</button></a>
