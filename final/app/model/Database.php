@@ -77,7 +77,7 @@ class Database
   {
     try
     {
-      $stmt = $this->_dbconn->prepare('SELECT * FROM users_is218 WHERE
+      $stmt = $this->_dbconn->prepare('SELECT * FROM users WHERE
         email=:email AND password=:password LIMIT 1');
 
       $stmt->bindParam(':email', $email);
@@ -89,9 +89,21 @@ class Database
 
       if ($stmt->rowCount() > 0)
       {
-        $_SESSION['user_session'] = $row['email'];
-        $_SESSION['user_fname']   = $row['fname'];
-        $_SESSION['user_lname']   = $row['lname'];
+        $_SESSION['user_session'] = $row['user_id'];
+        $_SESSION['user_fname']   = $row['first_name'];
+        $_SESSION['user_lname']   = $row['last_name'];
+
+        // Log the attempt
+        $success = 'yes';
+        $user_id = $row['user_id'];
+
+        $stmt = $this->_dbconn->prepare('INSERT INTO login_attempts (successful, user_id)
+          VALUES (:successful, :user_id)');
+
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->bindParam(':successful', $success);
+
+        $stmt->execute();
 
         return true;
         /*if (password_verify($pass, $row['password']))
