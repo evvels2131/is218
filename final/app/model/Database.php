@@ -137,6 +137,35 @@ class Database
     }
   }
 
+  // Get users login attempts
+  public function getLoginAttempts($user_id)
+  {
+    $result = array();
+
+    try
+    {
+      $stmt = $this->_dbconn->prepare('SELECT attempted_at, successful FROM login_attempts WHERE
+        user_id=:user_id ORDER BY attempted_at DESC');
+
+      $stmt->bindParam(':user_id', $user_id);
+
+      $stmt->execute();
+
+      while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+      {
+        array_push($result, $row);
+      }
+
+      return $result;
+    }
+    catch (\PDOException $e)
+    {
+      return $result;
+      echo 'Database error: ' . $e->getMessage();
+      die();
+    }
+  }
+
   public function __destruct()
   {
     $this->_dbconn = null;
