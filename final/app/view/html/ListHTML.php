@@ -3,11 +3,11 @@ namespace app\view\html;
 
 class ListHTML extends HTML
 {
-  public static function loginAttemptsList($loginAttempts)
+  public static function databaseList($data)
   {
     $listHTML = '<ul class="list-group">';
 
-    foreach ($loginAttempts as $key => $attempts)
+    foreach ($data as $key => $attempts)
     {
       foreach ($attempts as $attempt)
       {
