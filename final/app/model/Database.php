@@ -144,7 +144,7 @@ class Database
 
     try
     {
-      $stmt = $this->_dbconn->prepare('SELECT attempted_at, successful FROM login_attempts WHERE
+      $stmt = $this->_dbconn->prepare('SELECT attempted_at FROM login_attempts WHERE
         user_id=:user_id ORDER BY attempted_at DESC');
 
       $stmt->bindParam(':user_id', $user_id);
@@ -173,7 +173,7 @@ class Database
 
     try
     {
-      $stmt = $this->_dbconn->prepare('SELECT first_name, last_name, email, created_at FROM
+      $stmt = $this->_dbconn->prepare('SELECT first_name, last_name, email FROM
         users WHERE user_id=:user_id');
 
       $stmt->bindParam(':user_id', $user_id);
