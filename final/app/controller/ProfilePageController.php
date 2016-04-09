@@ -10,9 +10,11 @@ class ProfilePageController extends Controller
   {
     $user = new UserModel();
     $user->setId($_SESSION['user_session']);
-    $loginAttempts = $user->getLoginAttempts();
 
-    $profilePageView = new ProfilePageView($loginAttempts);
+    $loginAttempts = $user->getLoginAttempts();
+    $userInfo = $user->getUserInformation();
+
+    $profilePageView = new ProfilePageView($loginAttempts, $userInfo);
   }
 
   public function post()
