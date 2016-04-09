@@ -40,7 +40,7 @@ class HomePageController extends Controller
       }
       else
       {
-        $result = 'Oops! Something went wrong.<br />' . 'Please try again.';
+        $result = 'Oops! Incorrect password or email. <br />Please try again.';
         $notificationsView = new NotificationsView($result);
       }
     }
