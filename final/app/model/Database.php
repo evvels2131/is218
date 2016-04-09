@@ -33,13 +33,30 @@ class Database
   {
     try
     {
-      $stmt = $this->_dbconn->prepare('INSERT INTO users_is218 (email, fname,
-        lname, password, signup_date) VALUES (:email, :fname, :lname, :password, NOW())');
+      //$stmt = $this->_dbconn->prepare('INSERT INTO users_is218 (email, fname,
+        //lname, password, signup_date) VALUES (:email, :fname, :lname, :password, NOW())');
+
+      $stmt = $this->_dbconn->prepare('INSERT INTO users (email, first_name, last_name,
+        password) VALUES (:email, :fname, :lname, :password)');
 
       $stmt->bindParam(':email', $email);
       $stmt->bindParam(':fname', $fname);
       $stmt->bindParam(':lname', $lname);
       $stmt->bindParam(':password', $pass);
+
+      $stmt->execute();
+
+      // Log the registration attempt
+      $stmt = $this->_dbconn->prepare('INSERT INTO registration_attempts (email, first_name,
+        last_name, password, successful) VALUES (:email, :fname, :lname, :password, :successful)');
+
+      $success = 'yes';
+
+      $stmt->bindParam(':email', $email);
+      $stmt->bindParam(':fname', $fname);
+      $stmt->bindParam(':lname', $lname);
+      $stmt->bindParam(':password', $pass);
+      $stmt->bindParam(':successful', $success);
 
       $stmt->execute();
 
