@@ -9,6 +9,7 @@ class UserModel extends Model
   private $_lname;
   private $_email;
   private $_password;
+  private $_id;
 
   // Getters and setters
   public function getFirstName()
@@ -51,6 +52,16 @@ class UserModel extends Model
     $this->_password = $password;
   }
 
+  public function getId()
+  {
+    return $this->_id;
+  }
+
+  public function setId($id)
+  {
+    $this->_id = $id;
+  }
+
   // Register a new user
   public function register()
   {
@@ -68,6 +79,16 @@ class UserModel extends Model
     $db = new Database();
 
     $result = ($db->userLogin($this->_email, $this->_password)) ? true : false;
+
+    return $result;
+  }
+
+  // Retrieve logging attempts
+  public function getLoginAttempts()
+  {
+    $db = new Database();
+
+    $result = $db->getLoginAttempts($this->_id);
 
     return $result;
   }
