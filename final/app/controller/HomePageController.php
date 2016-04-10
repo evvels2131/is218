@@ -4,11 +4,13 @@ namespace app\controller;
 use app\view\HomePageView;
 use app\model\UserModel;
 use app\view\NotificationsView;
+use app\model\Database;
 
 class HomePageController extends Controller
 {
   public function get()
   {
+    // Delete the session if logout button clicked
     if (isset($_GET['logout']))
     {
       session_unset();
@@ -19,7 +21,10 @@ class HomePageController extends Controller
       header('Location: index.php');
     }
 
-    $homePageView = new HomePageView();
+    $db = new Database();
+    $cars = $db->getCars();
+
+    $homePageView = new HomePageView($cars);
   }
 
   public function post()
