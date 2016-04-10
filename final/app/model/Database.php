@@ -220,6 +220,35 @@ class Database
     }
   }
 
+  // Get all cars that a particular user has added
+  public function getUserCars($user_id)
+  {
+    $result = array();
+
+    try
+    {
+      $stmt = $this->_dbconn->prepare('SELECT img_url AS `Image`, vin_id AS `Vin`, price AS `Price`,
+        cond AS `Condition` FROM cars WHERE created_by=:user_id');
+
+      $stmt->bindParam(':user_id', $user_id);
+
+      $stmt->execute();
+
+      while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+      {
+        array_push($result, $row);
+      }
+
+      return $result;
+    }
+    catch (\PDOException $e)
+    {
+      echo 'Database error: ' . $e->getMessage();
+      return $result;
+      die();
+    }
+  }
+
   // Get all cars from the database
   public function getCars()
   {
