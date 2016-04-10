@@ -28,6 +28,31 @@ class Database
 
   }
 
+  // Add new car
+  public function addNewCar($vin, $condition, $price, $user_id)
+  {
+    try
+    {
+      $stmt = $this->_dbconn->prepare('INSERT INTO cars (vin_id, price, cond, created_by)
+        VALUES (:vin, :price, :condition, :created_by)');
+
+      $stmt->bindParam(':vin', $vin);
+      $stmt->bindParam(':price', $price);
+      $stmt->bindParam(':condition', $condition);
+      $stmt->bindParam(':created_by', $user_id);
+
+      $stmt->execute();
+
+      return true;
+    }
+    catch (\PDOException $e)
+    {
+      echo 'Database error: ' . $e->getMessage();
+      return false;
+      die();
+    }
+  }
+
   // User registration
   public function registerUser($fname, $lname, $email, $pass)
   {
