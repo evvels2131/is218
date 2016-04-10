@@ -224,12 +224,13 @@ class Database
   public function getCars()
   {
     $result = array();
-    
+
     try
     {
-      $stmt = $this->_dbconn->prepare('SELECT c.vin_id, c.price, c.cond, c.img_url,
-        u.first_name, u.last_name, u.user_id FROM cars c LEFT JOIN users u ON
-        c.created_by = u.user_id');
+      $stmt = $this->_dbconn->prepare('SELECT c.img_url AS `Image`, c.vin_id AS `Vin`, c.price AS `Price`,
+        c.cond AS `Condition`, u.user_id,
+        CONCAT_WS(\', \', u.first_name, u.last_name) AS `Salesman` FROM cars c LEFT JOIN
+        users u ON c.created_by = u.user_id');
 
       $stmt->execute();
 
