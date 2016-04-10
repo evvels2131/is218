@@ -31,6 +31,16 @@ class CarModel extends Model
     $this->_condition = $condition;
   }
 
+  public function getPrice()
+  {
+    return $this->_price;
+  }
+
+  public function setPrice($price)
+  {
+    $this->_price = $price;
+  }
+
   public function getImgUrl()
   {
     return $this->_img_url;
@@ -39,6 +49,16 @@ class CarModel extends Model
   public function setImageUrl($url)
   {
     $this->_img_url = $url;
+  }
+
+  // Save a new car into the database
+  public function saveCar($user_id)
+  {
+    $db = new Database();
+
+    $result = $db->addNewCar($this->_vin, $this->_condition, $this->_price, $user_id);
+
+    return $result;
   }
 }
 
