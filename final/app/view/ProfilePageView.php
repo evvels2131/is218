@@ -13,18 +13,20 @@ class ProfilePageView extends View
   {
     echo parent::htmlHeader('Profile Information');
 
-    $text = 'Profile information of <b>' . $_SESSION['user_fname'] . ' ' . $_SESSION['user_lname'] . '</b>';
-    $heading = Heading::newHeading('h4', $text);
+    $heading = Heading::newHeading('h4', 'Profile information');
     $content = parent::htmlAlertDiv('info', $heading);
     echo parent::htmlDiv($content, 8);
 
     $content = Heading::newHeading('h4', 'Basic user information:');
     $content .= ListHTML::databaseList($userInformation);
-    echo parent::htmlDiv($content, 4);
+    echo parent::htmlDiv($content, 6);
 
-    $content = Heading::newHeading('h4', 'You have logged in on the following dates:');
-    $content .= ListHTML::databaseList($loginAttempts);
-    echo parent::htmlDiv($content, 4);
+    if (isset($_SESSION['user_session']) && !empty($_SESSION['user_session']))
+    {
+      $content = Heading::newHeading('h4', 'You have logged in on the following dates:');
+      $content .= ListHTML::databaseList($loginAttempts);
+      echo parent::htmlDiv($content, 6);
+    }
 
     echo parent::htmlFooter();
   }
