@@ -28,31 +28,6 @@ class Database
 
   }
 
-  // Add new car
-  public function addNewCar($vin, $condition, $price, $user_id)
-  {
-    try
-    {
-      $stmt = $this->_dbconn->prepare('INSERT INTO cars (vin_id, price, cond, created_by)
-        VALUES (:vin, :price, :condition, :created_by)');
-
-      $stmt->bindParam(':vin', $vin);
-      $stmt->bindParam(':price', $price);
-      $stmt->bindParam(':condition', $condition);
-      $stmt->bindParam(':created_by', $user_id);
-
-      $stmt->execute();
-
-      return true;
-    }
-    catch (\PDOException $e)
-    {
-      echo 'Database error: ' . $e->getMessage();
-      return false;
-      die();
-    }
-  }
-
   // User registration
   public function registerUser($fname, $lname, $email, $pass)
   {
@@ -216,6 +191,59 @@ class Database
     {
       //return $result;
       echo 'Database error: ' . $e->getMessage();
+      die();
+    }
+  }
+
+  // Add new car
+  public function addNewCar($vin, $condition, $price, $user_id)
+  {
+    try
+    {
+      $stmt = $this->_dbconn->prepare('INSERT INTO cars (vin_id, price, cond, created_by)
+        VALUES (:vin, :price, :condition, :created_by)');
+
+      $stmt->bindParam(':vin', $vin);
+      $stmt->bindParam(':price', $price);
+      $stmt->bindParam(':condition', $condition);
+      $stmt->bindParam(':created_by', $user_id);
+
+      $stmt->execute();
+
+      return true;
+    }
+    catch (\PDOException $e)
+    {
+      echo 'Database error: ' . $e->getMessage();
+      return false;
+      die();
+    }
+  }
+
+  // Get all cars from the database
+  public function getCars()
+  {
+    $result = array();
+    
+    try
+    {
+      $stmt = $this->_dbconn->prepare('SELECT c.vin_id, c.price, c.cond, c.img_url,
+        u.first_name, u.last_name, u.user_id FROM cars c LEFT JOIN users u ON
+        c.created_by = u.user_id');
+
+      $stmt->execute();
+
+      while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+      {
+        array_push($result, $row);
+      }
+
+      return $result;
+    }
+    catch (\PDOException $e)
+    {
+      echo 'Database error: ' . $e->getMessage();
+      return $result;
       die();
     }
   }
