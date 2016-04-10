@@ -5,21 +5,20 @@ use app\model\Database;
 
 class CarModel extends Model
 {
-  private $_id;
   private $_vin;
   private $_condition;
   private $_price;
   private $_img_url;
 
   // Getters and setters
-  public function getId()
+  public function getVin()
   {
-    return $this->_id;
+    return $this->_vin;
   }
 
-  public function setId($id)
+  public function setVin($vin)
   {
-    $this->_id = $id;
+    $this->_vin = $vin;
   }
 }
 
