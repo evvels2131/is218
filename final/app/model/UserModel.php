@@ -101,6 +101,15 @@ class UserModel extends Model
 
     return $result;
   }
+
+  public function getUserCars()
+  {
+    $db = new Database();
+
+    $result = $db->getUserCars($this->_id);
+
+    return $result;
+  }
 }
 
 ?>
