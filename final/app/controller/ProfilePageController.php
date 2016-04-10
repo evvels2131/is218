@@ -18,11 +18,12 @@ class ProfilePageController extends Controller
     {
       $user->setId($_SESSION['user_session']);
     }
-    
+
     $loginAttempts = $user->getLoginAttempts();
     $userInfo = $user->getUserInformation();
+    $usersCars = $user->getUserCars();
 
-    $profilePageView = new ProfilePageView($loginAttempts, $userInfo);
+    $profilePageView = new ProfilePageView($loginAttempts, $userInfo, $usersCars);
   }
 
   public function post()
