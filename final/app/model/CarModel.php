@@ -30,6 +30,16 @@ class CarModel extends Model
   {
     $this->_condition = $condition;
   }
+
+  public function getImgUrl()
+  {
+    return $this->_img_url;
+  }
+
+  public function setImageUrl($url)
+  {
+    $this->_img_url = $url;
+  }
 }
 
 ?>
