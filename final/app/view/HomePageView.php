@@ -7,6 +7,7 @@ use app\view\html\Button;
 use app\view\html\Paragraph;
 use app\view\html\Link;
 use app\view\html\Heading;
+use app\view\html\Table;
 
 class HomePageView extends View
 {
@@ -19,6 +20,9 @@ class HomePageView extends View
       $heading = Heading::newHeading('h4', 'Cars for sale');
       $content = parent::htmlAlertDiv('info', $heading);
       echo parent::htmlDiv($content, 8);
+
+      $carsTable = Table::createCarsTable($cars);
+      echo parent::htmlDiv($carsTable, 8);
     }
     else
     {
