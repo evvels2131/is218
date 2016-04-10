@@ -9,8 +9,16 @@ class ProfilePageController extends Controller
   public function get()
   {
     $user = new UserModel();
-    $user->setId($_SESSION['user_session']);
 
+    if (isset($_GET['id']))
+    {
+      $user->setId($_GET['id']);
+    }
+    else
+    {
+      $user->setId($_SESSION['user_session']);
+    }
+    
     $loginAttempts = $user->getLoginAttempts();
     $userInfo = $user->getUserInformation();
 
