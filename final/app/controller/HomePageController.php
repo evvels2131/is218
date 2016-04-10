@@ -29,32 +29,6 @@ class HomePageController extends Controller
 
   public function post()
   {
-    if (isset($_POST['email']) && isset($_POST['password']))
-    {
-      $email = parent::sanitizeString($_POST['email']);
-      $password = parent::sanitizeString($_POST['password']);
-
-      $user = new UserModel();
-      $user->setEmail($email);
-      $user->setPassword($password);
-
-      if ($user->login() == true)
-      {
-        $result = 'Congratulations! You have successfully logged in.';
-        $notificationsView = new NotificationsView($result);
-      }
-      else
-      {
-        $result = 'Oops! Incorrect password or email. <br />Please try again.';
-        $notificationsView = new NotificationsView($result);
-      }
-    }
-    else
-    {
-      $result = 'Oops! Something went wrong. <br />Please go back and try again.';
-      $notificationsView = new NotificationsView($result);
-    }
-
     // Redirect
     /*if (headers_sent()) {
       echo '<h1><a href="index.php">Home</a></h1>';
