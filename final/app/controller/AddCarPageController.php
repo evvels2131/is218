@@ -22,9 +22,17 @@ class AddCarPageController extends Controller
       $price      = parent::sanitizeString($_POST['price']);
       $condition  = parent::sanitizeString($_POST['condition']);
 
-      echo '<pre>';
-      print_r($_POST);
-      echo '</pre>';
+      $car = new CarModel();
+
+      $car->setVin($vin);
+      $car->setPrice($price);
+      $car->setCondition($condition);
+
+      if($car->saveCar($_SESSION['user_session']))
+      {
+        $result = 'Congratulations! You\'ve successfully added a new car.';
+        $notificationsView = new NotificationsView($result);
+      }
     }
     else
     {
