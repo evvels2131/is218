@@ -20,6 +20,16 @@ class CarModel extends Model
   {
     $this->_vin = $vin;
   }
+
+  public function getCondition()
+  {
+    return $this->_condition;
+  }
+
+  public function setCondition($condition)
+  {
+    $this->_condition = $condition;
+  }
 }
 
 ?>
