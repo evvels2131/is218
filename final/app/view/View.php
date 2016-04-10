@@ -40,6 +40,8 @@ abstract class View
             else
             {
               $pageHTML .= '<li>' . Link::newLink('Home', 'index.php', '_self') . '</li></ul>';
+              $pageHTML .= '<a href="index.php?page=login"><button type="button" class="btn btn-default
+                navbar-btn navbar-right">Login</button></a>';
             }
             $pageHTML .= '
           </div>
