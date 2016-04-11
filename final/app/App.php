@@ -6,6 +6,7 @@ use app\controller\SignupPageController;
 use app\controller\ProfilePageController;
 use app\controller\AddCarPageController;
 use app\controller\LoginPageController;
+use app\controller\CarDetailsController;
 
 class App
 {
@@ -37,6 +38,11 @@ class App
         case 'login':
           $loginPageController = new LoginPageController();
           $loginPageController->$request_method();
+          break;
+        case 'cardetails':
+          $carDetailsController = new CarDetailsController();
+          $carDetailsController->$request_method();
+          break;
       }
     }
   }
