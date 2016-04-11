@@ -60,6 +60,16 @@ class CarModel extends Model
 
     return $result;
   }
+
+  // Get information about the car
+  public function getCarDetails()
+  {
+    $db = new Database();
+
+    $result = $db->getCarDetails($this->_vin);
+
+    return $result;
+  }
 }
 
 ?>
