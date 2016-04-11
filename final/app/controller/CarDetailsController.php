@@ -10,7 +10,7 @@ class CarDetailsController extends Controller
   {
     $car = new CarModel();
 
-    $car->setId($_GET['id']);
+    $car->setVin($_GET['id']);
 
     $details = $car->getCarDetails();
 
