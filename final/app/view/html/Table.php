@@ -28,7 +28,10 @@ class Table extends HTML
           continue;
         } else if ($property == 'Salesman') {
           $tableHTML .= '<td><a href="index.php?page=profile&id=' . $user_id. '">' . $val . '</a></td>';
-        } else {
+        } else if ($property == 'Vin') {
+          $tableHTML .= '<td><a href="index.php?page=cardetails&id=' . $val . '">' . $val . '</a>';
+        }
+        else {
           $tableHTML .= '<td>' . $val . '</td>';
         }
 
