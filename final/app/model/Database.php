@@ -278,6 +278,36 @@ class Database
     }
   }
 
+  // Get information about a particular car
+  public function getCarDetails($vin_id)
+  {
+    $result = array();
+
+    try
+    {
+      $stmt = $this->_dbconn->prepare('SELECT c.img_url AS `Image`, c.vin_id AS `Vin`, c.price AS `Price`,
+        c.cond AS `Condition`, CONCAT_WS(\', \', u.first_name, u.last_name) AS
+        `Salesman` FROM cars c LEFT JOIN users u ON c.created_by = u.user_id WHERE vin_id=:vin_id');
+
+      $stmt->bindParam(':vin_id', $vin_id);
+
+      $stmt->execute();
+
+      while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+      {
+        array_push($result, $row);
+      }
+
+      return $result;
+    }
+    catch (\PDOException $e)
+    {
+      echo 'Database error: ' . $e->getMessage();
+      return $result;
+      die();
+    }
+  }
+
   public function __destruct()
   {
     $this->_dbconn = null;
