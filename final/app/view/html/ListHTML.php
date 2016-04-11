@@ -19,5 +19,22 @@ class ListHTML extends HTML
 
     return $listHTML;
   }
+
+  // Show details about a specific car
+  public static function carDetailsList($data)
+  {
+    $listHTML = '<ul class="list-group">';
+
+    foreach ($data as $key => $car)
+    {
+      foreach ($car as $key => $attribute)
+      {
+        $listHTML .= '<li class="list-group-item"><b>' . $key . ':</b> ' . $attribute . '</li>';
+      }
+    }
+    $listHTML .= '</ul>';
+
+    return $listHTML;
+  }
 }
 ?>
