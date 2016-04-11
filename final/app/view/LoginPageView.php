@@ -23,7 +23,7 @@ class LoginPageView extends View
     $password = InputField::newInputField('password', 'password', 'Password');
     $submit   = Button::newButton('submit', 'btn-primary', 'Sing in');
 
-    $form = new Form('index.php', 'POST');
+    $form = new Form('index.php?page=login', 'POST');
     $form->addNewInput($username);
     $form->addNewInput($password);
     $form->addNewInput($submit);

@@ -16,7 +16,7 @@ class NotificationsView extends View
 
     echo parent::htmlDiv($heading, 8);
 
-    echo parent::htmlDiv($notifications, 4);
+    echo parent::htmlDiv($notifications, 6);
 
     echo parent::htmlFooter();
   }
