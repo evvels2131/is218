@@ -2,8 +2,8 @@
 namespace app\controller;
 
 use app\view\HomePageView;
-use app\model\UserModel;
 use app\view\NotificationsView;
+use app\model\UserModel;
 use app\model\Database;
 
 class HomePageController extends Controller
@@ -18,13 +18,16 @@ class HomePageController extends Controller
       unset($_SESSION['user_fname']);
       unset($_SESSION['user_lname']);
 
-      header('Location: index.php');
+      $message = 'You have successfully been logged out.';
+      $notificationView = new NotificationsView($message);
     }
+    else
+    {
+      $db = new Database();
+      $cars = $db->getCars();
 
-    $db = new Database();
-    $cars = $db->getCars();
-
-    $homePageView = new HomePageView($cars);
+      $homePageView = new HomePageView($cars);
+    }
   }
 
   public function post()
