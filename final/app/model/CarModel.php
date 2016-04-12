@@ -172,7 +172,7 @@ class CarModel extends Model
     try
     {
       $dbconn = DatabaseConnection::getConnection();
-      
+
       $stmt = $dbconn->prepare('SELECT
         c.vin AS `Vin`,
         CONCAT_WS(\' \', c.make, c.model, c.year) AS `Name`,
@@ -200,26 +200,6 @@ class CarModel extends Model
       die();
     }
   }
-
-  // Save a new car into the database
-  /*public function saveCar($user_id)
-  {
-    $db = new Database();
-
-    $result = $db->addNewCar($this->_vin, $this->_condition, $this->_price, $user_id);
-
-    return $result;
-  }
-
-  // Get information about the car
-  public function getCarDetails()
-  {
-    $db = new Database();
-
-    $result = $db->getCarDetails($this->_vin);
-
-    return $result;
-  }*/
 }
 
 ?>
