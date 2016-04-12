@@ -215,54 +215,39 @@ class UserModel extends Model
     }
   }
 
-  /*// Register a new user
-  public function register()
+  // Get all cars added by the user
+  public function getUsersCars()
   {
-    $db = new Database();
+    $result = array();
 
-    $result = ($db->registerUser($this->_fname, $this->_lname, $this->_email,
-      $this->_password)) ? true : false;
+    try
+    {
+      $dbconn = DatabaseConnection::getConnection();
 
-    return $result;
+      $stmt = $dbconn->prepare('SELECT
+        car_id AS `Car ID`,
+        vin AS `Vin`,
+        price AS `Price`,
+        CONCAT_WS(\' \', make, model, year) AS `Car`,
+        cond AS `Condition`,
+        img_url AS `Image`,
+        added_on AS `Added`
+        FROM cars WHERE created_by=:user_id');
+      $stmt->execute();
+
+      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        array_push($result, $row);
+      }
+
+      return $result;
+    }
+    catch (\PDOException $e)
+    {
+      echo 'Database error: ' . $e->getMessage();
+      return $result;
+      die();
+    }
   }
-
-  // Login a user
-  public function login()
-  {
-    $db = new Database();
-
-    $result = ($db->userLogin($this->_email, $this->_password)) ? true : false;
-
-    return $result;
-  }
-
-  // Retrieve logging attempts
-  public function getLoginAttempts()
-  {
-    $db = new Database();
-
-    $result = $db->getLoginAttempts($this->_id);
-
-    return $result;
-  }
-
-  public function getUserInformation()
-  {
-    $db = new Database();
-
-    $result = $db->getUserInformation($this->_id);
-
-    return $result;
-  }
-
-  public function getUserCars()
-  {
-    $db = new Database();
-
-    $result = $db->getUserCars($this->_id);
-
-    return $result;
-  }*/
 }
 
 ?>
