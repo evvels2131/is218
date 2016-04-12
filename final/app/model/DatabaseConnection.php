@@ -1,6 +1,8 @@
 <?php
 namespace app\model;
 
+use \PDO;
+
 class DatabaseConnection extends Database
 {
   protected static $_db;
