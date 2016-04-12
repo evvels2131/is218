@@ -115,7 +115,45 @@ class UserModel extends Model
     $this->_last_name = $lastName;
   }
 
-  // Register a new user
+  // Register user
+  public function register()
+  {
+    try
+    {
+      $dbconn = DatabaseConnection::getConnection();
+
+      // Add a new user to the users table
+      $stmt = $dbconn->prepare('INSERT INTO users (email, first_name, last_name,
+        password) VALUES (:email, :first_name, :last_name, :password)');
+
+      $stmt->bindParam(':email', $this->_email);
+      $stmt->bindParam(':first_name', $this->_first_name);
+      $stmt->bindParam(':last_name', $this->_last_name);
+      $stmt->bindParam(':password', $this->_password);
+
+      $stmt->execute();
+
+      // Log the user registration attempt
+      $stmt = $dbconn->prepare('INSERT INTO registration_attempts (email, first_name,
+        last_name, password) VALUES (:email, :first_name, :last_name, :password)');
+
+      $stmt->bindParam(':email', $this->_email);
+      $stmt->bindParam(':first_name', $this->_first_name);
+      $stmt->bindParam(':last_name', $this->_last_name);
+      $stmt->bindParam(':password', $this->_password);
+      $stmt->execute();
+
+      return true;
+    }
+    catch (PDOException $e)
+    {
+      echo 'Database error: ' . $e->getMessage();
+      return false;
+      die();
+    }
+  }
+
+  /*// Register a new user
   public function register()
   {
     $db = new Database();
@@ -162,7 +200,7 @@ class UserModel extends Model
     $result = $db->getUserCars($this->_id);
 
     return $result;
-  }
+  }*/
 }
 
 ?>
