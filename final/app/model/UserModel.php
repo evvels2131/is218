@@ -75,54 +75,44 @@ class UserModel extends Model
   }
 
   // Getters and setters
-  public function getFirstName()
-  {
-    return $this->_fname;
-  }
-
-  public function setFirstName($firstName)
-  {
-    $this->_fname = $firstName;
-  }
-
-  public function getLastName()
-  {
-    return $this->_lname;
-  }
-
-  public function setLastName($lastName)
-  {
-    $this->_lname = $lastName;
-  }
-
-  public function getEmail()
-  {
-    return $this->_email;
-  }
-
-  public function setEmail($email)
-  {
-    $this->_email = $email;
-  }
-
-  public function getPassword()
-  {
-    return $this->_password;
-  }
-
-  public function setPassword($password)
-  {
-    $this->_password = $password;
-  }
-
-  public function getId()
-  {
+  public function getId() {
     return $this->_id;
   }
 
-  public function setId($id)
-  {
+  public function setId($id) {
     $this->_id = $id;
+  }
+
+  public function getEmail() {
+    return $this->_email;
+  }
+
+  public function setEmail($email) {
+    $this->_email = $email;
+  }
+
+  public function getPassword() {
+    return $this->_password;
+  }
+
+  public function setPassword($password) {
+    $this->_password = $password;
+  }
+
+  public function getFirstName() {
+    return $this->_first_name;
+  }
+
+  public function setFirstName($firstName) {
+    $this->_first_name = $firstName;
+  }
+
+  public function getLastName() {
+    return $this->_last_name;
+  }
+
+  public function setLastName($lastName) {
+    $this->_last_name = $lastName;
   }
 
   // Register a new user
