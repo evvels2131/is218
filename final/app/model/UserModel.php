@@ -153,6 +153,68 @@ class UserModel extends Model
     }
   }
 
+  // User login
+  public function login()
+  {
+    try
+    {
+      $dbconn = DatabaseConnection::getConnection();
+
+      // Check if the email is in the database
+      $stmt = $dbconn->prepare('SELECT email FROM users WHERE email=:email LIMIT 1');
+
+      $stmt->bindParam(':email', $this->_email);
+      $stmt->execute();
+
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      if ($stmt->rowCount() > 0)
+      {
+        // If email is found in table, check the password
+        $stmt = $dbconn->prepare('SELECT * FROM users WHERE email=:email AND
+          password=:password LIMIT 1');
+
+        $stmt->bindParam(':email', $this->_email);
+        $stmt->bindParam(':passsword', $this->_password);
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($stmt->rowCount() > 0)
+        {
+          $_SESSION['user_session'] = $row['user_id'];
+          $_SESSION['user_fname']   = $row['first_name'];
+          $_SESSION['user_lname']   = $row['last_name'];
+
+          $user_id = $row['user_id'];
+          $success = 'true';
+        }
+        else
+        {
+          $success = 'false';
+        }
+
+        $stmt = $this->dbconn->prepare('INSERT INTO login_attempts (user_id,
+          success) VALUES (:user_id, :success');
+
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->bindParam(':success', $success);
+        $stmt->execute();
+
+        if ($success == 'true') {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+    catch (PDOException $e)
+    {
+      echo 'Database error:' . $e->getMessage();
+      return false;
+      die();
+    }
+  }
+
   /*// Register a new user
   public function register()
   {
