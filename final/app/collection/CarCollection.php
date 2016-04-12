@@ -3,6 +3,7 @@ namespace app\collection;
 
 use app\model\CarModel;
 use app\model\DatabaseConnection;
+use \PDO;
 
 class CarCollection extends Collection
 {
@@ -15,7 +16,7 @@ class CarCollection extends Collection
     try
     {
       $dbconn = DatabaseConnection::getConnection();
-      
+
       $stmt = $dbconn->prepare('SELECT
         c.car_id AS `CarID`,
         c.vin AS `Vin`,
