@@ -5,10 +5,24 @@ use app\model\Database;
 
 class CarModel extends Model
 {
+  private $_id;
   private $_vin;
-  private $_condition;
+  private $_make;
+  private $_model;
+  private $_year;
   private $_price;
+  private $_cond;
   private $_img_url;
+  private $_created_by;
+
+  public function __construct($id = '')
+  {
+    if (!empty($id)) {
+      $this->_id = $id;
+    } else {
+      $this->_id = uniqid('car_', false);
+    }
+  }
 
   // Getters and setters
   public function getVin()
