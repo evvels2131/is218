@@ -223,6 +223,39 @@ class UserModel extends Model
     }
   }
 
+  // Get users information
+  public function getUsersInformation()
+  {
+    $result = array();
+
+    try
+    {
+      $dbconn = DatabaseConnection::getConnection();
+
+      $stmt = $dbconn->prepare('SELECT
+        email AS `Email`,
+        CONCAT_WS(\' \', first_name, last_name) AS `Full name`,
+        created_at AS `Created at`
+        FROM users WHERE user_id=:user_id');
+
+      $stmt->bindParam(':user_id', $this->_id);
+
+      $stmt->execute();
+
+      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        array_push($result, $row);
+      }
+
+      return $result;
+    }
+    catch (\PDOException $e)
+    {
+      echo 'Database error: ' . $e->getMessage();
+      return $result;
+      die();
+    }
+  }
+
   // Get all cars added by the user
   public function getUsersCars()
   {
