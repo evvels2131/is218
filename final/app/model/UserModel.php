@@ -256,6 +256,38 @@ class UserModel extends Model
     }
   }
 
+  // Get login history and attempts
+  public function getLoginHistory()
+  {
+    $result = array();
+
+    try
+    {
+      $dbconn = DatabaseConnection::getConnection();
+
+      $stmt = $dbconn->prepare('SELECT
+        attempted_at AS `Attempted at`,
+        success AS `Successful`
+        FROM login_attempts WHERE user_id=:user_id ORDER BY attempted_at DESC');
+
+      $stmt->bindParam(':user_id', $this->_id);
+
+      $stmt->execute();
+
+      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        array_push($result, $row);
+      }
+
+      return $result;
+    }
+    catch (\PDOException $e)
+    {
+      return $result;
+      echo 'Database error: ' . $e->getMessage();
+      die();
+    }
+  }
+
   // Get all cars added by the user
   public function getUsersCars()
   {
