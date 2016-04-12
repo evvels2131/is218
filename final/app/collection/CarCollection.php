@@ -9,7 +9,20 @@ class CarCollection extends Collection
 {
   private $_cars;
 
-  public function __construct($limitRecords = 10)
+  // Getter for the cars attribute
+  public function getCars()
+  {
+    return $this->_cars;
+  }
+
+  // Create a new car model
+  public function create()
+  {
+    $car = new CarModel;
+    return $car;
+  }
+
+  public function populateCollection($limitRecords = 10)
   {
     $result = array();
 
@@ -18,7 +31,7 @@ class CarCollection extends Collection
       $dbconn = DatabaseConnection::getConnection();
 
       $stmt = $dbconn->prepare('SELECT
-        c.car_id AS `CarID`,
+	      c.car_id AS `CarID`,
         c.vin AS `Vin`,
         CONCAT_WS(\' \', c.make, c.model, c.year) AS `Name & Year`,
         c.price AS `Price`,
@@ -27,9 +40,11 @@ class CarCollection extends Collection
         c.added_on AS `Added on`,
         CONCAT_WS(\' \', u.first_name, u.last_name) AS `Salesperson`,
         u.user_id AS `UserID`
-        FROM cars c LEFT JOIN users u ON c.created_by = u.user_ID LIMIT :limitRecords');
+        FROM cars c LEFT JOIN users u ON c.created_by = u.user_id LIMIT :limitRecords');
 
-      $stmt->bindParam(':limitRecords', $limitRecords);
+      $length = strlen($limitRecords);
+
+      $stmt->bindParam(':limitRecords', $limitRecords, PDO::PARAM_STR, $length);
 
       $stmt->execute();
 
@@ -45,19 +60,6 @@ class CarCollection extends Collection
       echo 'Database error: ' . $e->getMessage();
       die();
     }
-  }
-
-  // Getter for the cars attribute
-  public function getCars()
-  {
-    return $this->_cars;
-  }
-
-  // Create a new car model
-  public function create()
-  {
-    $car = new CarModel;
-    return $car;
   }
 }
 ?>
