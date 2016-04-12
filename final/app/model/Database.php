@@ -5,7 +5,7 @@ use \PDO;
 
 class Database
 {
-  const DB_USER     = 'root';
+  /*const DB_USER     = 'root';
   const DB_PASSWORD = 'root';
   const DB_HOST     = 'localhost';
   const DB_NAME     = 'is218';
@@ -121,7 +121,7 @@ class Database
         {
           echo 'false';
           return false;
-        }*/
+        }
       }
       else
       {
@@ -311,6 +311,6 @@ class Database
   public function __destruct()
   {
     $this->_dbconn = null;
-  }
+  }*/
 }
 ?>
