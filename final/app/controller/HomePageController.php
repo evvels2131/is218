@@ -3,9 +3,6 @@ namespace app\controller;
 
 use app\view\HomePageView;
 use app\view\NotificationsView;
-use app\model\UserModel;
-use app\model\Database;
-
 use app\collection\CarCollection;
 
 class HomePageController extends Controller
