@@ -142,7 +142,7 @@ class CarModel extends Model
         price, cond, img_url, created_by) VALUES (:car_id, :vin, :make, :model, :year,
         :price, :cond, :img_url, :created_by)');
 
-      $stmt->bindParam(':car_id', $this->_car_id);
+      $stmt->bindParam(':car_id', $this->_id);
       $stmt->bindParam(':vin', $this->_vin);
       $stmt->bindParam(':make', $this->_make);
       $stmt->bindParam(':model', $this->_model);
@@ -171,6 +171,8 @@ class CarModel extends Model
 
     try
     {
+      $dbconn = DatabaseConnection::getConnection();
+      
       $stmt = $dbconn->prepare('SELECT
         c.vin AS `Vin`,
         CONCAT_WS(\' \', c.make, c.model, c.year) AS `Name`,
