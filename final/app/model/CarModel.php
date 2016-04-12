@@ -47,10 +47,13 @@ class CarModel extends Model
         ON DELETE NO ACTION
       )ENGINE=InnoDB');
       $stmt->execute();
+
+      return true;
     }
     catch (\PDOException $e)
     {
       echo 'Database error: ' . $e->getMessage();
+      return false;
       die();
     }
   }
@@ -77,10 +80,13 @@ class CarModel extends Model
       $stmt->bindParam(':created_by', $this->_created_by);
 
       $stmt->execute();
+
+      return true;
     }
     catch (\PDOException $e)
     {
       echo 'Database error: ' . $e->getMessage();
+      return false;
       die();
     }
   }
