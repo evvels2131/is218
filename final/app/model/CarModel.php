@@ -55,6 +55,71 @@ class CarModel extends Model
     }
   }
 
+  // Save the car
+  public function save()
+  {
+    try
+    {
+      $dbconn = DatabaseConnection::getConnection();
+
+      $stmt = $dbconn->prepare('INSERT INTO cars (car_id, vin, make, model, year,
+        price, cond, img_url, created_by) VALUES (:car_id, :vin, :make, :model, :year,
+        :price, :cond, :img_url, :created_by)');
+
+      $stmt->bindParam(':car_id', $this->_car_id);
+      $stmt->bindParam(':vin', $this->_vin);
+      $stmt->bindParam(':make', $this->_make);
+      $stmt->bindParam(':model', $this->_model);
+      $stmt->bindParam(':year', $this->_year);
+      $stmt->bindParam(':price', $this->_price);
+      $stmt->bindParam(':cond', $this->_cond);
+      $stmt->bindParam(':img_url', $this->_img_url);
+      $stmt->bindParam(':created_by', $this->_created_by);
+
+      $stmt->execute();
+    }
+    catch (\PDOException $e)
+    {
+      echo 'Database error: ' . $e->getMessage();
+      die();
+    }
+  }
+
+  // Get the basic information about the car
+  public function getBasicInformation()
+  {
+    $result = array();
+
+    try
+    {
+      $stmt = $dbconn->prepare('SELECT
+        c.vin AS `Vin`,
+        CONCAT_WS(\' \', c.make, c.model, c.year) AS `Name`,
+        c.price AS `Price`,
+        c.cond AS `Condition`,
+        c.img_url AS `Image`,
+        c.added_on AS `Added on`,
+        CONCAT_WS(\' \', u.first_name, u.last_name) AS `Salesperson`
+        FROM cars c LEFT JOIN users u ON c.created_by = u.user_id
+        WHERE car_id=:car_id');
+
+      $stmt->bindParam(':car_id', $this->_id);
+      $stmt->execute();
+
+      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        array_push($result, $row);
+      }
+
+      return $result;
+    }
+    catch (\PDOException $e)
+    {
+      echo 'Database error: ' . $e->getMessage();
+      return $result;
+      die();
+    }
+  }
+
   // Getters and setters
   public function getVin()
   {
