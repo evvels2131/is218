@@ -6,6 +6,8 @@ use app\view\NotificationsView;
 use app\model\UserModel;
 use app\model\Database;
 
+use app\collection\CarCollection;
+
 class HomePageController extends Controller
 {
   public function get()
@@ -23,10 +25,10 @@ class HomePageController extends Controller
     }
     else
     {
-      $db = new Database();
-      $cars = $db->getCars();
+      $carCollection = new CarCollection();
+      $carCollection->populateCollection();
 
-      $homePageView = new HomePageView($cars);
+      $homePageView = new HomePageView($carCollection->getCars());
     }
   }
 
