@@ -146,7 +146,7 @@ class UserModel extends Model
 
       return true;
     }
-    catch (PDOException $e)
+    catch (\PDOException $e)
     {
       echo 'Database error: ' . $e->getMessage();
       return false;
@@ -159,10 +159,14 @@ class UserModel extends Model
   {
     try
     {
+      echo '<br />Login function: <br />';
+      echo 'email: ' . $this->_email . '<br />';
+      echo 'password: ' . $this->_password . '<br />';
+      echo '<hr>';
       $dbconn = DatabaseConnection::getConnection();
 
       // Check if the email is in the database
-      $stmt = $dbconn->prepare('SELECT email FROM users WHERE email=:email LIMIT 1');
+      $stmt = $dbconn->prepare('SELECT email, user_id FROM users WHERE email=:email LIMIT 1');
 
       $stmt->bindParam(':email', $this->_email);
       $stmt->execute();
@@ -171,12 +175,15 @@ class UserModel extends Model
 
       if ($stmt->rowCount() > 0)
       {
-        // If email is found in table, check the password
+        $user_id = $row['user_id'];
+
         $stmt = $dbconn->prepare('SELECT * FROM users WHERE email=:email AND
           password=:password LIMIT 1');
 
         $stmt->bindParam(':email', $this->_email);
-        $stmt->bindParam(':passsword', $this->_password);
+        $stmt->bindParam(':password', $this->_password);
+
+        $stmt->execute();
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -194,8 +201,8 @@ class UserModel extends Model
           $success = 'false';
         }
 
-        $stmt = $this->dbconn->prepare('INSERT INTO login_attempts (user_id,
-          success) VALUES (:user_id, :success');
+        $stmt = $dbconn->prepare('INSERT INTO login_attempts (user_id,
+          success) VALUES (:user_id, :success)');
 
         $stmt->bindParam(':user_id', $user_id);
         $stmt->bindParam(':success', $success);
@@ -208,7 +215,7 @@ class UserModel extends Model
         }
       }
     }
-    catch (PDOException $e)
+    catch (\PDOException $e)
     {
       echo 'Database error:' . $e->getMessage();
       return false;
