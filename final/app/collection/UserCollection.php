@@ -13,5 +13,4 @@ class UserCollection extends Collection
   }
 }
 
-
 ?>
