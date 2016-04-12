@@ -5,11 +5,20 @@ use app\model\Database;
 
 class UserModel extends Model
 {
-  private $_fname;
-  private $_lname;
+  private $_id;
   private $_email;
   private $_password;
-  private $_id;
+  private $_first_name;
+  private $_last_name;
+
+  public function __construct($id = '')
+  {
+    if (!empty($id)) {
+      $this->_id = $id;
+    } else {
+      $this->_id = uniqid('user_', false);
+    }
+  }
 
   // Getters and setters
   public function getFirstName()
