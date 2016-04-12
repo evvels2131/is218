@@ -10,14 +10,14 @@ class DatabaseConnection extends Database
   const DB_USER     = 'root';
   const DB_PASSWORD = 'root';
   const DB_HOST     = 'localhost';
-  const DB_NAME     = 'is218';
+  const DB_NAME     = 'is2188';
 
   private function __construct()
   {
     try
     {
       self::$_db = new PDO('mysql:host=' . self::DB_HOST . ';dbname=' . self::DB_NAME,
-        array(PDO::ATTR_PERSISTENT => true));
+        self::DB_USER, self::DB_PASSWORD, array(PDO::ATTR_PERSISTENT => true));
       self::$_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     catch (\PDOException $e)
