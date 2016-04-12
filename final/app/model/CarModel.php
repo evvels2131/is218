@@ -121,48 +121,80 @@ class CarModel extends Model
   }
 
   // Getters and setters
-  public function getVin()
-  {
+  public function getId() {
+    return $this->_id;
+  }
+
+  public function setId($id) {
+    $this->_id = $id;
+  }
+
+  public function getVin() {
     return $this->_vin;
   }
 
-  public function setVin($vin)
-  {
+  public function setVin($vin) {
     $this->_vin = $vin;
   }
 
-  public function getCondition()
-  {
-    return $this->_condition;
+  public function getMake() {
+    return $this->_make;
   }
 
-  public function setCondition($condition)
-  {
-    $this->_condition = $condition;
+  public function setMake($make) {
+    $this->_make = $make;
   }
 
-  public function getPrice()
-  {
+  public function getModel() {
+    return $this->_model;
+  }
+
+  public function setModel($model) {
+    $this->_model = $model;
+  }
+
+  public function getYear() {
+    return $this->_year;
+  }
+
+  public function setYear($year) {
+    $this->_year = $year;
+  }
+
+  public function getPrice() {
     return $this->_price;
   }
 
-  public function setPrice($price)
-  {
+  public function setPrice($price) {
     $this->_price = $price;
   }
 
-  public function getImgUrl()
-  {
+  public function getCondition() {
+    return $this->_cond;
+  }
+
+  public function setCondition($condition) {
+    $this->_cond = $condition;
+  }
+
+  public function getImgUrl() {
     return $this->_img_url;
   }
 
-  public function setImageUrl($url)
-  {
+  public function setImageUrl($url) {
     $this->_img_url = $url;
   }
 
+  public function getCreatedBy() {
+    return $this->_created_by;
+  }
+
+  public function setCreatedBy($created_by) {
+    $this->_created_by = $created_by;
+  }
+
   // Save a new car into the database
-  public function saveCar($user_id)
+  /*public function saveCar($user_id)
   {
     $db = new Database();
 
@@ -179,7 +211,7 @@ class CarModel extends Model
     $result = $db->getCarDetails($this->_vin);
 
     return $result;
-  }
+  }*/
 }
 
 ?>
