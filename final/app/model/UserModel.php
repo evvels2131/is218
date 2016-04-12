@@ -123,9 +123,10 @@ class UserModel extends Model
       $dbconn = DatabaseConnection::getConnection();
 
       // Add a new user to the users table
-      $stmt = $dbconn->prepare('INSERT INTO users (email, first_name, last_name,
-        password) VALUES (:email, :first_name, :last_name, :password)');
+      $stmt = $dbconn->prepare('INSERT INTO users (user_id, email, first_name, last_name,
+        password) VALUES (:user_id, :email, :first_name, :last_name, :password)');
 
+      $stmt->bindParam(':user_id', $this->_id);
       $stmt->bindParam(':email', $this->_email);
       $stmt->bindParam(':first_name', $this->_first_name);
       $stmt->bindParam(':last_name', $this->_last_name);
