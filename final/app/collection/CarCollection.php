@@ -43,5 +43,18 @@ class CarCollection extends Collection
       die();
     }
   }
+
+  // Getter for the cars attribute
+  public function getCars()
+  {
+    return $this->_cars;
+  }
+
+  // Create a new car model
+  public function create()
+  {
+    $car = new CarModel;
+    return $car;
+  }
 }
 ?>
