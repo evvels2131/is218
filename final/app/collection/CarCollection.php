@@ -14,6 +14,8 @@ class CarCollection extends Collection
 
     try
     {
+      $dbconn = DatabaseConnection::getConnection();
+      
       $stmt = $dbconn->prepare('SELECT
         c.car_id AS `CarID`,
         c.vin AS `Vin`,
