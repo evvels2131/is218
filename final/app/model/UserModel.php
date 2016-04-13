@@ -261,7 +261,7 @@ class UserModel extends Model
       $dbconn = DatabaseConnection::getConnection();
 
       $stmt = $dbconn->prepare('SELECT
-        attempted_at AS `Attempted at`,
+        attempted_at AS `Date`,
         success AS `Successful`
         FROM login_attempts WHERE user_id=:user_id ORDER BY attempted_at DESC');
 
