@@ -21,8 +21,8 @@ class HomePageView extends View
       $content = parent::htmlAlertDiv('info', $heading);
       echo parent::htmlDiv($content, 8);
 
-      $carsTable = Table::createCarsTable($cars);
-      echo parent::htmlDiv($carsTable, 8);
+      $carsTable = Table::displayCarsTable($cars);
+      echo parent::htmlDiv($carsTable, 10);
     }
     else
     {
