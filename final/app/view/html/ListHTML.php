@@ -29,7 +29,16 @@ class ListHTML extends HTML
     {
       foreach ($car as $key => $attribute)
       {
-        $listHTML .= '<li class="list-group-item"><b>' . $key . ':</b> ' . $attribute . '</li>';
+        if ($key == 'UserID') {
+          $user_id = $attribute;
+        } else if ($key == 'Salesperson') {
+          $listHTML .= '<li class="list-group-item"><b>' . $key .
+            ':</b> <a href="index.php?page=profile&id=' . $user_id . '">' .
+            $attribute . '</a></li>';
+        } else {
+          $listHTML .= '<li class="list-group-item"><b>' . $key . ':</b> ' .
+            $attribute . '</li>';
+        }
       }
     }
     $listHTML .= '</ul>';
