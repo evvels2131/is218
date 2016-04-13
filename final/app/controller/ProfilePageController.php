@@ -2,28 +2,23 @@
 namespace app\controller;
 
 use app\view\ProfilePageView;
-use app\model\UserModel;
+use app\collection\UserCollection;
 
 class ProfilePageController extends Controller
 {
   public function get()
   {
-    $user = new UserModel();
+    $userCollection = new UserCollection();
+    $user = $userCollection->create();
 
-    if (isset($_GET['id']))
-    {
+    if (isset($_GET['id'])) {
       $user->setId($_GET['id']);
-    }
-    else
-    {
+    } else {
       $user->setId($_SESSION['user_session']);
     }
 
-    $loginAttempts = $user->getLoginAttempts();
-    $userInfo = $user->getUserInformation();
-    $usersCars = $user->getUserCars();
-
-    $profilePageView = new ProfilePageView($loginAttempts, $userInfo, $usersCars);
+    $profilePageView = new ProfilePageView($user->getLoginHistory(),
+      $user->getUsersInformation(), $user->getUsersCars());
   }
 
   public function post()
