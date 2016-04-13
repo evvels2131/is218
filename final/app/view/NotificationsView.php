@@ -8,11 +8,11 @@ use app\view\html\Heading;
 
 class NotificationsView extends View
 {
-  public function __construct($notifications = '')
+  public function __construct($notifications = '', $type = '')
   {
     echo parent::htmlHeader('Notifications');
 
-    $heading = parent::htmlAlertDiv('info', Heading::newHeading('h4', '<b>Results</b>'));
+    $heading = parent::htmlAlertDiv($type, Heading::newHeading('h4', '<b>Results</b>'));
 
     echo parent::htmlDiv($heading, 8);
 
