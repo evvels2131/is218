@@ -3,7 +3,7 @@ namespace app\controller;
 
 use app\view\SignupPageView;
 use app\view\NotificationsView;
-use app\model\UserModel;
+use app\collection\UserCollection;
 
 class SignupPageController extends Controller
 {
@@ -22,7 +22,9 @@ class SignupPageController extends Controller
       $password   = parent::sanitizeString($_POST['pass']);
       $password2  = parent::sanitizeString($_POST['pass2']);
 
-      $user = new UserModel();
+      $userCollection = new UserCollection();
+      $user = $userCollection->create();
+
       $user->setFirstName($firstname);
       $user->setLastName($lastname);
       $user->setEmail($email);
