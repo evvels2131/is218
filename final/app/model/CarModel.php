@@ -6,22 +6,22 @@ use \PDO;
 
 class CarModel extends Model
 {
-  private $_id;
-  private $_vin;
-  private $_make;
-  private $_model;
-  private $_year;
-  private $_price;
-  private $_cond;
-  private $_img_url;
-  private $_created_by;
+  private $car_id;
+  private $vin;
+  private $make;
+  private $model;
+  private $year;
+  private $price;
+  private $cond;
+  private $img_url;
+  private $created_by;
 
   public function __construct($id = '')
   {
     if (!empty($id)) {
-      $this->_id = $id;
+      $this->car_id = $id;
     } else {
-      $this->_id = uniqid('car_', false);
+      $this->car_id = uniqid('car_', false);
     }
 
     // Create a table for cars if not existent in the database
@@ -60,75 +60,75 @@ class CarModel extends Model
 
   // Getters and setters
   public function getId() {
-    return $this->_id;
+    return $this->car_id;
   }
 
   public function setId($id) {
-    $this->_id = $id;
+    $this->car_id = $id;
   }
 
   public function getVin() {
-    return $this->_vin;
+    return $this->vin;
   }
 
   public function setVin($vin) {
-    $this->_vin = $vin;
+    $this->vin = $vin;
   }
 
   public function getMake() {
-    return $this->_make;
+    return $this->make;
   }
 
   public function setMake($make) {
-    $this->_make = $make;
+    $this->make = $make;
   }
 
   public function getModel() {
-    return $this->_model;
+    return $this->model;
   }
 
   public function setModel($model) {
-    $this->_model = $model;
+    $this->model = $model;
   }
 
   public function getYear() {
-    return $this->_year;
+    return $this->year;
   }
 
   public function setYear($year) {
-    $this->_year = $year;
+    $this->year = $year;
   }
 
   public function getPrice() {
-    return $this->_price;
+    return $this->price;
   }
 
   public function setPrice($price) {
-    $this->_price = $price;
+    $this->price = $price;
   }
 
   public function getCondition() {
-    return $this->_cond;
+    return $this->cond;
   }
 
   public function setCondition($condition) {
-    $this->_cond = $condition;
+    $this->cond = $condition;
   }
 
   public function getImgUrl() {
-    return $this->_img_url;
+    return $this->img_url;
   }
 
   public function setImageUrl($url) {
-    $this->_img_url = $url;
+    $this->img_url = $url;
   }
 
   public function getCreatedBy() {
-    return $this->_created_by;
+    return $this->created_by;
   }
 
   public function setCreatedBy($created_by) {
-    $this->_created_by = $created_by;
+    $this->created_by = $created_by;
   }
 
   // Save the car
@@ -142,15 +142,15 @@ class CarModel extends Model
         price, cond, img_url, created_by) VALUES (:car_id, :vin, :make, :model, :year,
         :price, :cond, :img_url, :created_by)');
 
-      $stmt->bindParam(':car_id', $this->_id);
-      $stmt->bindParam(':vin', $this->_vin);
-      $stmt->bindParam(':make', $this->_make);
-      $stmt->bindParam(':model', $this->_model);
-      $stmt->bindParam(':year', $this->_year);
-      $stmt->bindParam(':price', $this->_price);
-      $stmt->bindParam(':cond', $this->_cond);
-      $stmt->bindParam(':img_url', $this->_img_url);
-      $stmt->bindParam(':created_by', $this->_created_by);
+      $stmt->bindParam(':car_id', $this->car_id);
+      $stmt->bindParam(':vin', $this->vin);
+      $stmt->bindParam(':make', $this->make);
+      $stmt->bindParam(':model', $this->model);
+      $stmt->bindParam(':year', $this->year);
+      $stmt->bindParam(':price', $this->price);
+      $stmt->bindParam(':cond', $this->cond);
+      $stmt->bindParam(':img_url', $this->img_url);
+      $stmt->bindParam(':created_by', $this->created_by);
 
       $stmt->execute();
 
@@ -185,7 +185,7 @@ class CarModel extends Model
         FROM cars c LEFT JOIN users u ON c.created_by = u.user_id
         WHERE car_id=:car_id');
 
-      $stmt->bindParam(':car_id', $this->_id);
+      $stmt->bindParam(':car_id', $this->car_id);
       $stmt->execute();
 
       while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
