@@ -180,6 +180,7 @@ class CarModel extends Model
         c.price AS `Price`,
         c.cond AS `Condition`,
         c.added_on AS `Added on`,
+        u.user_id AS `UserID`,
         CONCAT_WS(\' \', u.first_name, u.last_name) AS `Salesperson`
         FROM cars c LEFT JOIN users u ON c.created_by = u.user_id
         WHERE car_id=:car_id');
