@@ -8,7 +8,7 @@ use app\view\html\ListHTML;
 
 class CarDetailsView extends View
 {
-  public function __construct($carDetails)
+  public function __construct($basicInfo, $detailedInfo)
   {
     echo parent::htmlHeader('Car Details');
 
@@ -16,8 +16,13 @@ class CarDetailsView extends View
     $content = parent::htmlAlertDiv('info', $heading);
     echo parent::htmlDiv($content, 8);
 
-    $detailsList = ListHTML::carDetailsList($carDetails);
+    $detailsList = Heading::newHeading('h4', 'Basic information:');
+    $detailsList .= ListHTML::carDetailsList($basicInfo);
     echo parent::htmlDiv($detailsList, 6);
+
+    $detailedList = Heading::newHeading('h4', 'Detailed information:');
+    $detailedList .= ListHTML::carDetailedList($detailedInfo);
+    echo parent::htmlDiv($detailedList, 6);
 
     echo parent::htmlFooter();
   }
