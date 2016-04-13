@@ -33,19 +33,21 @@ class SignupPageController extends Controller
       if ($user->register() == true)
       {
         $result = 'Cogratulations! You\'ve successfully registered.';
-        $notificationsView = new NotificationsView($result);
+        $type = 'success';
       }
       else
       {
         $result = 'Oops! Something went wrong.<br />' . 'Please try again.';
-        $notificationsView = new NotificationsView($result);
+        $type = 'danger';
       }
     }
     else
     {
       $result = 'Oops! Something went wrong.<br />' . 'Please try again.';
-      $notificationsView = new NotificationsView($result);
+      $type = 'danger';
     }
+
+    $notificationsView = new NotificationsView($result, $type);
 
     // Redirect
     /*if (headers_sent()) {
