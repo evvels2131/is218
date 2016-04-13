@@ -31,12 +31,12 @@ class CarCollection extends Collection
       $dbconn = DatabaseConnection::getConnection();
 
       $stmt = $dbconn->prepare('SELECT
+        c.img_url AS `Image`,
 	      c.car_id AS `CarID`,
         c.vin AS `Vin`,
         CONCAT_WS(\' \', c.make, c.model, c.year) AS `Name & Year`,
         c.price AS `Price`,
         c.cond AS `Condition`,
-        c.img_url AS `Image`,
         c.added_on AS `Added on`,
         CONCAT_WS(\' \', u.first_name, u.last_name) AS `Salesperson`,
         u.user_id AS `UserID`
