@@ -37,9 +37,38 @@ class Table extends HTML
           $tableHTML .= '<td>' . $val . '</td>';
         }
       }
+      $tableHTML .= '</tr>';
     }
     $tableHTML .= '</tbody>';
     $tableHTML .= '</table>';
+
+    return $tableHTML;
+  }
+
+  // Shows a table with users login history
+  public static function userLoginHistory($data)
+  {
+    $tableHTML = '<table class="table table-striped">';
+    $tableHTML .= '<thead><tr>';
+
+    foreach ($data[0] as $key => $value)
+    {
+      $tableHTML .= '<th>' . $key . '</th>';
+    }
+
+    $tableHTML .= '</tr></thead>';
+    $tableHTML .= '<tbody>';
+
+    foreach ($data as $key => $value)
+    {
+      $tableHTML .= '<tr>';
+      foreach ($value as $key => $val)
+      {
+        $tableHTML .= '<td>' . $val . '</td>';
+      }
+      $tableHTML .= '</tr>';
+    }
+    $tableHTML .= '</tbody></table>';
 
     return $tableHTML;
   }
