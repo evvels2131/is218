@@ -3,18 +3,24 @@ namespace app\controller;
 
 use app\view\CarDetailsView;
 use app\model\CarModel;
+use app\collection\CarCollection;
 
 class CarDetailsController extends Controller
 {
   public function get()
   {
-    $car = new CarModel();
+    $carCollection = new CarCollection();
 
-    $car->setVin($_GET['id']);
+    $car = $carCollection->create();
+    $car->setId($_GET['id']);
 
-    $details = $car->getCarDetails();
+    $basicInfo = $car->getBasicInformation();
 
-    $carDetailsView = new CarDetailsView($details);
+    $carInfo = $basicInfo[0];
+    $vin = $carInfo['Vin'];
+    $detailedInfo = parent::getCarsDetails($vin);
+
+    $carDetailsView = new CarDetailsView($basicInfo, $detailedInfo);
   }
 
   public function post()
