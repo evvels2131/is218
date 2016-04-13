@@ -174,11 +174,11 @@ class CarModel extends Model
       $dbconn = DatabaseConnection::getConnection();
 
       $stmt = $dbconn->prepare('SELECT
+        c.img_url AS `Image`,
         c.vin AS `Vin`,
         CONCAT_WS(\' \', c.make, c.model, c.year) AS `Name`,
         c.price AS `Price`,
         c.cond AS `Condition`,
-        c.img_url AS `Image`,
         c.added_on AS `Added on`,
         CONCAT_WS(\' \', u.first_name, u.last_name) AS `Salesperson`
         FROM cars c LEFT JOIN users u ON c.created_by = u.user_id
