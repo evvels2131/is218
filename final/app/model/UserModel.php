@@ -7,18 +7,18 @@ use \PDO;
 
 class UserModel extends Model
 {
-  private $_id;
-  private $_email;
-  private $_password;
-  private $_first_name;
-  private $_last_name;
+  private $user_id;
+  private $email;
+  private $password;
+  private $first_name;
+  private $last_name;
 
   public function __construct($id = '')
   {
     if (!empty($id)) {
-      $this->_id = $id;
+      $this->user_id = $id;
     } else {
-      $this->_id = uniqid('user_', false);
+      $this->user_id = uniqid('user_', false);
     }
 
     // Create tables for the user if not yet created
@@ -76,43 +76,43 @@ class UserModel extends Model
 
   // Getters and setters
   public function getId() {
-    return $this->_id;
+    return $this->user_id;
   }
 
   public function setId($id) {
-    $this->_id = $id;
+    $this->user_id = $id;
   }
 
   public function getEmail() {
-    return $this->_email;
+    return $this->email;
   }
 
   public function setEmail($email) {
-    $this->_email = $email;
+    $this->email = $email;
   }
 
   public function getPassword() {
-    return $this->_password;
+    return $this->password;
   }
 
   public function setPassword($password) {
-    $this->_password = $password;
+    $this->password = $password;
   }
 
   public function getFirstName() {
-    return $this->_first_name;
+    return $this->first_name;
   }
 
   public function setFirstName($firstName) {
-    $this->_first_name = $firstName;
+    $this->first_name = $firstName;
   }
 
   public function getLastName() {
-    return $this->_last_name;
+    return $this->last_name;
   }
 
   public function setLastName($lastName) {
-    $this->_last_name = $lastName;
+    $this->last_name = $lastName;
   }
 
   // Register user
@@ -126,21 +126,21 @@ class UserModel extends Model
       $stmt = $dbconn->prepare('INSERT INTO users (user_id, email, first_name, last_name,
         password) VALUES (:user_id, :email, :first_name, :last_name, :password)');
 
-      $stmt->bindParam(':user_id', $this->_id);
-      $stmt->bindParam(':email', $this->_email);
-      $stmt->bindParam(':first_name', $this->_first_name);
-      $stmt->bindParam(':last_name', $this->_last_name);
-      $stmt->bindParam(':password', $this->_password);
+      $stmt->bindParam(':user_id', $this->user_id);
+      $stmt->bindParam(':email', $this->email);
+      $stmt->bindParam(':first_name', $this->first_name);
+      $stmt->bindParam(':last_name', $this->last_name);
+      $stmt->bindParam(':password', $this->password);
       $stmt->execute();
 
       // Log the user registration attempt
       $stmt = $dbconn->prepare('INSERT INTO registration_attempts (email, first_name,
         last_name, password) VALUES (:email, :first_name, :last_name, :password)');
 
-      $stmt->bindParam(':email', $this->_email);
-      $stmt->bindParam(':first_name', $this->_first_name);
-      $stmt->bindParam(':last_name', $this->_last_name);
-      $stmt->bindParam(':password', $this->_password);
+      $stmt->bindParam(':email', $this->email);
+      $stmt->bindParam(':first_name', $this->first_name);
+      $stmt->bindParam(':last_name', $this->last_name);
+      $stmt->bindParam(':password', $this->password);
       $stmt->execute();
 
       return true;
@@ -163,7 +163,7 @@ class UserModel extends Model
       // Check if the email is in the database
       $stmt = $dbconn->prepare('SELECT email, user_id FROM users WHERE email=:email LIMIT 1');
 
-      $stmt->bindParam(':email', $this->_email);
+      $stmt->bindParam(':email', $this->email);
       $stmt->execute();
 
       $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -175,8 +175,8 @@ class UserModel extends Model
         $stmt = $dbconn->prepare('SELECT * FROM users WHERE email=:email AND
           password=:password LIMIT 1');
 
-        $stmt->bindParam(':email', $this->_email);
-        $stmt->bindParam(':password', $this->_password);
+        $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':password', $this->password);
 
         $stmt->execute();
 
@@ -233,7 +233,7 @@ class UserModel extends Model
         created_at AS `Created at`
         FROM users WHERE user_id=:user_id');
 
-      $stmt->bindParam(':user_id', $this->_id);
+      $stmt->bindParam(':user_id', $this->user_id);
 
       $stmt->execute();
 
@@ -265,7 +265,7 @@ class UserModel extends Model
         success AS `Successful`
         FROM login_attempts WHERE user_id=:user_id ORDER BY attempted_at DESC');
 
-      $stmt->bindParam(':user_id', $this->_id);
+      $stmt->bindParam(':user_id', $this->user_id);
 
       $stmt->execute();
 
@@ -300,7 +300,7 @@ class UserModel extends Model
         cond AS `Condition`,
         added_on AS `Added on`
         FROM cars WHERE created_by=:user_id');
-      $stmt->bindParam(':user_id', $this->_id);
+      $stmt->bindParam(':user_id', $this->user_id);
 
       $stmt->execute();
 
