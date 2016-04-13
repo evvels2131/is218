@@ -29,7 +29,7 @@ abstract class Controller
       $output = curl_exec($ch);
       curl_close($ch);
 
-      $response = json_decode($output);
+      $response = json_decode($output, true);
 
       return $response;
     }
