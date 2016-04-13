@@ -3,8 +3,7 @@ namespace app\controller;
 
 use app\view\AddCarView;
 use app\view\NotificationsView;
-use app\model\CarModel;
-use app\model\UserModel;
+use app\collection\CarCollection;
 
 class AddCarPageController extends Controller
 {
@@ -22,23 +21,34 @@ class AddCarPageController extends Controller
       $price      = parent::sanitizeString($_POST['price']);
       $condition  = parent::sanitizeString($_POST['condition']);
 
-      $car = new CarModel();
+      $carCollection = new CarCollection();
+      $car = $carCollection->create();
+
+      // Grab details from the API
+      $carDetails = parent::getCarsDetails($vin);
 
       $car->setVin($vin);
+      $car->setMake($carDetails->make->name);
+      $car->setModel($carDetails->model->name);
+      $car->setYear($carDetails->years[0]->year);
       $car->setPrice($price);
       $car->setCondition($condition);
+      $car->setImageUrl('http://helloword.com/carpic.jgp');
+      $car->setCreatedBy($_SESSION['user_session']);
 
-      if($car->saveCar($_SESSION['user_session']))
+      if($car->save())
       {
         $result = 'Congratulations! You\'ve successfully added a new car.';
-        $notificationsView = new NotificationsView($result);
+        $type = 'success';
       }
     }
     else
     {
       $result = 'Oops! Something went wrong. <br />Please try again.';
-      $notificationsView = new NotificationsView($result);
+      $type = 'danger';
     }
+
+    $notificationsView = new NotificationsView($result, $type);
   }
 }
 
