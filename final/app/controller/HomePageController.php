@@ -18,7 +18,8 @@ class HomePageController extends Controller
       unset($_SESSION['user_lname']);
 
       $message = 'You have successfully been logged out.';
-      $notificationView = new NotificationsView($message);
+      $type = 'success';
+      $notificationView = new NotificationsView($message, $type);
     }
     else
     {
