@@ -297,16 +297,15 @@ class UserModel extends Model
       $dbconn = DatabaseConnection::getConnection();
 
       $stmt = $dbconn->prepare('SELECT
-        car_id AS `Car ID`,
-        vin AS `Vin`,
-        price AS `Price`,
-        CONCAT_WS(\' \', make, model, year) AS `Car`,
-        cond AS `Condition`,
         img_url AS `Image`,
-        added_on AS `Added`
+        vin AS `Vin`,
+        CONCAT_WS(\' \', make, model, year) AS `Name & Year`,
+        price AS `Price`,
+        cond AS `Condition`,
+        added_on AS `Added on`
         FROM cars WHERE created_by=:user_id');
       $stmt->bindParam(':user_id', $this->_id);
-      
+
       $stmt->execute();
 
       while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
