@@ -33,13 +33,12 @@ class CarCollection extends Collection
       $stmt = $dbconn->prepare('SELECT
         c.img_url AS `Image`,
 	      c.car_id AS `CarID`,
-        c.vin AS `Vin`,
         CONCAT_WS(\' \', c.make, c.model, c.year) AS `Name & Year`,
         c.price AS `Price`,
         c.cond AS `Condition`,
         c.added_on AS `Added on`,
-        CONCAT_WS(\' \', u.first_name, u.last_name) AS `Salesperson`,
-        u.user_id AS `UserID`
+        u.user_id AS `UserID`,
+        CONCAT_WS(\' \', u.first_name, u.last_name) AS `Salesperson`
         FROM cars c LEFT JOIN users u ON c.created_by = u.user_id LIMIT :limitRecords');
 
       $length = strlen($limitRecords);
