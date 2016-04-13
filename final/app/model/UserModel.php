@@ -158,10 +158,6 @@ class UserModel extends Model
   {
     try
     {
-      echo '<br />Login function: <br />';
-      echo 'email: ' . $this->_email . '<br />';
-      echo 'password: ' . $this->_password . '<br />';
-      echo '<hr>';
       $dbconn = DatabaseConnection::getConnection();
 
       // Check if the email is in the database
