@@ -131,7 +131,6 @@ class UserModel extends Model
       $stmt->bindParam(':first_name', $this->_first_name);
       $stmt->bindParam(':last_name', $this->_last_name);
       $stmt->bindParam(':password', $this->_password);
-
       $stmt->execute();
 
       // Log the user registration attempt
@@ -306,6 +305,8 @@ class UserModel extends Model
         img_url AS `Image`,
         added_on AS `Added`
         FROM cars WHERE created_by=:user_id');
+      $stmt->bindParam(':user_id', $this->_id);
+      
       $stmt->execute();
 
       while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
