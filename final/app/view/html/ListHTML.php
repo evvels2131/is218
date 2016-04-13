@@ -7,11 +7,11 @@ class ListHTML extends HTML
   {
     $listHTML = '<ul class="list-group">';
 
-    foreach ($data as $key => $attempts)
+    foreach ($data as $key => $val)
     {
-      foreach ($attempts as $attempt)
+      foreach ($val as $key => $value)
       {
-        $listHTML .= '<li class="list-group-item">' . $attempt . '</li>';
+        $listHTML .= '<li class="list-group-item"><b>' . $key . ':</b> ' . $value . '</li>';
       }
     }
 
