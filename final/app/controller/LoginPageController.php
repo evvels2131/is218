@@ -2,7 +2,7 @@
 namespace app\controller;
 
 use app\view\LoginPageView;
-use app\model\UserModel;
+use app\collection\UserCollection;
 use app\view\NotificationsView;
 
 class LoginPageController extends Controller
@@ -19,25 +19,30 @@ class LoginPageController extends Controller
       $email    = parent::sanitizeString($_POST['email']);
       $password = parent::sanitizeString($_POST['password']);
 
-      $user = new UserModel();
+      $usersCollection = new UserCollection();
+      $user = $usersCollection->create();
+
       $user->setEmail($email);
       $user->setPassword($password);
 
       if ($user->login())
       {
         $message = 'Congratulations! You have successfully logged in.';
+        $type = 'success';
       }
       else
       {
         $message = 'Oops! Incorrect password and email. <br />Please go back and try again.';
+        $type = 'danger';
       }
     }
     else
     {
       $message = 'Oops! Something went wrong. <br />Please go back and try again.';
+      $type = 'danger';
     }
 
-    $notificationsView = new NotificationsView($message);
+    $notificationsView = new NotificationsView($message, $type);
   }
 }
 
