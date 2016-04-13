@@ -45,5 +45,25 @@ class ListHTML extends HTML
 
     return $listHTML;
   }
+
+  // Show more detailed information about a specific car
+  public static function carDetailedList($data)
+  {
+    $listHTML = '<ul class="list-group">';
+    $listHTML .= '<li class="list-group-item"><b>Make:</b> ' . $data->make->name .'</li>';
+    $listHTML .= '<li class="list-group-item"><b>Model:</b> ' . $data->model->name .'</li>';
+    $listHTML .= '<li class="list-group-item"><b>Cylinder:</b> ' . $data->engine->cylinder .'</li>';
+    $listHTML .= '<li class="list-group-item"><b>Size:</b> ' . $data->engine->size .'</li>';
+    $listHTML .= '<li class="list-group-item"><b>Hoursepower:</b> ' . $data->engine->horsepower .'</li>';
+    $listHTML .= '<li class="list-group-item"><b>Driven wheels:</b> ' . $data->drivenWheels .'</li>';
+    $listHTML .= '<li class="list-group-item"><b>Number of doors:</b> ' . $data->numOfDoors .'</li>';
+    $listHTML .= '<li class="list-group-item"><b>Vehicle size:</b> ' . $data->categories->vehicleSize .'</li>';
+    $listHTML .= '<li class="list-group-item"><b>Vin:</b> ' . $data->vin .'</li>';
+    $listHTML .= '<li class="list-group-item"><b>MPG highway:</b> ' . $data->MPG->highway .'</li>';
+    $listHTML .= '<li class="list-group-item"><b>MPG city:</b> ' . $data->MPG->city .'</li>';
+    $listHTML .= '</ul>';
+
+    return $listHTML;
+  }
 }
 ?>
