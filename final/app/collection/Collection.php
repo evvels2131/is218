@@ -3,6 +3,6 @@ namespace app\collection;
 
 abstract class Collection
 {
-  
+  // Pagination 
 }
 ?>
