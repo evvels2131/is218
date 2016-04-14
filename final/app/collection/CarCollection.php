@@ -8,11 +8,33 @@ use \PDO;
 class CarCollection extends Collection
 {
   private $_cars;
+  private $_limitRecords;
+  private $_starting_position;
 
   // Getter for the cars attribute
   public function getCars()
   {
     return $this->_cars;
+  }
+
+  public function setLimit($limit)
+  {
+    $this->_limitRecords = $limit;
+  }
+
+  public function getLimit()
+  {
+    return $this->_limitRecords;
+  }
+
+  public function setStartingPosition($starting_position)
+  {
+    $this->_starting_position = $starting_position;
+  }
+
+  public function getStartingPosition()
+  {
+    return $this->_starting_position;
   }
 
   // Create a new car model
@@ -22,7 +44,7 @@ class CarCollection extends Collection
     return $car;
   }
 
-  public function populateCollection($limitRecords = 10)
+  public function populateCollection()
   {
     $result = array();
 
@@ -40,11 +62,13 @@ class CarCollection extends Collection
         CONCAT_WS(\' \', u.first_name, u.last_name) AS `Salesperson`,
         c.car_id AS `CarID`
         FROM cars c LEFT JOIN users u ON c.created_by = u.user_id ORDER BY c.added_on
-        DESC LIMIT :limitRecords');
+        DESC LIMIT :startingPosition,  :limitRecords');
 
-      $length = strlen($limitRecords);
+      $length = strlen($this->_limitRecords);
+      $strpos = strlen($this->_starting_position);
 
-      $stmt->bindParam(':limitRecords', $limitRecords, PDO::PARAM_STR, $length);
+      $stmt->bindParam(':limitRecords', $this->_limitRecords, PDO::PARAM_STR, $length);
+      $stmt->bindParam(':startingPosition', $this->_starting_position, PDO::PARAM_STR, $strpos);
 
       $stmt->execute();
 
@@ -54,6 +78,27 @@ class CarCollection extends Collection
       }
 
       $this->_cars = $result;
+    }
+    catch (\PDOException $e)
+    {
+      echo 'Database error: ' . $e->getMessage();
+      die();
+    }
+  }
+
+  public function getAmountOfPages()
+  {
+    try
+    {
+      $dbconn = DatabaseConnection::getConnection();
+
+      $stmt = $dbconn->prepare('SELECT car_id FROM cars');
+
+      $stmt->execute();
+
+      $totalRecords =  $stmt->rowCount();
+
+      return ceil($totalRecords / $this->_limitRecords);
     }
     catch (\PDOException $e)
     {
