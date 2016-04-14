@@ -8,7 +8,7 @@ abstract class Paging
     $pagingHTML = '<ul class="pagination">';
     for ($i = 1; $i < $amount + 1; $i++)
     {
-      $pagingHTML .= '<li><a href="index.php?page_no=' . $i . '">' . $i . '</a></li>';
+      $pagingHTML .= '<li class="page"><a href="index.php?page_no=' . $i . '">' . $i . '</a></li>';
     }
     $pagingHTML .= '</ul>';
 
