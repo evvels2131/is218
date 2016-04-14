@@ -9,7 +9,15 @@ class AddCarPageController extends Controller
 {
   public function get()
   {
-    $addCarView = new AddCarView();
+    if (isset($_SESSION['user_session'])) {
+      $addCarView = new AddCarView();
+    }
+    else {
+      $result = 'Oops! Something went wrong. <br />Please make sure you\'re logged in.';
+      $type = 'danger';
+      $notificationsView = new NotificationsView($result, $type);
+    }
+
   }
 
   public function post()
