@@ -14,35 +14,53 @@ class LoginPageController extends Controller
 
   public function post()
   {
-    if (isset($_POST['email']) && isset($_POST['password']))
+    // Check for all the allowed hidden fields
+    if ($_POST['form'])
     {
-      $email    = parent::sanitizeString($_POST['email']);
-      $password = parent::sanitizeString($_POST['password']);
+      $allowed = array();
+      $allowed[] = 'form';
+      $allowed[] = 'email';
+      $allowed[] = 'password';
 
-      $usersCollection = new UserCollection();
-      $user = $usersCollection->create();
+      $sent = array_keys($_POST);
 
-      $user->setEmail($email);
-      $user->setPassword($password);
-
-      if ($user->login())
+      if ($allowed == $sent)
       {
-        $message = 'Congratulations! You have successfully logged in.';
-        $type = 'success';
-      }
-      else
-      {
-        $message = 'Oops! Incorrect password and email. <br />Please go back and try again.';
-        $type = 'danger';
+        if (isset($_POST['email']) && isset($_POST['password']))
+        {
+          $email_clean    = parent::sanitizeString($_POST['email']);
+          $password_clean = parent::sanitizeString($_POST['password']);
+
+          $usersCollection = new UserCollection();
+
+          $user = $usersCollection->create();
+          $user->setEmail($email_clean);
+          $user->setPassword($password_clean);
+
+          if ($user->login()) {
+            $message = 'Congratulations! You have successfully logged in.';
+            $type = 'success';
+          } else {
+            $message = 'Incorrect email and password. Please go back and try again.';
+            $type = 'danger';
+          }
+        }
+        else
+        {
+          $message = 'Please make sure you provide your email and password and
+            try again.';
+          $type = 'danger';
+        }
+
+        $notification = new NotificationsView($message, $type);
       }
     }
     else
     {
-      $message = 'Oops! Something went wrong. <br />Please go back and try again.';
+      $message = 'Something went wrong! Please try again.';
       $type = 'danger';
+      $notification = new NotificationsView($message, $type);
     }
-
-    $notificationsView = new NotificationsView($message, $type);
   }
 }
 
