@@ -28,7 +28,14 @@ class LoginPageController extends Controller
       {
         if (isset($_POST['email']) && isset($_POST['password']))
         {
-          $email_clean    = parent::sanitizeString($_POST['email']);
+          if (parent::isValidEmail($_POST['email'])) {
+            $email_clean = parent::sanitizeString($_POST['email']);
+          } else {
+            $message = 'Incorrect email or password. Please try again.';
+            $type = 'danger';
+            $notification = new NotificationsView($message, $type);
+            exit();
+          }
           $password_clean = parent::sanitizeString($_POST['password']);
 
           $usersCollection = new UserCollection();
