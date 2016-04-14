@@ -31,6 +31,8 @@ class HomePageController extends Controller
     {
       $page_no = $_GET['page_no'];
       $starting_position = ($_GET['page_no'] - 1) * $carCollection->getLimit();
+    } else {
+      $page_no = '';
     }
     $carCollection->setStartingPosition($starting_position);
 
