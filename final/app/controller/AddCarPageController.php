@@ -47,7 +47,7 @@ class AddCarPageController extends Controller
         $path = 'uploads/' . $_FILES['file']['name'];
         $car->setImageUrl($path);
       } else {
-        $car->setImageUrl('http://helloworld.com/carpic.jpg');
+        $car->setImageUrl('https://www.enterprise.com/content/dam/global-vehicle-images/cars/FORD_FOCU_2012-1.png');
       }
 
       $car->setCreatedBy($_SESSION['user_session']);
