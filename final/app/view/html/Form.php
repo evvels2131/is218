@@ -13,7 +13,8 @@ class Form extends HTML
     $this->_action = $action;
     $this->_method = $method;
     $this->_formHeader = '<form action="' . $this->_action . '"
-      method="' . $this->_method . '" class="form-horizontal"><br />';
+      method="' . $this->_method . '" class="form-horizontal"
+      enctype="multipart/form-data"><br />';
   }
 
   public function addNewInput($inputItem)
