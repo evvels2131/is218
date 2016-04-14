@@ -17,7 +17,13 @@ class ProfilePageController extends Controller
       $user->setId($_SESSION['user_session']);
     }
 
-    $profilePageView = new ProfilePageView($user->getLoginHistory(),
+    if (isset($_GET['id']) && $_GET['id'] == $_SESSION['user_session']) {
+      $loginHistory = $user->getLoginHistory();
+    } else {
+      $loginHistory = '';
+    }
+
+    $profilePageView = new ProfilePageView($loginHistory,
       $user->getUsersInformation(), $user->getUsersCars());
   }
 
