@@ -22,12 +22,14 @@ class AddCarView extends View
     $vin_number = InputField::newInputField('text', 'vin', 'Vin Number');
     $price      = InputField::newInputField('text', 'price', 'Price');
     $condition  = InputField::newInputField('text', 'condition', 'Condition');
+    $picture    = InputField::newInputField('file', 'file', 'File Input');
     $submit     = Button::newButton('submit', 'btn-primary', 'Submit');
 
     $form = new Form('index.php?page=addcar', 'POST');
     $form->addNewInput($vin_number);
     $form->addNewInput($price);
     $form->addNewInput($condition);
+    $form->addNewInput($picture);
     $form->addNewInput($submit);
 
     $content = $form->getForm();
