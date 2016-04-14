@@ -48,7 +48,7 @@ class UserModel extends Model
         FOREIGN KEY fk_user (user_id)
         REFERENCES users(user_id)
         ON UPDATE NO ACTION
-        ON DELETE NO ACTION
+        ON DELETE CASCADE
       )ENGINE=InnoDB');
       $stmt->execute();
 
