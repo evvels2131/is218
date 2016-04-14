@@ -33,7 +33,15 @@ class AddCarPageController extends Controller
       $car->setYear($carDetails->years[0]->year);
       $car->setPrice($price);
       $car->setCondition($condition);
-      $car->setImageUrl('http://helloword.com/carpic.jgp');
+
+      if (isset($_FILES['file']) && $_FILES['file']['size'] > 0) {
+        self::saveFile();
+        $path = 'uploads/' . $_FILES['file']['name'];
+        $car->setImageUrl($path);
+      } else {
+        $car->setImageUrl('http://helloworld.com/carpic.jpg');
+      }
+
       $car->setCreatedBy($_SESSION['user_session']);
 
       if($car->save())
