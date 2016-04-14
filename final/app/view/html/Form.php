@@ -47,7 +47,7 @@ class Form extends HTML
       $result = substr($inputItem, $secondLast, $last - $secondLast);
 
       if ($result == 'hp') {
-        continue;
+        $formHTML .= $inputItem;
       } else {
         $formHTML .= '<div class="form-group">';
         $formHTML .= '<label>' . $result . '</label>';
