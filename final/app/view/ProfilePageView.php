@@ -31,7 +31,8 @@ class ProfilePageView extends View
     echo parent::htmlDiv($content, 6);
 
     // Display the login attemps if user is logged in
-    if (isset($_SESSION['user_session']) && !empty($_SESSION['user_session']))
+    if (isset($_SESSION['user_session']) && !empty($_SESSION['user_session']) &&
+      !empty($loginAttempts))
     {
       $content = Heading::newHeading('h4', 'Login attempts:');
       $content .= Table::userLoginHistory($loginAttempts);
