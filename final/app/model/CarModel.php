@@ -44,7 +44,7 @@ class CarModel extends Model
         FOREIGN KEY fk_user(created_by)
         REFERENCES users(user_id)
         ON UPDATE NO ACTION
-        ON DELETE NO ACTION
+        ON DELETE CASCADE
       )ENGINE=InnoDB');
       $stmt->execute();
 
