@@ -20,14 +20,23 @@ class HomePageController extends Controller
       $message = 'You have successfully been logged out.';
       $type = 'success';
       $notificationView = new NotificationsView($message, $type);
+      exit();
     }
-    else
-    {
-      $carCollection = new CarCollection();
-      $carCollection->populateCollection();
 
-      $homePageView = new HomePageView($carCollection->getCars());
+    $carCollection = new CarCollection();
+    $carCollection->setLimit(4);
+
+    $starting_position = 0;
+    if (isset($_GET['page_no']))
+    {
+      $starting_position = ($_GET['page_no'] - 1) * $carCollection->getLimit();
     }
+    $carCollection->setStartingPosition($starting_position);
+
+    $amountOfPages = $carCollection->getAmountOfPages();
+    $carCollection->populateCollection();
+
+    $homePageView = new HomePageView($carCollection->getCars(), $amountOfPages);
   }
 
   public function post()
