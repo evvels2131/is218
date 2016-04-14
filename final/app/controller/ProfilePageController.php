@@ -12,9 +12,11 @@ class ProfilePageController extends Controller
     $user = $userCollection->create();
 
     if (isset($_GET['id'])) {
-      $user->setId($_GET['id']);
+      $id = parent::sanitizeString($_GET['id']);
+      $user->setId($id);
     } else {
-      $user->setId($_SESSION['user_session']);
+      $id = parent::sanitizeString($_GET['id']);
+      $user->setId($id);
     }
 
     if (isset($_GET['id']) && isset($_SESSION['user_session'])
