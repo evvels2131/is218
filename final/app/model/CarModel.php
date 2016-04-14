@@ -37,7 +37,7 @@ class CarModel extends Model
         year VARCHAR(4) DEFAULT NULL,
         price VARCHAR(10) DEFAULT NULL,
         cond VARCHAR(10) DEFAULT NULL,
-        img_url VARCHAR(20) DEFAULT NULL,
+        img_url VARCHAR(100) DEFAULT NULL,
         added_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         created_by CHAR(18) NOT NULL,
         PRIMARY KEY(car_id),
