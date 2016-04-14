@@ -8,10 +8,11 @@ use app\view\html\Paragraph;
 use app\view\html\Link;
 use app\view\html\Heading;
 use app\view\html\Table;
+use app\view\html\Paging;
 
 class HomePageView extends View
 {
-  public function __construct($cars = '')
+  public function __construct($cars = '', $amountOfPages = '')
   {
     echo parent::htmlHeader('Home');
 
@@ -23,6 +24,9 @@ class HomePageView extends View
 
       $carsTable = Table::displayCarsTable($cars);
       echo parent::htmlDiv($carsTable, 10);
+
+      $paging = Paging::getPagingLinks($amountOfPages);
+      echo parent::htmlDiv($paging, 2);
     }
     else
     {
