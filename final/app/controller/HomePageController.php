@@ -29,6 +29,7 @@ class HomePageController extends Controller
     $starting_position = 0;
     if (isset($_GET['page_no']))
     {
+      $page_no = $_GET['page_no'];
       $starting_position = ($_GET['page_no'] - 1) * $carCollection->getLimit();
     }
     $carCollection->setStartingPosition($starting_position);
@@ -36,7 +37,7 @@ class HomePageController extends Controller
     $amountOfPages = $carCollection->getAmountOfPages();
     $carCollection->populateCollection();
 
-    $homePageView = new HomePageView($carCollection->getCars(), $amountOfPages);
+    $homePageView = new HomePageView($carCollection->getCars(), $amountOfPages, $page_no);
   }
 
   public function post()
