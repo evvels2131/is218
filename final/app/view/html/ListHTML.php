@@ -31,6 +31,9 @@ class ListHTML extends HTML
       {
         if ($key == 'UserID') {
           $user_id = $attribute;
+        } else if ($key == 'Image') {
+          $listHTML .= '<li class="list-group-item"><img src="' . $attribute . '" alt="image"
+            class="img-rounded" width="100%" /></li>';
         } else if ($key == 'Salesperson') {
           $listHTML .= '<li class="list-group-item"><b>' . $key .
             ':</b> <a href="index.php?page=profile&id=' . $user_id . '">' .
