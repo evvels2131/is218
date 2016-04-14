@@ -18,6 +18,14 @@ class ProfilePageView extends View
     $content = parent::htmlAlertDiv('info', $heading);
     echo parent::htmlDiv($content, 8);
 
+    // Display users cars if he/she has added any
+    if (!empty($usersCars))
+    {
+      $content = Heading::newHeading('h4', 'Cars added by this user:');
+      $content .= Table::displayCarsTable($usersCars);
+      echo parent::htmlDiv($content, 10);
+    }
+
     $content = Heading::newHeading('h4', 'Basic user information:');
     $content .= ListHTML::databaseList($userInformation);
     echo parent::htmlDiv($content, 6);
@@ -25,17 +33,9 @@ class ProfilePageView extends View
     // Display the login attemps if user is logged in
     if (isset($_SESSION['user_session']) && !empty($_SESSION['user_session']))
     {
-      $content = Heading::newHeading('h4', 'You have logged in on the following dates:');
+      $content = Heading::newHeading('h4', 'Login attempts:');
       $content .= Table::userLoginHistory($loginAttempts);
       echo parent::htmlDiv($content, 6);
-    }
-
-    // Display users cars if he/she has added any
-    if (!empty($usersCars))
-    {
-      $content = Heading::newHeading('h4', 'Cars added by the user:');
-      $content .= Table::displayCarsTable($usersCars);
-      echo parent::htmlDiv($content, 10);
     }
 
     echo parent::htmlFooter();
