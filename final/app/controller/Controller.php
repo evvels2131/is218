@@ -12,6 +12,18 @@ abstract class Controller
     return $string;
   }
 
+  // Check if email is valid
+  public function isValidEmail($email)
+  {
+    $email_pattern = '/^[^@\s<&>]+@([-a-z0-9]+\.)+[a-z]{2,}$/i';
+
+    if (preg_match($email_pattern, $email)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   // Get detailed information about a specific car
   public function getCarsDetails($vin)
   {
