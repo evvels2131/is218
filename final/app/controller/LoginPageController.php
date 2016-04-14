@@ -14,7 +14,7 @@ class LoginPageController extends Controller
 
   public function post()
   {
-    // Check for all the allowed hidden fields
+    // Check for the allowed fields
     if ($_POST['form'])
     {
       $allowed = array();
@@ -60,6 +60,7 @@ class LoginPageController extends Controller
       $message = 'Something went wrong! Please try again.';
       $type = 'danger';
       $notification = new NotificationsView($message, $type);
+      exit();
     }
   }
 }
