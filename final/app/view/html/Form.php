@@ -46,10 +46,14 @@ class Form extends HTML
       $secondLast = strrpos($inputItem, '"', $last - strlen($inputItem) - 1) + 1;
       $result = substr($inputItem, $secondLast, $last - $secondLast);
 
-      $formHTML .= '<div class="form-group">';
-      $formHTML .= '<label>' . $result . '</label>';
-      $formHTML .= $inputItem;
-      $formHTML .= '</div>';
+      if ($result == 'hp') {
+        continue;
+      } else {
+        $formHTML .= '<div class="form-group">';
+        $formHTML .= '<label>' . $result . '</label>';
+        $formHTML .= $inputItem;
+        $formHTML .= '</div>';
+      }
     }
 
     $formHTML .= '<div class="form-group">';
