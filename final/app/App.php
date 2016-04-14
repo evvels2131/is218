@@ -1,6 +1,22 @@
 <?php
 namespace app;
 
+session_start();
+
+// Session fixation and hijacking
+if (isset($_SESSION['HTTP_USER_AGENT']))
+{
+  if ($_SESSION['HTTP_USER_AGENT'] != md5($_SERVER['HTTP_USER_AGENT']))
+  {
+    header('Location: index.php?page=login');
+    exit();
+  }
+}
+else
+{
+  $_SESSION['HTTP_USER_AGENT'] = md5($_SERVER['HTTP_USER_AGENT']);
+}
+
 use app\controller\HomePageController;
 use app\controller\SignupPageController;
 use app\controller\ProfilePageController;
