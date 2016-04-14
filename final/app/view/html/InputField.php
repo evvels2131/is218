@@ -14,7 +14,9 @@ class InputField extends HTML
 
   public static function hiddenInputField($type, $name)
   {
-    $input = '<input type="' . $type . '" name="' . $name . '" value="name"
+    $token = md5(uniqid(rand(), true));
+    $_SESSION['token'] = $token;
+    $input = '<input type="' . $type . '" name="' . $name . '" value="' . $token . '"
       class="hp" >';
 
     return $input;
