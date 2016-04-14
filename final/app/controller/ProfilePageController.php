@@ -17,7 +17,8 @@ class ProfilePageController extends Controller
       $user->setId($_SESSION['user_session']);
     }
 
-    if (isset($_GET['id']) && $_GET['id'] == $_SESSION['user_session']) {
+    if (isset($_GET['id']) && isset($_SESSION['user_session'])
+      && $_GET['id'] == $_SESSION['user_session']) {
       $loginHistory = $user->getLoginHistory();
     } else {
       $loginHistory = '';
