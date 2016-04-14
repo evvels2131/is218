@@ -11,6 +11,13 @@ class InputField extends HTML
 
     return $input;
   }
+
+  public static function hiddenInputField($type, $name)
+  {
+    $input = '<input type="' . $type . '" name="' . $name . '" class="hp" >';
+
+    return $input;
+  }
 }
 
 
