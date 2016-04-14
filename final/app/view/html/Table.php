@@ -32,7 +32,9 @@ class Table extends HTML
         } else if ($property == 'Salesperson') {
           $tableHTML .= '<td><a href="index.php?page=profile&id=' . $user_id . '">' . $val . '</a></td>';
         } else if ($property == 'CarID') {
-          $tableHTML .= '<td><a href="index.php?page=cardetails&id=' . $val . '">Click Here</a></td>';
+          $tableHTML .= '<td><a href="index.php?page=cardetails&id=' . $val . '">View</a></td>';
+        } else if ($property == 'Image') {
+          $tableHTML .= '<td><img src="' . $val . '" alt="image" class="img-rounded" width="60" /></td>';
         } else {
           $tableHTML .= '<td>' . $val . '</td>';
         }
