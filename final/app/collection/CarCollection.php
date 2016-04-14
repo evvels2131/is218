@@ -39,7 +39,8 @@ class CarCollection extends Collection
         u.user_id AS `UserID`,
         CONCAT_WS(\' \', u.first_name, u.last_name) AS `Salesperson`,
         c.car_id AS `CarID`
-        FROM cars c LEFT JOIN users u ON c.created_by = u.user_id LIMIT :limitRecords');
+        FROM cars c LEFT JOIN users u ON c.created_by = u.user_id ORDER BY c.added_on
+        DESC LIMIT :limitRecords');
 
       $length = strlen($limitRecords);
 
