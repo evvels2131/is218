@@ -12,7 +12,7 @@ use app\view\html\Paging;
 
 class HomePageView extends View
 {
-  public function __construct($cars = '', $amountOfPages = '')
+  public function __construct($cars = '', $amountOfPages = '', $page_no = '')
   {
     echo parent::htmlHeader('Home');
 
@@ -26,6 +26,9 @@ class HomePageView extends View
       echo parent::htmlDiv($carsTable, 10);
 
       $paging = Paging::getPagingLinks($amountOfPages);
+      if (isset($page_no) && !empty($page_no)) {
+        $paging .= '<span style="margin-left: 25px;"><b>Page:</b> ' . $page_no . '</span>';
+      }
       echo parent::htmlDiv($paging, 2);
     }
     else
