@@ -28,6 +28,15 @@ class LoginPageController extends Controller
       {
         if (isset($_POST['email']) && isset($_POST['password']))
         {
+          // Check if the token from form matches the one saved in the session
+          if (isset($_SESSION['token']) && $_POST['form'] != $_SESSION['token']) {
+            $message = 'Something went wrong. Please try again.';
+            $type = 'danger';
+            $notification = new NotificationsView($message, $type);
+            exit();
+          }
+
+          // Check if the email is valid
           if (parent::isValidEmail($_POST['email'])) {
             $clean_email = parent::sanitizeString($_POST['email']);
           } else {
