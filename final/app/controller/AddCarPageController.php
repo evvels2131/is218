@@ -27,6 +27,14 @@ class AddCarPageController extends Controller
       // Grab details from the API
       $carDetails = parent::getCarsDetails($vin);
 
+      // If the reponse from the API is an error
+      if (isset($carDetails->errorType) && $carDetails->errorType == 'INCORRECT_PARAMS') {
+        $result = 'Oops! Something went wrong! Please try again with a different VIN.';
+        $type = 'danger';
+        $notificationsView = new NotificationsView($result, $type);
+        exit();
+      }
+
       $car->setVin($vin);
       $car->setMake($carDetails->make->name);
       $car->setModel($carDetails->model->name);
@@ -48,7 +56,6 @@ class AddCarPageController extends Controller
       {
         $result = 'Congratulations! You\'ve successfully added a new car.';
         $type = 'success';
-        $result = self::saveFile();
       }
     }
     else
@@ -68,28 +75,29 @@ class AddCarPageController extends Controller
     $size     = $_FILES['file']['size'];
     $ext      = strtolower(pathinfo($name, PATHINFO_EXTENSION));
 
-    $switch ($error)
+    switch ($error)
     {
-      case UPLOAD_ERR_OK;
+      case UPLOAD_ERR_OK:
         $valid = true;
-        // Validate file extensions
-        if (!in_array($ext, array('jpg', 'jpeg', 'png', 'gif')))
+        // validate file extensions
+        if (!in_array($ext, array('jpg', 'jpeg', 'png', 'gif', 'csv')))
         {
           $valid = false;
           $response = 'Invalid file extension';
         }
-        // Validate file size
-        if ($size / 1024 / 2014 > 3)
+        // validate file size
+        if ($size/1024/1024 > 4)
         {
           $valid = false;
           $response = 'File size is exceeding maximum allowed size';
         }
-        // Upload file
+        // upload file
         if ($valid)
         {
-          $targetPath = dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR .
-            'uploads' . DIRECTORY_SEPARATOR . $name;
+          $targetPath = dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR . 'uploads' .
+            DIRECTORY_SEPARATOR . $name;
           move_uploaded_file($tmpName, $targetPath);
+          $response = 'File uploaded successfully.';
         }
         break;
       case UPLOAD_ERR_INI_SIZE:
@@ -98,16 +106,16 @@ class AddCarPageController extends Controller
         break;
       case UPLOAD_ERR_FORM_SIZE:
         $response = 'The uploaded file exceeds the MAX_FILE_SIZE directive that was
-          specified in the HTML form.';
+          specified in the HTML form';
         break;
       case UPLOAD_ERR_PARTIAL:
-        $response = 'The file was only partially uploaded';
+        $response = 'The uploaded file was only partially uploaded';
         break;
-      case UPLOAD_ERR_NO_FILE;
+      case UPLOAD_ERR_NO_FILE:
         $response = 'No file was uploaded';
         break;
       case UPLOAD_ERR_NO_TMP_DIR:
-        $response = 'Missing a temporary folder.';
+        $response = 'Missing a temporary folder';
         break;
       case UPLOAD_ERR_CANT_WRITE:
         $response = 'Failed to write to disk';
@@ -122,6 +130,7 @@ class AddCarPageController extends Controller
 
     return $response;
   }
+
 }
 
 ?>
