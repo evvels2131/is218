@@ -294,11 +294,11 @@ class UserModel extends Model
 
       $stmt = $dbconn->prepare('SELECT
         img_url AS `Image`,
-        vin AS `Vin`,
         CONCAT_WS(\' \', make, model, year) AS `Name & Year`,
         price AS `Price`,
         cond AS `Condition`,
-        added_on AS `Added on`
+        added_on AS `Added on`,
+        car_id AS `CarID`
         FROM cars WHERE created_by=:user_id');
       $stmt->bindParam(':user_id', $this->user_id);
 
