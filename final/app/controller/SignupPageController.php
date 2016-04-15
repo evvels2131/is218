@@ -14,10 +14,11 @@ class SignupPageController extends Controller
 
   public function post()
   {
-    if ($_POST['form'])
+    if ($_POST['form'] && empty($_POST['hpt']))
     {
       $allowed = array();
       $allowed[] = 'form';
+      $allowed[] = 'hpt';
       $allowed[] = 'fname';
       $allowed[] = 'lname';
       $allowed[] = 'email';
@@ -32,38 +33,35 @@ class SignupPageController extends Controller
         if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email'])
           && isset($_POST['pass']) && isset($_POST['pass2']))
         {
+          $success = true;
+
           // Check if the captcha field is correct
           if (isset($_POST['captcha']) && $_POST['captcha'] != $_SESSION['digit']) {
             $message = 'Something went wrong. Please make sure your captcha code is correct.';
-            $type = 'danger';
-            $notification = new NotificationsView($message, $type);
-            session_destroy();
-            exit();
+            $success = false;
           }
 
           // Check if the token from form matches the one saved in the session
           if (isset($_SESSION['token']) && $_POST['form'] != $_SESSION['token']) {
             $message = 'Something went wrong. Please try again.';
-            $type = 'danger';
-            $notification = new NotificationsView($message, $type);
-            session_destroy();
-            exit();
+            $success = false;
           }
 
           // Check if the email is valid
           if (!parent::isValidEmail($_POST['email'])) {
             $message = 'Incorrect email. Please provide a valid email';
-            $type = 'danger';
-            $notification = new NotificationsView($message, $type);
-            session_destroy();
-            exit();
+            $success = false;
           }
 
           // Check if passwords are matching
           if ($_POST['pass'] != $_POST['pass2']) {
             $message = 'Passwords are not matching. Please go back and try again.';
-            $type = 'danger';
-            $notification = new NotificationsView($message, $type);
+            $success = false;
+          }
+
+          // If the checks fail
+          if (!$success) {
+            $notification = new NotificationsView($message, 'danger');
             session_destroy();
             exit();
           }
