@@ -1,4 +1,4 @@
-<?PHP
+<?php
   // Adapted for The Art of Web: www.the-art-of-web.com
   // Please acknowledge use of this code by including this header.
 
@@ -17,7 +17,7 @@
     imageline($image, 0, rand(0,30), 120, rand(0,30), $linecolor);
   }
 
-  session_start();
+  //session_start();
 
   // add random digits to canvas
   $digit = '';
