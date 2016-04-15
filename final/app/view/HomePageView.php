@@ -27,7 +27,7 @@ class HomePageView extends View
 
       $paging = Paging::getPagingLinks($amountOfPages);
       if (isset($page_no) && !empty($page_no)) {
-        $paging .= '<span style="margin-left: 25px;"><b>Page:</b> ' . $page_no . '</span>';
+        $paging .= '<br /><b>Page:</b> ' . $page_no;
       }
       echo parent::htmlDiv($paging, 2);
     }
