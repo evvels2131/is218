@@ -21,6 +21,14 @@ class InputField extends HTML
 
     return $input;
   }
+
+  public static function captchaInputField()
+  {
+    $captchaInputField = '<input type="text" name="captcha" size="6" maxlength="5"
+      class="form-control" value="" placeholder="Captcha">';
+
+    return $captchaInputField;
+  }
 }
 
 
