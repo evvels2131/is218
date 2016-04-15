@@ -29,10 +29,10 @@ class UserModel extends Model
       // Create user table
       $stmt = $dbconn->prepare('CREATE TABLE IF NOT EXISTS users (
         user_id CHAR(18) NOT NULL,
-        email VARCHAR(50) NOT NULL,
+        email VARCHAR(50) NOT NULL UNIQUE,
         first_name VARCHAR(50) DEFAULT NULL,
         last_name VARCHAR(50) DEFAULT NULL,
-        password VARCHAR(225) NOT NULL,
+        password VARCHAR(70) NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY(user_id)
       )ENGINE=InnoDB');
