@@ -1,6 +1,8 @@
 <?php
 namespace app\view\html;
 
+use app\view\html\CaptchaHTML;
+
 class Form extends HTML
 {
   private $_action;
@@ -55,7 +57,7 @@ class Form extends HTML
         $formHTML .= '</div>';
       }
     }
-
+    $formHTML .= CaptchaHTML::getCaptcha();
     $formHTML .= '<div class="form-group">';
     $formHTML .= '<div class="btn-group">';
     foreach ($this->_form as $inputItem)
