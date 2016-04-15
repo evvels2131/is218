@@ -12,10 +12,7 @@ class HomePageController extends Controller
     // Delete the session if logout button clicked
     if (isset($_GET['logout']))
     {
-      session_unset();
-      unset($_SESSION['user_session']);
-      unset($_SESSION['user_fname']);
-      unset($_SESSION['user_lname']);
+      session_destroy();
 
       $message = 'You have successfully been logged out.';
       $type = 'success';
