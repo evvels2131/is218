@@ -91,6 +91,12 @@ abstract class View
 
       return $pageHTML;
   }
+
+  // Bootstrap well
+  public function htmlWell($content)
+  {
+    return '<div class="well">' . $content . '</div>';
+  }
 }
 
 ?>
