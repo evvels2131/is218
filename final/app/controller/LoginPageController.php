@@ -34,6 +34,7 @@ class LoginPageController extends Controller
             $message = 'Something went wrong. Please make sure your captcha code is correct.';
             $type = 'danger';
             $notification = new NotificationsView($message, $type);
+            session_destroy();
             exit();
           }
 
@@ -42,6 +43,7 @@ class LoginPageController extends Controller
             $message = 'Something went wrong. Please try again.';
             $type = 'danger';
             $notification = new NotificationsView($message, $type);
+            session_destroy();
             exit();
           }
 
@@ -50,6 +52,7 @@ class LoginPageController extends Controller
             $message = 'Incorrect email or password. Please try again.';
             $type = 'danger';
             $notification = new NotificationsView($message, $type);
+            session_destroy();
             exit();
           }
 
@@ -65,6 +68,8 @@ class LoginPageController extends Controller
           if ($user->login()) {
             $message = 'Congratulations! You have successfully logged in.';
             $type = 'success';
+            unset($_SESSION['token']);
+            unset($_SESSION['digit']);
           } else {
             $message = 'Incorrect email and password. Please go back and try again.';
             $type = 'danger';
