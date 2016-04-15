@@ -21,6 +21,7 @@ class LoginPageController extends Controller
       $allowed[] = 'form';
       $allowed[] = 'email';
       $allowed[] = 'password';
+      $allowed[] = 'captcha';
 
       $sent = array_keys($_POST);
 
@@ -28,6 +29,14 @@ class LoginPageController extends Controller
       {
         if (isset($_POST['email']) && isset($_POST['password']))
         {
+          // Check if the captcha field is correct
+          if (isset($_POST['captcha']) && $_POST['captcha'] != $_SESSION['digit']) {
+            $message = 'Something went wrong. Please make sure your captcha code is correct.';
+            $type = 'danger';
+            $notification = new NotificationsView($message, $type);
+            exit();
+          }
+
           // Check if the token from form matches the one saved in the session
           if (isset($_SESSION['token']) && $_POST['form'] != $_SESSION['token']) {
             $message = 'Something went wrong. Please try again.';
