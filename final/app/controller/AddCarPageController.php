@@ -104,58 +104,6 @@ class AddCarPageController extends Controller
       $type = 'danger';
     }
     $notification = new NotificationsView($message, $type);
-
-
-    /*if (isset($_POST) && !empty($_POST))
-    {
-      // vin, price, condition
-      $vin        = parent::sanitizeString($_POST['vin']);
-      $price      = parent::sanitizeString($_POST['price']);
-      $condition  = parent::sanitizeString($_POST['condition']);
-
-      $carCollection = new CarCollection();
-      $car = $carCollection->create();
-
-      // Grab details from the API
-      $carDetails = parent::getCarsDetails($vin);
-
-      // If the reponse from the API is an error
-      if (isset($carDetails->errorType) && $carDetails->errorType == 'INCORRECT_PARAMS') {
-        $result = 'Oops! Something went wrong! Please try again with a different VIN.';
-        $type = 'danger';
-        $notificationsView = new NotificationsView($result, $type);
-        exit();
-      }
-
-      $car->setVin($vin);
-      $car->setMake($carDetails->make->name);
-      $car->setModel($carDetails->model->name);
-      $car->setYear($carDetails->years[0]->year);
-      $car->setPrice($price);
-      $car->setCondition($condition);
-
-      if (isset($_FILES['file']) && $_FILES['file']['size'] > 0) {
-        self::saveFile();
-        $path = 'uploads/' . $_FILES['file']['name'];
-        $car->setImageUrl($path);
-      } else {
-        $car->setImageUrl('https://www.enterprise.com/content/dam/global-vehicle-images/cars/FORD_FOCU_2012-1.png');
-      }
-
-      $car->setCreatedBy($_SESSION['user_session']);
-
-      if($car->save()) {
-        $result = 'Congratulations! You\'ve successfully added a new car.';
-        $type = 'success';
-      }
-    }
-    else
-    {
-      $result = 'Oops! Something went wrong. <br />Please try again.';
-      $type = 'danger';
-    }
-
-    $notificationsView = new NotificationsView($result, $type);*/
   }
 
   public function saveFile()
