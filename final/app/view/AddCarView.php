@@ -24,6 +24,7 @@ class AddCarView extends View
     $price      = InputField::newInputField('text', 'price', 'Price');
     $condition  = InputField::newInputField('text', 'condition', 'Condition');
     $picture    = InputField::newInputField('file', 'file', 'File Input');
+    $captcha    = InputField::captchaInputField();
     $submit     = Button::newButton('submit', 'btn-primary', 'Submit');
 
     $form = new Form('index.php?page=addcar', 'POST');
@@ -32,6 +33,7 @@ class AddCarView extends View
     $form->addNewInput($price);
     $form->addNewInput($condition);
     $form->addNewInput($picture);
+    $form->addNewInput($captcha);
     $form->addNewInput($submit);
 
     $content = $form->getForm();
