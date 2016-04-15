@@ -28,7 +28,8 @@ class ProfilePageView extends View
 
     $content = Heading::newHeading('h4', 'Basic user information:');
     $content .= ListHTML::databaseList($userInformation);
-    echo parent::htmlDiv($content, 6);
+    $well = parent::htmlWell($content);
+    echo parent::htmlDiv($well, 6);
 
     // Display the login attemps if user is logged in
     if (isset($_SESSION['user_session']) && !empty($_SESSION['user_session']) &&
