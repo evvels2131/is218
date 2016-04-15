@@ -14,6 +14,8 @@ class SignupPageController extends Controller
 
   public function post()
   {
+    $success = true;
+
     if ($_POST['form'] && empty($_POST['hpt']))
     {
       $allowed = array();
@@ -33,11 +35,10 @@ class SignupPageController extends Controller
         if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email'])
           && isset($_POST['pass']) && isset($_POST['pass2']))
         {
-          $success = true;
-
           // Check if the captcha field is correct
           if (isset($_POST['captcha']) && $_POST['captcha'] != $_SESSION['digit']) {
-            $message = 'Something went wrong. Please make sure your captcha code is correct.';
+            $message = 'Something went wrong. Please make sure you are providing correct
+              information.';
             $success = false;
           }
 
@@ -83,25 +84,35 @@ class SignupPageController extends Controller
 
           if ($user->register()) {
             $message = 'Congratulations! You\'ve successfully registered.';
-            $type = 'success';
+            $success = true;
           } else {
             $message = 'Something went wrong! Please try again.';
-            $type = 'danger';
+            $success = false;
           }
         }
         else
         {
           $message = 'Make sure you\'ve provided all information.
             Please go back and try again.';
-          $type = 'danger';
+          $success = false;
         }
       }
       else
       {
         $message = 'Something went wrong. Please go back and try again.';
-        $type = 'danger';
+        $success = false;
       }
     }
+
+    unset($_SESSION['token']);
+    unset($_SESSION['digit']);
+
+    if ($success) {
+      $type = 'success';
+    } else {
+      $type = 'danger';
+    }
+
     $notification = new NotificationsView($message, $type);
   }
 }
