@@ -22,13 +22,15 @@ class SignupPageController extends Controller
       $password   = parent::sanitizeString($_POST['pass']);
       $password2  = parent::sanitizeString($_POST['pass2']);
 
+      $hashedPassword = parent::hashPassword($password);
+
       $userCollection = new UserCollection();
       $user = $userCollection->create();
 
       $user->setFirstName($firstname);
       $user->setLastName($lastname);
       $user->setEmail($email);
-      $user->setPassword($password);
+      $user->setPassword($hashedPassword);
 
       if ($user->register() == true)
       {
