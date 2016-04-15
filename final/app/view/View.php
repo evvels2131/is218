@@ -26,7 +26,8 @@ abstract class View
           <div class="container">
             <a class="navbar-brand" href="index.php">IS-218</a>
             <ul class="nav navbar-nav">';
-            if (isset($_SESSION['user_session']))
+            if (isset($_SESSION['user_session'])
+              && $_SESSION['HTTP_USER_AGENT'] = md5($_SERVER['HTTP_USER_AGENT']))
             {
               $pageHTML .= '
                 <li>' . Link::newLink('Home', 'index.php', '_self') . '</li>
