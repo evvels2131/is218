@@ -17,7 +17,7 @@
     imageline($image, 0, rand(0,30), 120, rand(0,30), $linecolor);
   }
 
-  //session_start();
+  session_start();
 
   // add random digits to canvas
   $digit = '';
@@ -30,7 +30,7 @@
   $_SESSION['digit'] = $digit;
 
   // display image and clean up
-  //header('Content-type: image/png');
+  header('Content-type: image/png');
   imagepng($image);
   imagedestroy($image);
 ?>
