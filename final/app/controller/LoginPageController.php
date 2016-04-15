@@ -19,6 +19,7 @@ class LoginPageController extends Controller
     {
       $allowed = array();
       $allowed[] = 'form';
+      $allowed[] = 'hpt';
       $allowed[] = 'email';
       $allowed[] = 'password';
       $allowed[] = 'captcha';
@@ -32,6 +33,15 @@ class LoginPageController extends Controller
           // Check if the captcha field is correct
           if (isset($_POST['captcha']) && $_POST['captcha'] != $_SESSION['digit']) {
             $message = 'Something went wrong. Please make sure your captcha code is correct.';
+            $type = 'danger';
+            $notification = new NotificationsView($message, $type);
+            session_destroy();
+            exit();
+          }
+
+          // Check if the honey pot field is empty
+          if (isset($_POST['hpt']) && !empty($_POST['hpt'])) {
+            $message = 'Something went wrong. Please try again.';
             $type = 'danger';
             $notification = new NotificationsView($message, $type);
             session_destroy();
@@ -81,9 +91,12 @@ class LoginPageController extends Controller
             try again.';
           $type = 'danger';
         }
-
-        $notification = new NotificationsView($message, $type);
+      } else {
+        $message = 'Something went wrong. Please try again.';
+        $type = 'danger';
       }
+
+      $notification = new NotificationsView($message, $type);
     }
     else
     {
