@@ -21,7 +21,7 @@ class HomePageController extends Controller
     }
 
     $carCollection = new CarCollection();
-    $carCollection->setLimit(4);
+    $carCollection->setLimit(7);
 
     $starting_position = 0;
     if (isset($_GET['page_no']))
