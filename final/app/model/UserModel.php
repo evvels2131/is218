@@ -253,7 +253,7 @@ class UserModel extends Model
       $stmt = $dbconn->prepare('SELECT
         attempted_at AS `Date`,
         success AS `Successful`
-        FROM login_attempts WHERE user_id=:user_id ORDER BY attempted_at DESC');
+        FROM login_attempts WHERE user_id=:user_id ORDER BY attempted_at DESC LIMIT 5');
 
       $stmt->bindParam(':user_id', $this->user_id);
 
