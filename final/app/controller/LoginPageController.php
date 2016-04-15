@@ -14,8 +14,10 @@ class LoginPageController extends Controller
 
   public function post()
   {
+    $success = true;
+
     // Check for the allowed fields
-    if ($_POST['form'])
+    if ($_POST['form'] && empty($_POST['hpt']))
     {
       $allowed = array();
       $allowed[] = 'form';
@@ -32,36 +34,20 @@ class LoginPageController extends Controller
         {
           // Check if the captcha field is correct
           if (isset($_POST['captcha']) && $_POST['captcha'] != $_SESSION['digit']) {
-            $message = 'Something went wrong. Please make sure your captcha code is correct.';
-            $type = 'danger';
-            $notification = new NotificationsView($message, $type);
-            session_destroy();
-            exit();
-          }
-
-          // Check if the honey pot field is empty
-          if (isset($_POST['hpt']) && !empty($_POST['hpt'])) {
-            $message = 'Something went wrong. Please try again.';
-            $type = 'danger';
-            $notification = new NotificationsView($message, $type);
-            session_destroy();
-            exit();
+            $message = 'Something went wrong. Please make sure you are proving
+              correct information.';
+            $success = false;
           }
 
           // Check if the token from form matches the one saved in the session
           if (isset($_SESSION['token']) && $_POST['form'] != $_SESSION['token']) {
             $message = 'Something went wrong. Please try again.';
-            $type = 'danger';
-            $notification = new NotificationsView($message, $type);
-            session_destroy();
-            exit();
+            $success = false;
           }
 
-          // Check if the email is valid
-          if (!parent::isValidEmail($_POST['email'])) {
-            $message = 'Incorrect email or password. Please try again.';
-            $type = 'danger';
-            $notification = new NotificationsView($message, $type);
+          // If the checks fail
+          if (!$success) {
+            $notification = new NotificationsView($message, 'danger');
             session_destroy();
             exit();
           }
@@ -77,36 +63,41 @@ class LoginPageController extends Controller
 
           if ($user->login()) {
             $message = 'Congratulations! You have successfully logged in.';
-            $type = 'success';
-            unset($_SESSION['token']);
-            unset($_SESSION['digit']);
+            $success = true;
           } else {
-            $message = 'Incorrect email and password. Please go back and try again.';
-            $type = 'danger';
+            $message = 'Incorrect email or password. Please go back and try again.';
+            $success = false;
           }
         }
         else
         {
           $message = 'Please make sure you provide your email and password and
             try again.';
-          $type = 'danger';
+          $success = false;
         }
       } else {
         $message = 'Something went wrong. Please try again.';
-        $type = 'danger';
+        $success = false;
       }
 
-      $notification = new NotificationsView($message, $type);
     }
     else
     {
-      $message = 'Something went wrong! Please try again.';
-      $type = 'danger';
-      $notification = new NotificationsView($message, $type);
-      exit();
+      $message = 'Something went wrong. Please try again.';
+      $success = false;
     }
+
+    unset($_SESSION['token']);
+    unset($_SESSION['digit']);
+
+    if ($success) {
+      $type = 'success';
+    } else {
+      $type = 'danger';
+    }
+
+    $notification = new NotificationsView($message, $type);
   }
 }
-
 
 ?>
