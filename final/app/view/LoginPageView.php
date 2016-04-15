@@ -20,13 +20,15 @@ class LoginPageView extends View
     echo parent::htmlDiv($content, 8);
 
     // Form
-    $hp       = InputField::hiddenInputField('text', 'form');
+    $hp_uniq  = InputField::hiddenInputField('text', 'form');
+    $hp       = InputField::hpInputField();
     $username = InputField::newInputField('text', 'email', 'Email');
     $password = InputField::newInputField('password', 'password', 'Password');
     $captcha  = InputField::captchaInputField();
     $submit   = Button::newButton('submit', 'btn-primary', 'Sing in');
 
     $form = new Form('index.php?page=login', 'POST');
+    $form->addNewInput($hp_uniq);
     $form->addNewInput($hp);
     $form->addNewInput($username);
     $form->addNewInput($password);
