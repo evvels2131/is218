@@ -17,6 +17,7 @@ class SignupPageView extends View
     $heading = parent::htmlAlertDiv('info', Heading::newHeading('h4', 'Sign up below'));
     echo parent::htmlDiv($heading, 8);
 
+    $hp         = InputField::hiddenInputField('text', 'form');
     $firstname  = InputField::newInputField('text', 'fname', 'First name');
     $lastname   = InputField::newInputField('text', 'lname', 'Last name');
     $email      = InputField::newInputField('text', 'email', 'Email');
@@ -25,6 +26,7 @@ class SignupPageView extends View
     $submit     = Button::newButton('submit', 'btn-primary', 'Register');
 
     $form = new Form('index.php?page=signup', 'POST');
+    $form->addNewInput($hp);
     $form->addNewInput($firstname);
     $form->addNewInput($lastname);
     $form->addNewInput($email);
