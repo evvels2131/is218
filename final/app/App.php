@@ -12,10 +12,6 @@ if (isset($_SESSION['HTTP_USER_AGENT']))
     exit();
   }
 }
-else
-{
-  $_SESSION['HTTP_USER_AGENT'] = md5($_SERVER['HTTP_USER_AGENT']);
-}
 
 use app\controller\HomePageController;
 use app\controller\SignupPageController;
