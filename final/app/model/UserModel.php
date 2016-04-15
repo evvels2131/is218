@@ -32,7 +32,7 @@ class UserModel extends Model
         email VARCHAR(50) NOT NULL,
         first_name VARCHAR(50) DEFAULT NULL,
         last_name VARCHAR(50) DEFAULT NULL,
-        password VARCHAR(50) NOT NULL,
+        password VARCHAR(225) NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY(user_id)
       )ENGINE=InnoDB');
@@ -161,7 +161,7 @@ class UserModel extends Model
       $dbconn = DatabaseConnection::getConnection();
 
       // Check if the email is in the database
-      $stmt = $dbconn->prepare('SELECT email, user_id FROM users WHERE email=:email LIMIT 1');
+      $stmt = $dbconn->prepare('SELECT * FROM users WHERE email=:email LIMIT 1');
 
       $stmt->bindParam(':email', $this->email);
       $stmt->execute();
@@ -171,25 +171,14 @@ class UserModel extends Model
       if ($stmt->rowCount() > 0)
       {
         $user_id = $row['user_id'];
+        $hash = $row['password'];
 
-        $stmt = $dbconn->prepare('SELECT * FROM users WHERE email=:email AND
-          password=:password LIMIT 1');
-
-        $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':password', $this->password);
-
-        $stmt->execute();
-
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($stmt->rowCount() > 0)
+        if (password_verify($this->password, $hash))
         {
+          $success = 'true';
           $_SESSION['user_session'] = $row['user_id'];
           $_SESSION['user_fname']   = $row['first_name'];
           $_SESSION['user_lname']   = $row['last_name'];
-
-          $user_id = $row['user_id'];
-          $success = 'true';
         }
         else
         {
