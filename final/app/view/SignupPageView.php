@@ -23,6 +23,7 @@ class SignupPageView extends View
     $email      = InputField::newInputField('text', 'email', 'Email');
     $password   = InputField::newInputField('password', 'pass', 'Password');
     $password2  = InputField::newInputField('password', 'pass2', 'Re-enter password');
+    $captcha    = InputField::captchaInputField();
     $submit     = Button::newButton('submit', 'btn-primary', 'Register');
 
     $form = new Form('index.php?page=signup', 'POST');
@@ -32,6 +33,7 @@ class SignupPageView extends View
     $form->addNewInput($email);
     $form->addNewInput($password);
     $form->addNewInput($password2);
+    $form->addNewInput($captcha);
     $form->addNewInput($submit);
 
     $content = $form->getForm();
