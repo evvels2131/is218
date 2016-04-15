@@ -12,6 +12,7 @@ class InputField extends HTML
     return $input;
   }
 
+  // Hidden input field with unique key generated and stored in the session
   public static function hiddenInputField($type, $name)
   {
     $token = md5(uniqid(rand(), true));
@@ -22,6 +23,15 @@ class InputField extends HTML
     return $input;
   }
 
+  // Honey pot input field
+  public static function hpInputField()
+  {
+    $hpInputField = '<input type="text" name="hpt" class="hp" />';
+
+    return $hpInputField;
+  }
+
+  // Captcha input field
   public static function captchaInputField()
   {
     $captchaInputField = '<input type="text" name="captcha" size="6" maxlength="5"
