@@ -23,6 +23,7 @@ class SignupPageController extends Controller
       $allowed[] = 'email';
       $allowed[] = 'pass';
       $allowed[] = 'pass2';
+      $allowed[] = 'captcha';
 
       $sent = array_keys($_POST);
 
@@ -31,6 +32,14 @@ class SignupPageController extends Controller
         if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email'])
           && isset($_POST['pass']) && isset($_POST['pass2']))
         {
+          // Check if the captcha field is correct
+          if (isset($_POST['captcha']) && $_POST['captcha'] != $_SESSION['digit']) {
+            $message = 'Something went wrong. Please make sure your captcha code is correct.';
+            $type = 'danger';
+            $notification = new NotificationsView($message, $type);
+            exit();
+          }
+
           // Check if the token from form matches the one saved in the session
           if (isset($_SESSION['token']) && $_POST['form'] != $_SESSION['token']) {
             $message = 'Something went wrong. Please try again.';
