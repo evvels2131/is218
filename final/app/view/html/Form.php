@@ -9,11 +9,13 @@ class Form extends HTML
   private $_method;
   private $_formHeader;
   private $_form;
+  private $_captcha;
 
-  public function __construct($action, $method)
+  public function __construct($action, $method, $captcha = true)
   {
     $this->_action = $action;
     $this->_method = $method;
+    $this->_captcha = $captcha;
     $this->_formHeader = '<form action="' . $this->_action . '"
       method="' . $this->_method . '" class="form-horizontal"
       enctype="multipart/form-data"><br />';
@@ -57,9 +59,14 @@ class Form extends HTML
         $formHTML .= '</div>';
       }
     }
-    $formHTML .= CaptchaHTML::getCaptcha();
-    $formHTML .= '<div class="form-group">';
-    $formHTML .= '<div class="btn-group">';
+
+    if ($this->_captcha != false)
+    {
+      $formHTML .= CaptchaHTML::getCaptcha();
+      $formHTML .= '<div class="form-group">';
+      $formHTML .= '<div class="btn-group">';
+    }
+
     foreach ($this->_form as $inputItem)
     {
       if (strpos($inputItem, 'btn') !== false)
