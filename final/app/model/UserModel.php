@@ -179,6 +179,7 @@ class UserModel extends Model
           $_SESSION['user_session'] = $row['user_id'];
           $_SESSION['user_fname']   = $row['first_name'];
           $_SESSION['user_lname']   = $row['last_name'];
+          $_SESSION['HTTP_USER_AGENT'] = md5($_SERVER['HTTP_USER_AGENT'];
         }
         else
         {
