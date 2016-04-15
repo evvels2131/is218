@@ -12,8 +12,8 @@ class HomePageController extends Controller
     // Delete the session if logout button clicked
     if (isset($_GET['logout']))
     {
+      $_SESSION = array();
       session_destroy();
-
       $message = 'You have successfully been logged out.';
       $type = 'success';
       $notificationView = new NotificationsView($message, $type);
