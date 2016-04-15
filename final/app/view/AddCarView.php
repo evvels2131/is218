@@ -19,6 +19,7 @@ class AddCarView extends View
     echo parent::htmlDiv($content, 8);
 
     // Form
+    $hp         = InputField::hiddenInputField('text', 'form');
     $vin_number = InputField::newInputField('text', 'vin', 'Vin Number');
     $price      = InputField::newInputField('text', 'price', 'Price');
     $condition  = InputField::newInputField('text', 'condition', 'Condition');
@@ -26,6 +27,7 @@ class AddCarView extends View
     $submit     = Button::newButton('submit', 'btn-primary', 'Submit');
 
     $form = new Form('index.php?page=addcar', 'POST');
+    $form->addNewInput($hp);
     $form->addNewInput($vin_number);
     $form->addNewInput($price);
     $form->addNewInput($condition);
