@@ -37,6 +37,7 @@ class SignupPageController extends Controller
             $message = 'Something went wrong. Please make sure your captcha code is correct.';
             $type = 'danger';
             $notification = new NotificationsView($message, $type);
+            session_destroy();
             exit();
           }
 
@@ -45,6 +46,7 @@ class SignupPageController extends Controller
             $message = 'Something went wrong. Please try again.';
             $type = 'danger';
             $notification = new NotificationsView($message, $type);
+            session_destroy();
             exit();
           }
 
@@ -53,6 +55,7 @@ class SignupPageController extends Controller
             $message = 'Incorrect email. Please provide a valid email';
             $type = 'danger';
             $notification = new NotificationsView($message, $type);
+            session_destroy();
             exit();
           }
 
@@ -61,6 +64,7 @@ class SignupPageController extends Controller
             $message = 'Passwords are not matching. Please go back and try again.';
             $type = 'danger';
             $notification = new NotificationsView($message, $type);
+            session_destroy();
             exit();
           }
 
