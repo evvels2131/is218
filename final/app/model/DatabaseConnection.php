@@ -7,15 +7,15 @@ class DatabaseConnection extends Database
 {
   protected static $_db;
 
-  //const DB_USER     = 'tg77';
-  //const DB_PASSWORD = 'jxosRjx3L';
-  //const DB_HOST     = 'sql2.njit.edu';
-  //const DB_NAME     = 'tg77';
+  const DB_USER     = 'tg77';
+  const DB_PASSWORD = 'jxosRjx3L';
+  const DB_HOST     = 'sql2.njit.edu';
+  const DB_NAME     = 'tg77';
 
-  const DB_USER     = 'root';
-  const DB_PASSWORD = 'root';
-  const DB_HOST     = 'localhost';
-  const DB_NAME     = 'is218';
+  //const DB_USER     = 'root';
+  //const DB_PASSWORD = 'root';
+  //const DB_HOST     = 'localhost';
+  //const DB_NAME     = 'is218';
 
   private function __construct()
   {
