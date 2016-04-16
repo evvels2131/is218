@@ -13,7 +13,7 @@ $app = new App;
 
 //session_unset();
 
-echo '<hr>';
+/*echo '<hr>';
 echo '<h2>Debugging Information</h2>';
 
 if (isset($_SESSION))
@@ -48,5 +48,5 @@ if (isset($_POST) && !empty($_POST))
   echo '</pre>';
 }
 
-echo '<hr>';
+echo '<hr>';*/
 ?>
