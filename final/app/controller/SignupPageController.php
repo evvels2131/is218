@@ -93,10 +93,18 @@ class SignupPageController extends Controller
             $subject = 'Thank you for signing up! Please confirm your email address.';
             $header = 'From: Tomasz <tg77@njit.edu>';
 
-            $msg = 'Your Confirmation Link \r\n';
-            $msg .= 'Click on this link to activate your account: \r\n';
-            $msg .= 'https://web.njit.edu/~tg77/is218/final/index.php?page=confirmation?confirm_code='
-              . $conf_code;
+            $url = 'https://web.njit.edu/~tg77/is218/final/index.php?page=confirmation&confirm_code=' . $conf_code;
+
+            $msg = 'Your Confirmation Link
+              Click on this link to activate your account:
+              ' . $url . '.
+              Thank you for registering.';
+
+            //$msg = 'Your Confirmation Link \r\n';
+            //$msg .= 'Click on this link to activate your account: \r\n';
+            // url https://web.njit.edu/~tg77/is218/final/index.php?page=confirmation&confirm_code=a8523063af0039e18fdf341b972d6ed0
+            //$msg .= 'https://web.njit.edu/~tg77/is218/final/index.php?page=confirmation?confirm_code='
+            //  . $conf_code;
 
             $sendmail = mail($to, $subject, $msg, $header);
 
