@@ -230,7 +230,6 @@ class UserModel extends Model
       }
       else
       {
-        echo 'No';
         return false;
       }
     }
