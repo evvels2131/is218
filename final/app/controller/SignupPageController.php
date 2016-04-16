@@ -90,17 +90,19 @@ class SignupPageController extends Controller
 
             // Send confirmation email
             $to = $clean_email;
-            $subject = 'Your confirmation link here';
+            $subject = 'Thank you for signing up! Please confirm your email address.';
             $header = 'From: Tomasz <tg77@njit.edu>';
-            $msg = 'Your Confirmation Link <br />';
-            $msg .= 'Click on this link to activate your account.<br />';
-            $msg .= 'http://localhost:8888/is218/wrk/final/index.php?page=confirmation?confirm_code='
+
+            $msg = 'Your Confirmation Link \r\n';
+            $msg .= 'Click on this link to activate your account: \r\n';
+            $msg .= 'https://web.njit.edu/~tg77/is218/final/index.php?page=confirmation?confirm_code='
               . $conf_code;
+
             $sendmail = mail($to, $subject, $msg, $header);
 
             if ($sendmail) {
               $message .= 'Your confirmation link has been sent to your email address.<br />
-                Please confirm your email before loggin in.';
+                Please confirm your email before logging in.';
             } else {
               $message .= 'Could not send confirmation link to your e-mail address';
             }
