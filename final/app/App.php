@@ -55,6 +55,10 @@ class App
           $carDetailsController = new CarDetailsController();
           $carDetailsController->$request_method();
           break;
+        case 'confirmation':
+          $confirmationController = new ConfirmationController();
+          $confirmationController->$request_method();
+          break;
       }
     }
   }
