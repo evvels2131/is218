@@ -3,6 +3,7 @@ namespace app\view;
 
 use app\view\html\Paragraph;
 use app\view\html\Link;
+use app\view\html\Heading;
 
 class ConfirmationView extends View
 {
