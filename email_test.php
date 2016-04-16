@@ -11,7 +11,7 @@ $message .= '<Click on this link to activate your account. <br/>';
 
 $sentmail = mail($to, $subject, $message, $header);
 
-if ($sendemail)
+if ($sentemail)
 {
   echo '<br />Email was sent';
 } else {
