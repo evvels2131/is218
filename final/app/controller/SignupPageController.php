@@ -100,12 +100,6 @@ class SignupPageController extends Controller
               ' . $url . '.
               Thank you for registering.';
 
-            //$msg = 'Your Confirmation Link \r\n';
-            //$msg .= 'Click on this link to activate your account: \r\n';
-            // url https://web.njit.edu/~tg77/is218/final/index.php?page=confirmation&confirm_code=a8523063af0039e18fdf341b972d6ed0
-            //$msg .= 'https://web.njit.edu/~tg77/is218/final/index.php?page=confirmation?confirm_code='
-            //  . $conf_code;
-
             $sendmail = mail($to, $subject, $msg, $header);
 
             if ($sendmail) {
