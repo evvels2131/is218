@@ -25,11 +25,14 @@ class HomePageView extends View
       $carsTable = Table::displayCarsTable($cars);
       echo parent::htmlDiv($carsTable, 10);
 
-      $paging = Paging::getPagingLinks($amountOfPages);
-      if (isset($page_no) && !empty($page_no)) {
-        $paging .= '<br /><b>Page:</b> ' . $page_no;
+      if ($amountOfPages > 1) {
+        $paging = Paging::getPagingLinks($amountOfPages);
+        
+        if (isset($page_no) && !empty($page_no)) {
+          $paging .= '<br /><b>Page:</b> ' . $page_no;
+        }
+        echo parent::htmlDiv($paging, 2);
       }
-      echo parent::htmlDiv($paging, 2);
     }
     else
     {
