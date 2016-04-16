@@ -33,10 +33,19 @@ class HomePageController extends Controller
     }
     $carCollection->setStartingPosition($starting_position);
 
-    $amountOfPages = $carCollection->getAmountOfPages();
-    $carCollection->populateCollection();
+    $amountOfPages = 0;
 
-    $homePageView = new HomePageView($carCollection->getCars(), $amountOfPages, $page_no);
+    if ($carCollection->getAmountOfPages() != false) {
+      $amountOfPages = $carCollection->getAmountOfPages();
+    }
+    
+    $cars = array();
+
+    if ($carCollection->populateCollection()) {
+      $cars = $carCollection->getCars();
+    }
+
+    $homePageView = new HomePageView($cars, $amountOfPages, $page_no);
   }
 
   public function post()
