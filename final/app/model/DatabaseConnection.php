@@ -15,7 +15,7 @@ class DatabaseConnection extends Database
   const DB_USER     = 'root';
   const DB_PASSWORD = 'root';
   const DB_HOST     = 'localhost';
-  const DB_NAME     = 'is2188';
+  const DB_NAME     = 'is218';
 
   private function __construct()
   {
