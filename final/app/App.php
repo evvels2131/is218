@@ -19,6 +19,7 @@ use app\controller\ProfilePageController;
 use app\controller\AddCarPageController;
 use app\controller\LoginPageController;
 use app\controller\CarDetailsController;
+use app\controller\ConfirmationController;
 
 class App
 {
