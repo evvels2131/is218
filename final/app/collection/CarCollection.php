@@ -78,10 +78,13 @@ class CarCollection extends Collection
       }
 
       $this->_cars = $result;
+
+      return true;
     }
     catch (\PDOException $e)
     {
-      echo 'Database error: ' . $e->getMessage();
+      return false;
+      // echo 'Database error: ' . $e->getMessage();
       die();
     }
   }
@@ -102,6 +105,7 @@ class CarCollection extends Collection
     }
     catch (\PDOException $e)
     {
+      return false;
       echo 'Database error: ' . $e->getMessage();
       die();
     }
