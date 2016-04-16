@@ -55,7 +55,7 @@ class UserModel extends Model
 
       // Create login attempts table for user
       $stmt = $dbconn->prepare('CREATE TABLE IF NOT EXISTS login_attempts (
-        la_id INT(100) NOT NULL AUTO_INCREMENT,
+        la_id INT(1000) NOT NULL AUTO_INCREMENT,
         attempted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         success VARCHAR(5) NOT NULL,
         user_id CHAR(18) NOT NULL,
@@ -69,7 +69,7 @@ class UserModel extends Model
 
       // Create a table for registration attempts
       $stmt = $dbconn->prepare('CREATE TABLE IF NOT EXISTS registration_attempts (
-        ra_id INT(100) NOT NULL AUTO_INCREMENT,
+        ra_id INT(1000) NOT NULL AUTO_INCREMENT,
         email VARCHAR(50) NOT NULL,
         first_name VARCHAR(50) DEFAULT NULL,
         last_name VARCHAR(50) DEFAULT NULL,
