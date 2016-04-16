@@ -12,6 +12,7 @@ class UserModel extends Model
   private $password;
   private $first_name;
   private $last_name;
+  private $confirmation_code;
 
   public function __construct($id = '')
   {
@@ -29,6 +30,20 @@ class UserModel extends Model
       // Create user table
       $stmt = $dbconn->prepare('CREATE TABLE IF NOT EXISTS users (
         user_id CHAR(18) NOT NULL,
+        email VARCHAR(50) NOT NULL UNIQUE,
+        first_name VARCHAR(50) DEFAULT NULL,
+        last_name VARCHAR(50) DEFAULT NULL,
+        password VARCHAR(70) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY(user_id)
+      )ENGINE=InnoDB');
+      $stmt->execute();
+
+      // Create temporary users table that will hold users information
+      // until it gets confirmed via email
+      $stmt = $dbconn->prepare('CREATE TABLE IF NOT EXISTS temp_users (
+        user_id CHAR(18) NOT NULL,
+        confirmation_code VARCHAR(65) NOT NULL,
         email VARCHAR(50) NOT NULL UNIQUE,
         first_name VARCHAR(50) DEFAULT NULL,
         last_name VARCHAR(50) DEFAULT NULL,
@@ -115,6 +130,14 @@ class UserModel extends Model
     $this->last_name = $lastName;
   }
 
+  public function getConfirmationCode() {
+    return $this->confirmation_code;
+  }
+
+  public function setConfirmationCode($confirmation_code) {
+    $this->confirmation_code = $confirmation_code;
+  }
+
   // Register user
   public function register()
   {
@@ -123,10 +146,12 @@ class UserModel extends Model
       $dbconn = DatabaseConnection::getConnection();
 
       // Add a new user to the users table
-      $stmt = $dbconn->prepare('INSERT INTO users (user_id, email, first_name, last_name,
-        password) VALUES (:user_id, :email, :first_name, :last_name, :password)');
+      $stmt = $dbconn->prepare('INSERT INTO temp_users (user_id, confirmation_code,
+        email, first_name, last_name, password) VALUES (:user_id, :confirmation_code,
+        :email, :first_name, :last_name, :password)');
 
       $stmt->bindParam(':user_id', $this->user_id);
+      $stmt->bindParam(':confirmation_code', $this->confirmation_code);
       $stmt->bindParam(':email', $this->email);
       $stmt->bindParam(':first_name', $this->first_name);
       $stmt->bindParam(':last_name', $this->last_name);
