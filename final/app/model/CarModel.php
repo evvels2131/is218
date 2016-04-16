@@ -31,7 +31,7 @@ class CarModel extends Model
 
       $stmt = $dbconn->prepare('CREATE TABLE IF NOT EXISTS cars (
         car_id CHAR(17) NOT NULL,
-        vin CHAR(17) NOT NULL,
+        vin CHAR(17) NOT NULL UNIQUE,
         make VARCHAR(15) DEFAULT NULL,
         model VARCHAR(15) DEFAULT NULL,
         year VARCHAR(4) DEFAULT NULL,
