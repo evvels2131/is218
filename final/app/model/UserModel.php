@@ -178,6 +178,70 @@ class UserModel extends Model
     }
   }
 
+  // User confirmation
+  public function confirmUser()
+  {
+    try
+    {
+      $dbconn = DatabaseConnection::getConnection();
+
+      // Select all data from the temporary table
+      $stmt = $dbconn->prepare('SELECT * FROM temp_users WHERE
+        confirmation_code=:confirmation_code');
+
+      $stmt->bindParam(':confirmation_code', $this->confirmation_code);
+      $stmt->execute();
+
+      if ($stmt->rowCount() > 0)
+      {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+        {
+          $user_id =  $row['user_id'];
+          $email = $row['email'];
+          $first_name = $row['first_name'];
+          $last_name = $row['last_name'];
+          $password = $row['password'];
+          $created_at = $row['created_at'];
+        }
+
+        // Since confirmation was successful, insert the user info into
+        // the users table
+        $stmt = $dbconn->prepare('INSERT INTO users (user_id, email, first_name,
+          last_name, password, created_at) VALUES (:user_id, :email, :first_name,
+          :last_name, :password, :created_at)');
+
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':first_name', $first_name);
+        $stmt->bindParam(':last_name', $last_name);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':created_at', $created_at);
+
+        $stmt->execute();
+
+        // Delete users information from the temporary tables
+        $stmt = $dbconn->prepare('DELETE FROM temp_users WHERE
+          confirmation_code=:confirmation_code');
+
+        $stmt->bindParam(':confirmation_code', $this->confirmation_code);
+        $stmt->execute();
+
+        return true;
+      }
+      else
+      {
+        echo 'No';
+        return false;
+      }
+    }
+    catch (\PDOException $e)
+    {
+      echo 'Database error: ' . $e->getMessage();
+      return false;
+      die();
+    }
+  }
+
   // User login
   public function login()
   {
