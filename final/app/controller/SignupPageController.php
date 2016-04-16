@@ -75,16 +75,35 @@ class SignupPageController extends Controller
           $pass_hash    = parent::hashPassword($clean_pass);
 
           $userCollection = new UserCollection();
+          $conf_code = md5(uniqid(rand()));
 
           $user = $userCollection->create();
+          $user->setConfirmationCode($conf_code);
           $user->setFirstName($clean_fname);
           $user->setLastName($clean_lname);
           $user->setEmail($clean_email);
           $user->setPassword($pass_hash);
 
           if ($user->register()) {
-            $message = 'Congratulations! You\'ve successfully registered.';
+            $message = 'Congratulations! You\'ve successfully registered.<br />';
             $success = true;
+
+            // Send confirmation email
+            $to = $clean_email;
+            $subject = 'Your confirmation link here';
+            $header = 'From: Tomasz <tg77@njit.edu>';
+            $msg = 'Your Confirmation Link <br />';
+            $msg .= 'Click on this link to activate your account.<br />';
+            $msg .= 'http://localhost:8888/is218/wrk/final/index.php?page=confirmation?confirm_code='
+              . $conf_code;
+            $sendmail = mail($to, $subject, $msg, $header);
+
+            if ($sendmail) {
+              $message .= 'Your confirmation link has been sent to your email address.<br />
+                Please confirm your email before loggin in.';
+            } else {
+              $message .= 'Could not send confirmation link to your e-mail address';
+            }
           } else {
             $message = 'Something went wrong! Please try again.';
             $success = false;
