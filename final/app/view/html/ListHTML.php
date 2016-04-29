@@ -55,16 +55,6 @@ class ListHTML extends HTML
     $listHTML = '<ul class="list-group">';
     $listHTML .= '<li class="list-group-item"><b>Make:</b> ' . $data->make->name .'</li>';
     $listHTML .= '<li class="list-group-item"><b>Model:</b> ' . $data->model->name .'</li>';
-    print_r($data->engine);
-    if ($data->engine->cylinder != null) {
-      $listHTML .= '<li class="list-group-item"><b>Cylinder:</b> ' . $data->engine->cylinder .'</li>';
-    }
-    if ($data->engine->size != null) {
-      $listHTML .= '<li class="list-group-item"><b>Size:</b> ' . $data->engine->size .'</li>';
-    }
-    if ($data->engine->horserpower != null) {
-      $listHTML .= '<li class="list-group-item"><b>Hoursepower:</b> ' . $data->engine->horsepower .'</li>';
-    }
     $listHTML .= '<li class="list-group-item"><b>Driven wheels:</b> ' . $data->drivenWheels .'</li>';
     $listHTML .= '<li class="list-group-item"><b>Number of doors:</b> ' . $data->numOfDoors .'</li>';
     $listHTML .= '<li class="list-group-item"><b>Vehicle size:</b> ' . $data->categories->vehicleSize .'</li>';
