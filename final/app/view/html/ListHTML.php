@@ -55,7 +55,9 @@ class ListHTML extends HTML
     $listHTML = '<ul class="list-group">';
     $listHTML .= '<li class="list-group-item"><b>Make:</b> ' . $data->make->name .'</li>';
     $listHTML .= '<li class="list-group-item"><b>Model:</b> ' . $data->model->name .'</li>';
-    $listHTML .= '<li class="list-group-item"><b>Cylinder:</b> ' . $data->engine->cylinder .'</li>';
+    if ($data->engine->cylinder != 'undefined') {
+      $listHTML .= '<li class="list-group-item"><b>Cylinder:</b> ' . $data->engine->cylinder .'</li>';
+    }
     $listHTML .= '<li class="list-group-item"><b>Size:</b> ' . $data->engine->size .'</li>';
     $listHTML .= '<li class="list-group-item"><b>Hoursepower:</b> ' . $data->engine->horsepower .'</li>';
     $listHTML .= '<li class="list-group-item"><b>Driven wheels:</b> ' . $data->drivenWheels .'</li>';
