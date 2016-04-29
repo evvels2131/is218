@@ -58,7 +58,6 @@ class ListHTML extends HTML
     $listHTML .= '<li class="list-group-item"><b>Driven wheels:</b> ' . $data->drivenWheels .'</li>';
     $listHTML .= '<li class="list-group-item"><b>Number of doors:</b> ' . $data->numOfDoors .'</li>';
     $listHTML .= '<li class="list-group-item"><b>Vehicle size:</b> ' . $data->categories->vehicleSize .'</li>';
-    $listHTML .= '<li class="list-group-item"><b>Vin:</b> ' . $data->vin .'</li>';
     $listHTML .= '</ul>';
 
     return $listHTML;
