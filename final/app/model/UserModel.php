@@ -27,6 +27,9 @@ class UserModel extends Model
     {
       $dbconn = DatabaseConnection::getConnection();
 
+      // Begin a transaction
+      $dbconn->beginTransaction();
+
       // Create user table
       $stmt = $dbconn->prepare('CREATE TABLE IF NOT EXISTS users (
         user_id CHAR(18) NOT NULL,
@@ -78,6 +81,9 @@ class UserModel extends Model
         PRIMARY KEY(ra_id)
       )ENGINE=InnoDB');
       $stmt->execute();
+
+      // Recognize mistake and roll back changes
+      $dbconn->rollBack();
 
       return true;
     }
@@ -145,6 +151,9 @@ class UserModel extends Model
     {
       $dbconn = DatabaseConnection::getConnection();
 
+      // Begin a transaction
+      $dbconn->beginTransaction();
+
       // Add a new user to the users table
       $stmt = $dbconn->prepare('INSERT INTO temp_users (user_id, confirmation_code,
         email, first_name, last_name, password) VALUES (:user_id, :confirmation_code,
@@ -168,6 +177,9 @@ class UserModel extends Model
       $stmt->bindParam(':password', $this->password);
       $stmt->execute();
 
+      // Recognize mistake and roll back changes
+      $dbconn->rollBack();
+
       return true;
     }
     catch (\PDOException $e)
@@ -184,6 +196,9 @@ class UserModel extends Model
     try
     {
       $dbconn = DatabaseConnection::getConnection();
+
+      // Begin a transaction
+      $dbconn->beginTransaction();
 
       // Select all data from the temporary table
       $stmt = $dbconn->prepare('SELECT * FROM temp_users WHERE
@@ -226,6 +241,9 @@ class UserModel extends Model
         $stmt->bindParam(':confirmation_code', $this->confirmation_code);
         $stmt->execute();
 
+        // Recognize a mistake and roll back changes
+        $dbconn->rollBack();
+
         return true;
       }
       else
@@ -247,6 +265,9 @@ class UserModel extends Model
     try
     {
       $dbconn = DatabaseConnection::getConnection();
+
+      // Begin a transaction
+      $dbconn->beginTransaction();
 
       // Check if the email is in the database
       $stmt = $dbconn->prepare('SELECT * FROM users WHERE email=:email LIMIT 1');
@@ -287,6 +308,9 @@ class UserModel extends Model
           return false;
         }
       }
+
+      // Recognize a mistake and roll back changes
+      $dbconn->rollBack();
     }
     catch (\PDOException $e)
     {
