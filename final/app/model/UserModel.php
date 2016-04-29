@@ -27,7 +27,6 @@ class UserModel extends Model
     {
       $dbconn = DatabaseConnection::getConnection();
 
-      // Begin a transaction
       $dbconn->beginTransaction();
 
       // Create user table
@@ -82,14 +81,14 @@ class UserModel extends Model
       )ENGINE=InnoDB');
       $stmt->execute();
 
-      // Recognize mistake and roll back changes
-      $dbconn->rollBack();
+      $dbconn->commit();
 
       return true;
     }
     catch (\PDOException $e)
     {
       echo 'Database error: ' . $e->getMessage();
+      $dbconn->rollback();
       return false;
       die();
     }
@@ -151,7 +150,6 @@ class UserModel extends Model
     {
       $dbconn = DatabaseConnection::getConnection();
 
-      // Begin a transaction
       $dbconn->beginTransaction();
 
       // Add a new user to the users table
@@ -177,14 +175,14 @@ class UserModel extends Model
       $stmt->bindParam(':password', $this->password);
       $stmt->execute();
 
-      // Recognize mistake and roll back changes
-      $dbconn->rollBack();
+      $dbconn->commit();
 
       return true;
     }
     catch (\PDOException $e)
     {
       echo 'Database error: ' . $e->getMessage();
+      $dbconn->rollback();
       return false;
       die();
     }
@@ -241,13 +239,13 @@ class UserModel extends Model
         $stmt->bindParam(':confirmation_code', $this->confirmation_code);
         $stmt->execute();
 
-        // Recognize a mistake and roll back changes
-        $dbconn->rollBack();
+        $dbconn->commit();
 
         return true;
       }
       else
       {
+        $dbconn->rollback();
         return false;
       }
     }
@@ -302,19 +300,19 @@ class UserModel extends Model
         $stmt->bindParam(':success', $success);
         $stmt->execute();
 
+        $dbconn->commit();
+
         if ($success == 'true') {
           return true;
         } else {
           return false;
         }
       }
-
-      // Recognize a mistake and roll back changes
-      $dbconn->rollBack();
     }
     catch (\PDOException $e)
     {
-      echo 'Database error:' . $e->getMessage();
+      echo 'Database error: ' . $e->getMessage();
+      $dbconn->rollBack();
       return false;
       die();
     }
