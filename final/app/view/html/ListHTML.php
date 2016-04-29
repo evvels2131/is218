@@ -58,8 +58,12 @@ class ListHTML extends HTML
     if ($data->engine->cylinder != null) {
       $listHTML .= '<li class="list-group-item"><b>Cylinder:</b> ' . $data->engine->cylinder .'</li>';
     }
-    $listHTML .= '<li class="list-group-item"><b>Size:</b> ' . $data->engine->size .'</li>';
-    $listHTML .= '<li class="list-group-item"><b>Hoursepower:</b> ' . $data->engine->horsepower .'</li>';
+    if ($data->engine->size != null) {
+      $listHTML .= '<li class="list-group-item"><b>Size:</b> ' . $data->engine->size .'</li>';
+    }
+    if ($data->engine->horserpower != null) {
+      $listHTML .= '<li class="list-group-item"><b>Hoursepower:</b> ' . $data->engine->horsepower .'</li>';
+    }
     $listHTML .= '<li class="list-group-item"><b>Driven wheels:</b> ' . $data->drivenWheels .'</li>';
     $listHTML .= '<li class="list-group-item"><b>Number of doors:</b> ' . $data->numOfDoors .'</li>';
     $listHTML .= '<li class="list-group-item"><b>Vehicle size:</b> ' . $data->categories->vehicleSize .'</li>';
