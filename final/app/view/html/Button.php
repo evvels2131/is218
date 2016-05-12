@@ -10,6 +10,11 @@ class Button extends HTML
 
     return $buttonHTML;
   }
+
+  public static function newButtonEdit($type, $name, $class, $text) 
+  {
+  	return '<button type="' . $type . '" name="' . $name . '" class="btn ' . $class . '">' . $text . '</button>';
+  }
 }
 
 ?>

@@ -3,8 +3,11 @@ namespace app\view;
 
 use app\view\html\Paragraph;
 use app\view\html\Link;
-use app\view\html\Heading;
 use app\view\html\ListHTML;
+use app\view\html\Form;
+use app\view\html\InputField;
+use app\view\html\Button;
+use app\view\html\Heading;
 
 class CarDetailsView extends View
 {
@@ -24,27 +27,24 @@ class CarDetailsView extends View
     $detailedList .= ListHTML::carDetailedList($detailedInfo);
     echo parent::htmlDiv($detailedList, 6);
 
-    $editSection = Heading::newHeading('h4', 'Edit:');
-    echo parent::htmlDiv($editSection, 4);
-    $hp = InputField::hiddenInputField('text', 'form');
-    $price = InputField::newInputField('text', 'price', 'Price');
-    $condition = InputField::newInputField('text', 'condition', 'Condition');
-    $picture = InputField::newInputField('file', 'file', 'File Input');
-    $submit = Button::newButton('submit', 'btn-primary', 'Submit');
-    
-    $form = new Form('index.php?page=editcar');
-    $form->addNewInput($hp);
+    $cInfo = $basicInfo[0];
+    $vin_number = InputField::newInputFieldEdit('text', 'vin', 'Vin Number', $cInfo['Vin'], true);
+    $price      = InputField::newInputFieldEdit('text', 'price', 'Price', $cInfo['Price'], false);
+    $condition  = InputField::newInputFieldEdit('text', 'condition', 'Condition', $cInfo['Condition'], false);
+    $picture    = InputField::newInputFieldEdit('file', 'file', 'File Input', 'Value', false);
+    $submit     = Button::newButton('submit', 'btn-primary', 'Submit');
+
+    $form = new Form('index.php?page=editcar', 'POST', false);
+    $form->addNewInput($vin_number);
     $form->addNewInput($price);
     $form->addNewInput($condition);
     $form->addNewInput($picture);
     $form->addNewInput($submit);
+    $content = $form->getForm();
 
-    $formHTML = $form->getForm();
-    echo parent::htmlDiv($formHTML, 4);
-    $editSection .= $formHTML;
-    echo parent::htmlDiv($editSection, 4);
+    $collapsible = parent::collapsibleDiv('Edit or Delete', $content);
 
-    print_r($basicInfo);
+    echo parent::htmlDiv($collapsible, 6);
 
     echo parent::htmlFooter();
   }
