@@ -38,6 +38,9 @@ class CarDetailsView extends View
     $form->addNewInput($picture);
     $form->addNewInput($submit);
 
+    echo $form->getForm();
+    echo $editSection;
+
     $editSection .= $form->getForm();
     echo parent::htmlDiv($content, 4);
 
