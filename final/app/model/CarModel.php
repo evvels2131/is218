@@ -201,6 +201,56 @@ class CarModel extends Model
       die();
     }
   }
+
+  // Delete a car
+  public function delete() 
+  {
+    try
+    {
+      $dbconn = DatabaseConnection::getConnection();
+
+      $stmt = $dbconn->prepare('DELETE FROM cars WHERE vin=:vin');
+      $stmt->bindParam(':vin', $this->vin);
+
+      $stmt->execute();
+
+      return true;
+    }
+    catch (\PDOException $e)
+    {
+      echo 'Database error: ' . $e->getMessage();
+      return false;
+      die();
+    }
+  }
+
+  // Update a car
+  public function update() 
+  {
+    try 
+    {
+      $dbconn = DatabaseConnection::getConnection();
+
+      $stmt = $dbconn->prepare('UPDATE cars SET 
+        price=:price,
+        cond=:cond,
+        img_url=:img_url WHERE vin=:vin');
+      $stmt->bindParam(':price', $this->price);
+      $stmt->bindParam(':cond', $this->cond);
+      $stmt->bindParam(':img_url', $this->img_url);
+      $stmt->bindParam(':vin', $this->vin);
+
+      $stmt->execute();
+
+      return true;
+    }
+    catch (\PDOException $e)
+    {
+      echo 'Database error: ' . $e->getMessage();
+      return false;
+      die();
+    }
+  }
 }
 
 ?>
