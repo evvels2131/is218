@@ -417,6 +417,33 @@ class UserModel extends Model
       die();
     }
   }
+
+  // Check if the car belongs to the user
+  public function checkUsersCar($vin) 
+  {
+    try 
+    {
+      $dbconn = DatabaseConnection::getConnection();
+
+      $stmt = $dbconn->prepare('SELECT car_id FROM cars WHERE created_by=:user_id AND vin=:vin LIMIT 1');
+      $stmt->bindParam(':user_id', $this->user_id);
+      $stmt->bindParam(':vin', $vin);
+
+      $stmt->execute();
+
+      if ($stmt->rowCount() > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    catch (\PDOException $e)
+    {
+      echo 'Database error: ' . $e->getMessage();
+      return false;
+      die();
+    }
+  }
 }
 
 ?>
