@@ -31,6 +31,8 @@ class CarDetailsView extends View
     if ($_SESSION['user_session'] && $salesman) 
     {
       $cInfo = $basicInfo[0];
+      $hp = InputField::hiddenInputField('text', 'form');
+      $img_url = InputField::hiddenImageField($cInfo['Image']);
       $vin_number = InputField::newInputFieldEdit('text', 'vin', 'Vin Number', $cInfo['Vin'], true);
       $price      = InputField::newInputFieldEdit('text', 'price', 'Price', $cInfo['Price'], false);
       $condition  = InputField::newInputFieldEdit('text', 'condition', 'Condition', $cInfo['Condition'], false);
@@ -39,6 +41,8 @@ class CarDetailsView extends View
       $delete = Button::newButtonEdit('submit', 'delete', 'btn-danger', 'Delete');
 
       $form = new Form('index.php?page=editcar', 'POST', false);
+      $form->addNewInput($hp);
+      $form->addNewInput($img_url);
       $form->addNewInput($vin_number);
       $form->addNewInput($price);
       $form->addNewInput($condition);
