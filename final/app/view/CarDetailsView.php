@@ -16,15 +16,16 @@ class CarDetailsView extends View
     $content = parent::htmlAlertDiv('info', $heading);
     echo parent::htmlDiv($content, 8);
 
-    $detailsList = Heading::newHeading('h4', 'Basic informatdddion:');
+    $detailsList = Heading::newHeading('h4', 'Basic information:');
     $detailsList .= ListHTML::carDetailsList($basicInfo);
     echo parent::htmlDiv($detailsList, 6);
 
-    $detailedList = Heading::newHeading('h4', 'Detailed informatiddon:');
+    $detailedList = Heading::newHeading('h4', 'Detailed information:');
     $detailedList .= ListHTML::carDetailedList($detailedInfo);
     echo parent::htmlDiv($detailedList, 6);
 
     $editSection = Heading::newHeading('h4', 'Edit:');
+    echo parent::htmlDiv($editSection, 4);
     $hp = InputField::hiddenInputField('text', 'form');
     $price = InputField::newInputField('text', 'price', 'Price');
     $condition = InputField::newInputField('text', 'condition', 'Condition');
@@ -37,9 +38,6 @@ class CarDetailsView extends View
     $form->addNewInput($condition);
     $form->addNewInput($picture);
     $form->addNewInput($submit);
-
-    echo $form->getForm();
-    echo $editSection;
 
     $editSection .= $form->getForm();
     echo parent::htmlDiv($editSection, 4);
