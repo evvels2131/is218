@@ -39,6 +39,19 @@ class InputField extends HTML
 
     return $captchaInputField;
   }
+
+  public static function newInputFieldEdit($type, $name, $placeholder = '',
+    $value = '', $disabled)
+  {
+    if ($disabled) {
+      $input = '<input type="' . $type . '" name="' . $name . '"
+        class="form-control" disabled value="' . $value . '" placeholder="' . $placeholder . '" >';
+    } else {
+      $input = '<input type="' . $type . '" name="' . $name . '"
+        class="form-control" value="' . $value . '" placeholder="' . $placeholder . '" >';
+    }
+    return $input;
+  }
 }
 
 
