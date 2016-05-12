@@ -97,6 +97,16 @@ abstract class View
   {
     return '<div class="well">' . $content . '</div>';
   }
+
+  // Collapsible
+  public function collapsibleDiv($buttonText, $content) 
+  {
+    $collapsibleHTML = '
+      <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">' . $buttonText .'</button>
+      <div id="demo" class="collapse">' . $content . '</div>';
+
+    return $collapsibleHTML;
+  }
 }
 
 ?>
