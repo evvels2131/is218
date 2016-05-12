@@ -2,3 +2,7 @@
 .hp {
   display: none;
 }
+
+.disabled {
+	pointer-events: none;
+}
