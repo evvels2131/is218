@@ -52,6 +52,7 @@ class CarDetailsView extends View
       $content = $form->getForm();
 
       $collapsible = parent::collapsibleDiv('Edit or Delete', $content);
+      $collapsible .= '<br /><br /><br /><br /><br /><br /><br /><br />';
 
       echo parent::htmlDiv($collapsible, 6);
     }
