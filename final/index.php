@@ -9,7 +9,7 @@ $app = new App;
 
 //session_unset();
 
-/*echo '<hr>';
+echo '<hr>';
 echo '<h2>Debugging Information</h2>';
 
 if (isset($_SESSION))
@@ -47,5 +47,5 @@ echo '<hr>';
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);*/
+error_reporting(E_ALL);
 ?>
