@@ -3,10 +3,6 @@ use app\App;
 
 require_once('autoloadFunction.php');
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 $app = new App;
 
 /* DEBUGGING INFO */
@@ -47,6 +43,9 @@ if (isset($_POST) && !empty($_POST))
   print_r($_POST);
   echo '</pre>';
 }
+echo '<hr>';
 
-echo '<hr>';*/
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);*/
 ?>
