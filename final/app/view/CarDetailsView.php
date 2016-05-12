@@ -11,11 +11,11 @@ use app\view\html\Heading;
 
 class CarDetailsView extends View
 {
-  public function __construct($basicInfo, $detailedInfo)
+  public function __construct($basicInfo, $detailedInfo, $salesman = false)
   {
     echo parent::htmlHeader('Car Details');
 
-    $heading = Heading::newHeading('h4', 'Car detaildds');
+    $heading = Heading::newHeading('h4', 'Car details');
     $content = parent::htmlAlertDiv('info', $heading);
     echo parent::htmlDiv($content, 8);
 
@@ -27,24 +27,30 @@ class CarDetailsView extends View
     $detailedList .= ListHTML::carDetailedList($detailedInfo);
     echo parent::htmlDiv($detailedList, 6);
 
-    $cInfo = $basicInfo[0];
-    $vin_number = InputField::newInputFieldEdit('text', 'vin', 'Vin Number', $cInfo['Vin'], true);
-    $price      = InputField::newInputFieldEdit('text', 'price', 'Price', $cInfo['Price'], false);
-    $condition  = InputField::newInputFieldEdit('text', 'condition', 'Condition', $cInfo['Condition'], false);
-    $picture    = InputField::newInputFieldEdit('file', 'file', 'File Input', 'Value', false);
-    $submit     = Button::newButton('submit', 'btn-primary', 'Submit');
+    // Display the form to edit a car if the user is logged in and the car belongs to the user
+    if ($_SESSION['user_session'] && $salesman) 
+    {
+      $cInfo = $basicInfo[0];
+      $vin_number = InputField::newInputFieldEdit('text', 'vin', 'Vin Number', $cInfo['Vin'], true);
+      $price      = InputField::newInputFieldEdit('text', 'price', 'Price', $cInfo['Price'], false);
+      $condition  = InputField::newInputFieldEdit('text', 'condition', 'Condition', $cInfo['Condition'], false);
+      $picture    = InputField::newInputFieldEdit('file', 'file', 'File Input', 'Value', false);
+      $edit   = Button::newButtonEdit('submit', 'edit', 'btn-success', 'Edit');
+      $delete = Button::newButtonEdit('submit', 'delete', 'btn-danger', 'Delete');
 
-    $form = new Form('index.php?page=editcar', 'POST', false);
-    $form->addNewInput($vin_number);
-    $form->addNewInput($price);
-    $form->addNewInput($condition);
-    $form->addNewInput($picture);
-    $form->addNewInput($submit);
-    $content = $form->getForm();
+      $form = new Form('index.php?page=editcar', 'POST', false);
+      $form->addNewInput($vin_number);
+      $form->addNewInput($price);
+      $form->addNewInput($condition);
+      $form->addNewInput($picture);
+      $form->addNewInput($edit);
+      $form->addNewInput($delete);
+      $content = $form->getForm();
 
-    $collapsible = parent::collapsibleDiv('Edit or Delete', $content);
+      $collapsible = parent::collapsibleDiv('Edit or Delete', $content);
 
-    echo parent::htmlDiv($collapsible, 6);
+      echo parent::htmlDiv($collapsible, 6);
+    }
 
     echo parent::htmlFooter();
   }
