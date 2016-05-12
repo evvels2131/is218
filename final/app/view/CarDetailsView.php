@@ -24,6 +24,8 @@ class CarDetailsView extends View
     $detailedList .= ListHTML::carDetailedList($detailedInfo);
     echo parent::htmlDiv($detailedList, 6);
 
+    print_r($basicInfo);
+
     echo parent::htmlFooter();
   }
 }
