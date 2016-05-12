@@ -30,8 +30,6 @@ class CarDetailsView extends View
     $condition = InputField::newInputField('text', 'condition', 'Condition');
     $picture = InputField::newInputField('file', 'file', 'File Input');
     $submit = Button::newButton('submit', 'btn-primary', 'Submit');
-
-    echo '<h1>Helloooo</h1>';
     
     $form = new Form('index.php?page=editcar');
     $form->addNewInput($hp);
@@ -44,7 +42,7 @@ class CarDetailsView extends View
     echo $editSection;
 
     $editSection .= $form->getForm();
-    echo parent::htmlDiv($content, 4);
+    echo parent::htmlDiv($editSection, 4);
 
     print_r($basicInfo);
 
