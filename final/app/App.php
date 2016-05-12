@@ -20,6 +20,7 @@ use app\controller\AddCarPageController;
 use app\controller\LoginPageController;
 use app\controller\CarDetailsController;
 use app\controller\ConfirmationController;
+use app\controller\EditCarController;
 
 class App
 {
@@ -47,6 +48,10 @@ class App
         case 'addcar':
           $addcarController = new AddCarPageController();
           $addcarController->$request_method();
+          break;
+        case 'editcar':
+          $editCarController = new EditCarController();
+          $editCarController->$request_method();
           break;
         case 'login':
           $loginPageController = new LoginPageController();
