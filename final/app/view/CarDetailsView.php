@@ -12,15 +12,15 @@ class CarDetailsView extends View
   {
     echo parent::htmlHeader('Car Details');
 
-    $heading = Heading::newHeading('h4', 'Car details');
+    $heading = Heading::newHeading('h4', 'Car detaildds');
     $content = parent::htmlAlertDiv('info', $heading);
     echo parent::htmlDiv($content, 8);
 
-    $detailsList = Heading::newHeading('h4', 'Basic information:');
+    $detailsList = Heading::newHeading('h4', 'Basic informatdddion:');
     $detailsList .= ListHTML::carDetailsList($basicInfo);
     echo parent::htmlDiv($detailsList, 6);
 
-    $detailedList = Heading::newHeading('h4', 'Detailed information:');
+    $detailedList = Heading::newHeading('h4', 'Detailed informatiddon:');
     $detailedList .= ListHTML::carDetailedList($detailedInfo);
     echo parent::htmlDiv($detailedList, 6);
 
@@ -30,6 +30,8 @@ class CarDetailsView extends View
     $condition = InputField::newInputField('text', 'condition', 'Condition');
     $picture = InputField::newInputField('file', 'file', 'File Input');
     $submit = Button::newButton('submit', 'btn-primary', 'Submit');
+
+    echo '<h1>Helloooo</h1>';
     
     $form = new Form('index.php?page=editcar');
     $form->addNewInput($hp);
