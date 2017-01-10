@@ -2,10 +2,10 @@
 
 <h3>Final Project Description</h3>
 <p><b>
-  Create a website to manage a car lot. It has to let people sing up to input cars <br />
+  Create a website to manage a car lot. It has to let people sing up to input cars
   for sale and display those cars on the home page in a table grid view.
-</b></p><br /><br />
-* Singup form (first name, last name, email, password)
+</b></p><br />
+* Singup form (first name, last name, email, password) <br />
 ...Validation: email and password matching
 ...Confirmation email
 * Logout functionality
