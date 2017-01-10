@@ -1,34 +1,23 @@
-# IS 218-002
+# IS 218 - Building Web Applications
 
-<h3>Links:</h3><br />
-<b>Homework 1: </b>
-<a href="https://web.njit.edu/~tg77/is218/index.php" target="_blank">
-  web.njit.edu/~tg77/is218/index.php</a>
-<br />
-<b>Homework 2 - making HTML elements: </b>
-<a href="https://web.njit.edu/~tg77/is218/index2.php" target="_blank">
-  web.njit.edu/~tg77/is218/index2.php</a>
-<br />
-<b>Homework 2 - Car Table and View: </b>
-<a href="https://web.njit.edu/~tg77/is218/hw2/index.php" target="_blank">
-  web.njit.edu/~tg77/is218/hw2/index.php</a>
-<br />
-<b>Midterm Project: </b>
-<a href="https://web.njit.edu/~tg77/is218/midterm/index.php" target="_blank">
-  web.njit.edu/~tg77/is218/midterm/index.php</a>
-<br />
-<b>Homework 3: </b>
-<a href="https://web.njit.edu/~tg77/is218/hw3/index.php" target="_blank">
-  web.njit.edu/~tg77/is218/hw3/index.php</a>
-<br />
-<b>Homework 4: </b>
-<a href="https://web.njit.edu/~tg77/is218/hw4/index.php" target="_blank">
-  web.njit.edu/~tg77/is218/hw4/index.php</a>
-<br />
-<b>Final Project: </b>
-<a href="https://web.njit.edu/~tg77/is218/final/index.php" target="_blank">
-  web.njit.edu/~tg77/is218/final/index.php</a>
-<br /><br />
-<b>Tomasz Goralczyk</b><br />
-<b>IS 218-002</b><br />
-<b>Professor Keith Williams</b><br />
+<h3>Final Project Description</h3>
+<p><b>
+  Create a website to manage a car lot. It has to let people sing up to input cars <br />
+  for sale and display those cars on the home page in a table grid view.
+</b></p><br /><br />
+* Singup form (first name, last name, email, password)
+...Validation: email and password matching
+...Confirmation email
+* Logout functionality
+* Display table of access attempts for a particular user
+* Connect to `Edmunds API` to retrieve information about cars
+* Add cars to inventory with the information retrieved from `Edmunds API`
+* Display detailed information about cars <br /><br />
+
+<p><b>Other (security) requirements:</b></p>
+* Password Hashing
+* CAPTCHA
+* HoneyPot
+* SQL Injection
+* HTML Injection
+* CSRF Protection 
