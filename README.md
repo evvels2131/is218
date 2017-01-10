@@ -4,7 +4,7 @@
 <p>Create a website to manage a car lot. It has to let people sign up to input cars for sale and display those cars on the home page in a table grid view</p>
 
 * Singup form (first name, last name, email, password)
-⋅⋅⋅ Validation: email and password matching
+⋅⋅⋅ Validation: email and password matching <br />
 ⋅⋅⋅ Confirmation email
 * Logout functionality
 * Display table of access attempts for a particular user
