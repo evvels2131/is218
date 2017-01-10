@@ -3,6 +3,8 @@
 ### Final Project Description
 <p>Create a website to manage a car lot. It has to let people sign up to input cars for sale and display those cars on the home page in a table grid view</p>
 
+### Requirements
+
 * Singup form (first name, last name, email, password) <br />
 ⋅⋅⋅ Validation: email and password matching <br />
 ⋅⋅⋅ Confirmation email
@@ -12,7 +14,7 @@
 * Add cars to inventory with the information retrieved from `Edmunds API`
 * Display detailed information about cars
 
-### Other (security) requirements:
+### Other (security) requirements
 * Password Hashing
 * CAPTCHA
 * HoneyPot
@@ -20,7 +22,7 @@
 * HTML Injection
 * CSRF Protection
 
-### Technologies used: 
+### Technologies used
 * PHP
 * HTML
 * CSS
