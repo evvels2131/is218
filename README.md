@@ -1,5 +1,10 @@
 # IS 218 - Building Web Applications
 
+### Course Description
+<p>
+This course provides a critical, hands-on introduction to the design of Web-based Information Systems. We will explore and discuss emerging trends, capabilities, and limitations of web technologies used to capture, store, access, and disseminate information for both businesses and online communities. Students, working in groups, will design and develop different types of web applications, which will then be analyzed and critiqued by the students as to their usability in actual public and private settings
+</p>
+
 ### Final Project Description
 <p>Create a website to manage a car lot. It has to let people sign up to input cars for sale and display those cars on the home page in a table grid view</p>
 
@@ -14,7 +19,7 @@
 * Add cars to inventory with the information retrieved from `Edmunds API`
 * Display detailed information about cars
 
-### Other (security) requirements
+### Security Requirements
 * Password Hashing
 * CAPTCHA
 * HoneyPot
@@ -22,8 +27,8 @@
 * HTML Injection
 * CSRF Protection
 
-### Technologies used
-* PHP
-* HTML
-* CSS
-* JavaScript
+### Technologies Used
+* `PHP`
+* `HTML`
+* `CSS`
+* `JavaScript`
